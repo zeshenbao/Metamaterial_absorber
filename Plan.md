@@ -11,6 +11,7 @@
 8. Measure surface resistivity of candidate materials at room temperature and 80-100 K 
 
 ## My own plan
+0. Learn a bit more about git
 1. Read some files
 2. Look into Cadquery
 3. Try to understand the code
