@@ -16,7 +16,7 @@
 2. Look into Cadquery
 3. Try to understand the code
 * make small dog_leg absorber element with right dimensions
-* design different dog_leg components for the wall
+* design different dog_leg components for the wall, try make a dog_leg corner
 * put dog_leg in a function
 * change side, corner, etc. with dog_leg elements
 4. Make your own design
