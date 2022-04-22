@@ -15,6 +15,11 @@ __author__ = "Matthew Petroff"
 
 import argparse
 from io import StringIO
+#######################
+#import sys
+
+#sys.path.append("D:/Documents/SU/Internship in Physics/3d-printable-absorber-geometries/FreeCAD 0.19/bin")
+##################################
 import cadquery as cq
 
 parser = argparse.ArgumentParser(
@@ -86,6 +91,7 @@ intersection_b = (
     .extrude(thickness / 2, both=True)
 )
 intersection = intersection_a.findSolid().intersect(intersection_b.findSolid())
+#print(type(intersection)) #######################################################################
 union_a = (
     cq.Workplane("YZ")
     .lineTo(-thickness / 2, 0)
@@ -107,7 +113,7 @@ union_b = (
     .extrude(-thickness / 2)
 )
 corner = cq.CQ(union_a.union(union_b).union(intersection).findSolid())
-
+print(type(corner))
 # Side primitive
 side = (
     cq.Workplane("YZ")
@@ -119,6 +125,7 @@ side = (
     .close()
     .extrude(thickness)
 )
+print(type(side))
 side_short = (
     cq.Workplane("YZ")
     .lineTo(-thickness / 2, 0)
@@ -143,6 +150,7 @@ axiom = "A"
 A = "-BF+AFA+FB-"
 B = "+AF-BFB-FA+"
 
+
 # Prepare L-system
 lsystem = axiom
 for _ in range(iterations):
@@ -160,9 +168,10 @@ lsystem = lsystem.strip("+-")
 # Start cap
 if args.use_square_ends:
     result = side.translate((-thickness / 2, 0.0, 0.0))
+    print(type(result))
 else:
     result = end_cap.rotate((0.0, 0.0, 0.0), (0.0, 0.0, 1.0), 180)
-
+    print(type(result))
 # L-system iteration variables
 angle = 0
 x = 0
@@ -184,6 +193,7 @@ for i, sym in enumerate(lsystem):
                 (x, y, 0.0)
             )
         )
+        print(type(result))###########################################################
     elif sym == "F":
         if (
             i < len(lsystem) - 2
@@ -234,7 +244,7 @@ result = result.union(result)
 
 
 # Save result and edit metadata
-output = StringIO.StringIO()
+output = StringIO()
 cq.exporters.exportShape(result, "STEP", output)
 step_data = output.getvalue()
 output.close()
@@ -251,7 +261,7 @@ step_data = (
     name[0]
     + ",".join(
         [
-            "FILE_NAME('hilbert{}'".format(iterations),
+            "FILE_NAME('hilbert_MOD{}'".format(iterations),
             "''",
             "('{}')".format(__author__),
             "('')",
@@ -262,5 +272,5 @@ step_data = (
     )
     + name[1].split(";", 1)[1]
 )
-with open("hilbert{}.step".format(iterations), "w") as f:
+with open("hilbert_MOD{}.step".format(iterations), "w") as f:
     f.write(step_data)
