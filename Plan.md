@@ -20,3 +20,6 @@
 * put dog_leg in a function
 * change side, corner, etc. with dog_leg elements
 4. Make your own design
+* function
+* wall segment class
+* add thing together
