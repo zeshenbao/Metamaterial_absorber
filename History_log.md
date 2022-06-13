@@ -28,7 +28,7 @@ Did:
 * Learned basic methods in cadquery.
 * Tried to make a basic pyramid.
 
-Questions \& to do:
+Questions \& To do:
 * Learn to refill the printer with liquid.
 * Learn how to move and rotate in Cadquery workplane to start iterating. (Look into .add, .rotate, .union, .translate methods)
 
