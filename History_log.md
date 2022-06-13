@@ -14,19 +14,20 @@
 
 ## 13/06-22
 Plan:
-* Try 3D-printing something
-* Start learning about cadquery methods 
-* Start to make basic geometries
+1. Try 3D-printing something
+2. Start learning about cadquery methods 
+3. Start to make basic geometries
 
 Did: 
-* Printed a violin test model and learned to: 
-1. Send things to formlabs printer via preform. 
-2. Preparing the printer for printing and removing the print.
-3. Washing in isopropanol manually and with machine and also curing it.
+1. Printed a violin test model and learned to: 
+* Send things to formlabs printer via preform. 
+* Preparing the printer for printing and removing the print.
+* Washing in isopropanol manually and with machine and also curing it.
 
-* Looked at different examples of basic geometries of different cadquery objects.
+2. Looked at different examples of basic geometries of different cadquery objects.
 * Learned basic methods in cadquery.
-* Tried to make a basic pyramid.
+
+3. Tried to make a basic pyramid.
 
 Questions \& To do:
 * Learn to refill the printer with liquid.
