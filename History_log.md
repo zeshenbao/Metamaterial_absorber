@@ -11,3 +11,9 @@
 ## 21/04-22
 * Set up the correct enviroment to run absorber codes with Cadquery2 with Conda
 * Tested the step files with Freecad 0.19
+
+## 13/06-22
+Plan:
+* Try 3D-printing something
+* Start learning about cadquery methods 
+* Start to make basic geometries
