@@ -23,3 +23,7 @@
 * function
 * wall segment class
 * add thing together
+5. Printer:
+* Try to figure out why failures happen with 3D-printer
+* Try to figure out how to code the tanks
+* Try to combine different printer-fillers
