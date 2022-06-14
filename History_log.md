@@ -36,7 +36,7 @@ Questions \& To do:
 ## 14/06-22
 
 Plan:
-1. Learn .translation, .rotation, .add methods
+1. Learn .translation, <del>.rotation</del>, .add methods
 2. Make a 9x9 pyramid absorber
 <del> 3. Make a dogleg absorber </del>
 4. Try other patterns (Hilbert, translation + rotation)
