@@ -38,8 +38,10 @@ Questions \& To do:
 Plan:
 1. Learn .translation, .rotation, .add methods
 2. Make a 9x9 pyramid absorber
-3. Make a dogleg absorber
+<del> 3. Make a dogleg absorber </del>
 4. Try other patterns (Hilbert, translation + rotation)
+* start with simple cross section, (rectangular --> triangular --> dogleg)
+* start with small section --> larger hilbert curves
 
 
 Questions:
