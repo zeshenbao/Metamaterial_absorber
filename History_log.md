@@ -41,3 +41,6 @@ Plan:
 3. Make a dogleg absorber
 4. Try other patterns (Hilbert, translation + rotation)
 
+
+Questions:
+* What is/ how to make different types: Workplane, solid
