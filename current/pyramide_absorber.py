@@ -28,7 +28,7 @@ intersection_a = (
 intersection_b = (
     cq.Workplane("XZ")
     .lineTo(-thickness / 2, 0)
-    .lineTo(-thickness / 2, base_thickness)
+        .lineTo(-thickness / 2, base_thickness)
     .lineTo(0, height + base_thickness)
     .lineTo(thickness / 2, base_thickness)
     .lineTo(thickness / 2, 0)
@@ -41,7 +41,7 @@ block = cq.CQ(pyramide)
 
 #starting block
 result=block
-
+"""
 #adding aditional pyramides
 for i in range(a):
     for j in range(b):
@@ -54,3 +54,4 @@ result.union(result)
 
 #exporting
 exporters.export(result, 'pyramide_absorber.step')
+"""
