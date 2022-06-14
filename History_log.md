@@ -33,3 +33,10 @@ Questions \& To do:
 * Learn to refill the printer with liquid.
 * Learn how to move and rotate in Cadquery workplane to start iterating. (Look into .add, .rotate, .union, .translate methods)
 
+## 14/06-22
+
+Plan:
+1. Learn .translation, .rotation, .add methods
+2. Make a 9x9 pyramid absorber
+3. Make a dogleg absorber
+
