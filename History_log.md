@@ -39,4 +39,5 @@ Plan:
 1. Learn .translation, .rotation, .add methods
 2. Make a 9x9 pyramid absorber
 3. Make a dogleg absorber
+4. Try other patterns (Hilbert, translation + rotation)
 
