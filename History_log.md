@@ -48,11 +48,11 @@ Did:
 2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
 
 <img src="log_images/IMG_4104.JPG" alt="wall" width="200"/>
-Figure1. print of pyramid wall from the side.<br>
+Figure1. print of pyramid wall from the side.<br><br>
 
 
 <img src="log_images/IMG_4107.JPG" alt="wall" width="200"/>
-Figure2. print of pyramid wall from above.<br>
+Figure2. print of pyramid wall from above.<br><br>
 
 
 
