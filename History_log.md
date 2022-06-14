@@ -51,6 +51,10 @@ Did:
 |:--:| 
 | *Figure1. print of pyramid wall from the side.* |
 
+|![wall](log_images/IMG_4107.JPG)|
+|:--:| 
+| *Figure1. print of pyramid wall from above.* |
+
 
 Questions:
 * What is/ how to make different types: Workplane, solid
