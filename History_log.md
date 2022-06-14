@@ -43,6 +43,13 @@ Plan:
 * start with simple cross section, (rectangular --> triangular --> dogleg)
 * start with small section --> larger hilbert curves
 
+Did: 
+1. Looked at many example codes and learned to use methods .add and .translation.
+2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
+|![Renderad_bild]()|
+|:--:| 
+| *Figur1. Exempel på renderad scen.* |
+
 
 Questions:
 * What is/ how to make different types: Workplane, solid
