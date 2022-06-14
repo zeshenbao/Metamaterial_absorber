@@ -46,9 +46,9 @@ Plan:
 Did: 
 1. Looked at many example codes and learned to use methods .add and .translation.
 2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
-|![Renderad_bild](log_images/IMG_4104.JPG)|
+|![wall](log_images/IMG_4104.JPG)|
 |:--:| 
-| *Figur1. Exempel på renderad scen.* |
+| *Figure1. print of pyramid wall from the side.* |
 
 
 Questions:
