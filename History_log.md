@@ -47,7 +47,7 @@ Did:
 1. Looked at many example codes and learned to use methods .add and .translation.
 2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
 
-|![wall](<img src="log_images/IMG_4107.JPG" alt="wall" width="200"/>)|
+<img src="log_images/IMG_4107.JPG" alt="wall" width="200"/>
 |:--:| 
 | *Figure1. print of pyramid wall from the side.* |
 
