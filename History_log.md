@@ -47,11 +47,11 @@ Did:
 1. Looked at many example codes and learned to use methods .add and .translation.
 2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
 
-<img src="log_images/IMG_4104.JPG" alt="wall" width="200"/>
+<img src="log_images/14_06_2022/IMG_4104.JPG" alt="wall" width="200"/>
 Figure1. print of pyramid wall from the side.<br><br>
 
 
-<img src="log_images/IMG_4107.JPG" alt="wall" width="200"/>
+<img src="log_images/14_06_2022/IMG_4107.JPG" alt="wall" width="200"/>
 Figure2. print of pyramid wall from above.<br><br>
 
 3. Started to print 25 25x25 updated pyramid walls to check printer properties.
@@ -66,13 +66,19 @@ Questions:
 ## 15/06-22
 
 Plan:
-1. Study the print
+1. Study the print.
 2. Finish writing the geometry file, add dog_leg later.
 3. Start making Hilbert curve with blocks, continue to pyramid which requires corner sections, etc.
 
 Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
-
+<p float="left">
+  <img src="log_images/15_06_2022/above.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/left.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/right.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/front.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/back.jpg"  width="200"/>
+</p>
 
 
 
