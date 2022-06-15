@@ -43,13 +43,13 @@ exporters.export(result, "pyra_method3.stl")
 """
 #base = (cq.Workplane("XY").rect(1,1).workplane(offset=1).circle(0.001).loft(combine=True))
 
-base = (cq.Workplane("XY").rect(1,1).extrude(0.5).faces(">Z").rect(1,1).workplane(offset=1).circle(0.001).loft(combine=True)) #bättre att inte använda loft för snabbare kod
+base = (cq.Workplane("XY").rect(1,1).extrude(5).faces(">Z").rect(1,1).workplane(offset=2).circle(0.001).loft(combine=True)) #bättre att inte använda loft för snabbare kod
 
 result = cq.Workplane("XY")
 #result = base
 
-length = 100
-width = 100
+length = 25
+width = 25
 
 for i in range(length):
     for j in range(width):
@@ -61,7 +61,7 @@ for i in range(length):
 
 #result.add(base_platform)
 
-exporters.export(result, "pyramid_wall_with_platform100.stl")
+exporters.export(result, "pyramid_wall_with_platform25.stl")
         
         
         

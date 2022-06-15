@@ -8,7 +8,7 @@ def pyramid(base=(1,1), height=1, foundation = 0.5):
        height is the height of pyramid and foundation is the thickness of the foundation below pyramid i XY plane."""
     
     #return (cq.Workplane("XY").rect(base[0], base[1]).workplane(offset=height).circle(0.001).loft(combine=True))
-    return base = (cq.Workplane("XY").rect(base[0],base[1]).extrude(foundation)
+    return (cq.Workplane("XY").rect(base[0],base[1]).extrude(foundation)
                    .faces(">Z").rect(base[0],base[1]).workplane(offset=height).circle(0.001).loft(combine=True))
 
 
