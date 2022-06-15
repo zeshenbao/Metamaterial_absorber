@@ -58,7 +58,7 @@ Figure2. print of pyramid wall from above.<br><br>
 
 
 
-Questions:
+Questions and to do:
 * What is/ how to make different types: Workplane, solid
 * Some parts of the prints gets deformed, also pyramid heads are not sharp in different regions. Some supports are missing and noise during print.
 * We could make some test patterns and print those 3-5 times to see if deformation happen on same spot or different.
@@ -74,13 +74,11 @@ Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
 <p float="left">
   <img src="log_images/15_06_2022/above.jpg"  width="200"/>
-  <img src="log_images/15_06_2022/left.jpg"  width="200"/>
-  <img src="log_images/15_06_2022/right.jpg"  width="200"/>
-  <img src="log_images/15_06_2022/front.jpg"  width="200"/>
-  <img src="log_images/15_06_2022/back.jpg"  width="200"/>
 </p>
 
 2. Finished the geometry class file.
 
+To do:
+1. have code divided by the classes: cross_section, wall_segments, pattern 
 
 
