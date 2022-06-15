@@ -79,7 +79,7 @@ Did:
 2. Finished the geometry class file and also written in functions depending on use, class is more difficult to use.
 
 3. Written the code to generate hilbert curves with L-system and drawed it with turtle. I'll continue with integrate it with walls.
-<img src="log_images/15_06_2022/L_system.jpeg"  width="200"/>
+<img src="log_images/15_06_2022/L_system.png"  width="200"/>
 
 To do:
 1. have code divided by the classes: cross_section, wall_segments, pattern 
