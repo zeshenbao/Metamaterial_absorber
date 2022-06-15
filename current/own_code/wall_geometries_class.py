@@ -33,6 +33,7 @@ class Geometry():
         self.geometry.add(self.geometry.faces("<Z").rect(self.base[0],self.base[1]).extrude(-thickness))
 
     def move(self, step=[0,0,0]):
+        """Move the geometry with step."""
         self.geometry = self.geometry.translate(step) #translate does not change geometry
         
     """
@@ -41,20 +42,20 @@ class Geometry():
     """ 
 
 
-def unittest():
+def unittest(): #manually checking
     geo = Geometry()
     geo.make_pyramid()
     geo.add_foundation()
     #geo.geometry.add(geo.geometry.faces("<Z").rect(1,1).extrude(-5))
-    print(geo.geometry)
+    print(geo.geometry) #test if geometry is cq.Workplane
     
     geo2 = Geometry()
     geo2.make_pyramid()
     geo2.add_foundation()
-    geo2.move([1,0,0])
+    geo2.move([1,0,0]) #trying to translate geometry
     
-    result = geo.geometry.add(geo2.geometry)
-    exporters.export(result, "geometry_move2.stl")
+    result = geo.geometry.add(geo2.geometry) #trying to add geometries together
+    exporters.export(result, "geometry_move2.stl") #exporting to see if working correct
 
 
     #print(result)
