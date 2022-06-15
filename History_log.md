@@ -66,13 +66,20 @@ Questions:
 ## 15/06-22
 
 Plan:
-1. Study the print
+1. Study the print.
 2. Finish writing the geometry file, add dog_leg later.
 3. Start making Hilbert curve with blocks, continue to pyramid which requires corner sections, etc.
 
 Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
-
+2. 
+<p float="left">
+  <img src="log_images/15_06_2022/above.JPG" alt="wall" width="200"/>
+  <img src="log_images/15_06_2022/left.JPG" alt="wall" width="200"/>
+  <img src="log_images/15_06_2022/right.JPG" alt="wall" width="200"/>
+  <img src="log_images/15_06_2022/front.JPG" alt="wall" width="200"/>
+  <img src="log_images/15_06_2022/back.JPG" alt="wall" width="200"/>
+</p>
 
 
 
