@@ -80,7 +80,7 @@ Did:
   <img src="log_images/15_06_2022/back.jpg"  width="200"/>
 </p>
 
-
+2. Finished the geometry class file.
 
 
 
