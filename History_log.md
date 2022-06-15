@@ -72,13 +72,12 @@ Plan:
 
 Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
-2. 
 <p float="left">
-  <img src="log_images/15_06_2022/above.jpg" alt="wall" width="200"/>
-  <img src="log_images/15_06_2022/left.jpg" alt="wall" width="200"/>
-  <img src="log_images/15_06_2022/right.jpg" alt="wall" width="200"/>
-  <img src="log_images/15_06_2022/front.jpg" alt="wall" width="200"/>
-  <img src="log_images/15_06_2022/back.jpg" alt="wall" width="200"/>
+  <img src="log_images/15_06_2022/above.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/left.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/right.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/front.jpg"  width="200"/>
+  <img src="log_images/15_06_2022/back.jpg"  width="200"/>
 </p>
 
 
