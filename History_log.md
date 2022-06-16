@@ -84,4 +84,12 @@ Did:
 To do:
 1. have code divided by the classes: cross_section, wall_segments, pattern 
 
+## 16/06-2022
+Plans:
+1. Create different wall section, start with rectangular and triangular. (doubble symmetry vs single symmetry vs no symmetry (dogleg))
+2. Integreate block cross sections with hilbert curve generation
+3. Continue with trangular cross section
+4. Design corner and side wall section for dogleg 
+5. Integrate dogleg with hilbert curve.
+
 
