@@ -93,6 +93,6 @@ Plans:
 2. Integreate block cross sections with hilbert curve generation
 3. Continue with trangular cross section
 4. Design corner and side wall section for dogleg 
-5. Integrate dogleg with hilbert curve.
+5. Integrate dogleg with hilbert curve. (start with one sided and later matched sides)
 
 
