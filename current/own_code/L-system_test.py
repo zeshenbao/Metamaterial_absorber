@@ -24,9 +24,9 @@ def L_system(iterations):
         return system
 
 
-system=L_system(4)
+system=L_system(2)
 print(system)
-speed(0)
+speed(1)
 for letter in system:
     if letter == "F":
         forward(10)

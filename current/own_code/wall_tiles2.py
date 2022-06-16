@@ -11,11 +11,11 @@ foundation_thickness = 4
 
 def make_tria_side(tile_height=2, tile_len=1, tile_wid=1, foundation_thickness=4):
     """Make a triangular wall side facing y (upp/down or vertical) direction."""
-    pts = [(-tile_len/2,0),
-           (tile_len/2, 0),
-           (0, tile_height)]
+    pts = [(0,0),
+           (tile_len, 0),
+           (tile_len/2, tile_height)]
     
-    geo_xz = cq.Workplane("XZ").tag("baseplane").polyline(pts).close().extrude(-tile_wid).workplaneFromTagged("baseplane").extrude(tile_wid) #make wall
+    geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-tile_wid) #make wall
 
     geo_xy = cq.Workplane("XY").add(geo_xz) #change plane
 
@@ -26,12 +26,12 @@ def make_tria_side(tile_height=2, tile_len=1, tile_wid=1, foundation_thickness=4
 
 def make_remove(tile_height=2, tile_len=1, tile_wid=1, foundation_thickness=4):
     """Make the element to remove from union before adding with intersection """
-    pts = [(tile_len/2, -tile_wid/2),
-           (tile_len/2, tile_wid/2),
-           (-tile_len/2, tile_wid)
+    pts = [(tile_len, 0),
+           (tile_len, tile_wid),
+           (0, tile_wid)
         ]
     
-    remove = cq.Workplane("XY").polyline(pts).close().extrude(tile_height).faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #extrudes at neg direction??
+    remove = cq.Workplane("XY").polyline(pts).close().extrude(tile_height).faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness)
     
     return remove
 
@@ -60,8 +60,8 @@ def make_dogl_corner():
 
 
 tria_side_ver = make_tria_side()
-tria_side_hor = make_tria_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
-exporters.export(tria_side_ver, "tria_corner_ver.stl")
+tria_side_hor = make_tria_side().rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,1), 90) #((vek_svans),(vek_huvud),(grader))
+#exporters.export(tria_side_ver, "tria_corner_ver.stl")
 #exporters.export(tria_side_hor, "tria_corner_hor.stl")
 
 
@@ -69,7 +69,7 @@ remove = make_remove()
 #exporters.export(remove, "remove.stl")
 
                           
-#tria_corner = make_tria_corner(tria_side_ver, tria_side_hor, remove) 
+tria_corner = make_tria_corner(tria_side_ver, tria_side_hor, remove) 
 #exporters.export(tria_corner, "tria_corner.stl")
 
 
