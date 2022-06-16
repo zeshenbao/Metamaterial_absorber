@@ -20,8 +20,6 @@ def L_system(iterations):
             
         while "-+" in system:
             system = system.replace("-+", "")
-        
-        
 
         return system
 
