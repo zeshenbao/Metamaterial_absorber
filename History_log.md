@@ -90,14 +90,19 @@ Comment:
 ## 16/06-2022
 Plans:
 1. Create different wall section, start with <del>rectangular</del> (no need because of overlap) and triangular. (doubble symmetry vs single symmetry vs no symmetry (dogleg))
-<del> 2. Integreate block cross sections with hilbert curve generation </del>
-3. Continue with trangular cross section
-4. Design corner and side wall section for dogleg 
+<del> 2. Integreate block cross sections with hilbert curve generation. </del>
+3. Continue with trangular cross section.
+4. Design corner and side wall section for dogleg .
 5. Integrate dogleg with hilbert curve. (start with one sided and later matched sides)
 
 Did:
-1. Wrote code to create wall side and corner for triangular cross section
-3. Integrated it with hilbert generating code
+1. Wrote code to create wall side and corner for triangular cross section.
+3. Integrated it with hilbert generating code prepared for printing.
 
 
-
+## 17/06-2022
+Plans: 
+1. Print the hilbert curve prototype
+2. Restructure the code
+3. Start workig with the dogleg cross section in two parts.
+4. Test and look at corner section to see potential problems.
