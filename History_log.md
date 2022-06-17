@@ -107,3 +107,13 @@ Plans:
 2. Restructure the code
 3. Start workig with the dogleg cross section in two parts.
 4. Test and look at corner section to see potential problems.
+
+Did:
+1. Printed the print which looks good.
+<img src="log_images/17_06_2022/printed_hilbert.JPG"  width="200"/>
+2. I've now restructured the code to add modification and more pattern/cross section. 
+The corner build might need modification for more complicated cross sections
+
+Plans for next week:
+1. Look at dogleg corners or rotations and look at potential problem or solution.
+
