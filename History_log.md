@@ -98,6 +98,7 @@ Plans:
 Did:
 1. Wrote code to create wall side and corner for triangular cross section.
 3. Integrated it with hilbert generating code prepared for printing.
+<img src="log_images/16_06_2022/hilbert_stl"  width="200"/>
 
 
 ## 17/06-2022
