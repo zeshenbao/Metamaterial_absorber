@@ -60,6 +60,7 @@ class Pattern():
     """
 
     def __init__(self, iterations, side_ver, side_hor, corner_left_down, corner_left_up, corner_right_up, corner_right_down):
+        """Creates a pattern object with specifield input parameters."""
 
         self.iterations = iterations
         self.side_ver = side_ver
@@ -96,6 +97,7 @@ class Pattern():
 
     
     def generate_pattern(self): #0pi == right
+        """Use """
         position = [0,0,0]
         angle = 0
         if self.iterations % 2 == 0:
@@ -116,7 +118,7 @@ class Pattern():
                 angle %= 360
                 pass
             """
-            print(position[0], position[1], angle)
+            #print(position[0], position[1], angle)
             
             if letter == "F":
                 if angle == 0:
@@ -187,11 +189,8 @@ class Pattern():
                 angle %= 360
                 
             count += 1
-            #if count == 1:
+            #if count == 1: #check first block
                 #position[2] += 1
-
-            
-            
 
                 
         print(self.system)
@@ -200,13 +199,15 @@ class Pattern():
 
     
     def test(self):
+        """Used to test different builds."""
         block1 = self.side
         block2 = self.side.translate((1,0,0))
         
         exporters.export(self.result, "hilbert2.stl")
 
     def export(self):
-        exporters.export(self.result, "hilbert.stl")
+        """Export created results to a stl file specified with iterations."""
+        exporters.export(self.result, "hilbert_iter" +str(self.iterations) +".stl")
 
 
 
@@ -222,6 +223,6 @@ tria_corner_right_up = make_tria_corner(make_tria_side(), sub).rotate((tile_len/
 tria_corner_right_down = make_tria_corner(make_tria_side(), sub).rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,-1), 270)
 
 
-hilbert = Pattern(6, tria_side_ver, tria_side_hor, tria_corner_left_down, tria_corner_left_up, tria_corner_right_up, tria_corner_right_down)
+hilbert = Pattern(7, tria_side_ver, tria_side_hor, tria_corner_left_down, tria_corner_left_up, tria_corner_right_up, tria_corner_right_down)
 
 hilbert.generate_pattern()

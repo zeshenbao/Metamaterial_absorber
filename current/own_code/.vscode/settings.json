@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "/Users/Zeshen/.vscode/extensions/roipoussiere.cadquery-0.1.3/stubs"
-    ]
+    ],
+    "workbench.colorTheme": "Default Dark+"
 }
