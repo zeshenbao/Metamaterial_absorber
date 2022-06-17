@@ -1,9 +1,7 @@
 
 import cadquery as cq
 from cadquery import exporters
-
-
-
+from copy import copy
 
 
 class Absorber():
@@ -11,7 +9,7 @@ class Absorber():
     and saved as a stl file.
     """
 
-    def __init__(self, system, corners, sides):
+    def __init__(self, system, sides, corners, iterations):
         """Creates an absorber object with input wall corners, wall sides and system.
          _____ _____    ___________
         |     |     |  |           |    
@@ -31,8 +29,10 @@ class Absorber():
         """
 
         self.system = system
-        self.corners = corners
         self.sides = sides
+        self.corners = corners
+        
+        self.iterations = iterations
         self.result = None
 
     def build(self): 
@@ -49,7 +49,7 @@ class Absorber():
 
         
         if self.iterations % 2 == 0:
-            self.result = cq.Workplane("XY").add(sides[0].translate((-1,0,0)))
+            self.result = cq.Workplane("XY").add(self.sides["hor"].translate((-1,0,0)))
         else:
             self.result = cq.Workplane("XY")
             
@@ -59,20 +59,24 @@ class Absorber():
             #print(position[0], position[1], angle)
             
             if letter == "F":
+                #exporters.export(self.sides["ver"], "sides_hor.stl")
+                #exporters.export(self.sides["ver"], "sides_hor.stl")
+                #return
+                
                 if angle == 0:
-                    self.result.add(sides["hor"].translate(position))
+                    self.result.add(self.sides["hor"].translate(position))
                     position[0] +=1
 
                 elif angle == 180:
-                    self.result.add(sides["hor"].translate(position))
+                    self.result.add(self.sides["hor"].translate(position))
                     position[0] -=1
                     
                 elif angle == 90:
-                    self.result.add(sides["ver"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] -=1
 
                 elif angle == 270:
-                    self.result.add(sides["ver"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] +=1
 
                 else:
@@ -81,19 +85,20 @@ class Absorber():
                 
             elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
                 if angle == 0:
-                    self.result.add(corners["left_down"].translate(position))
+                    print(self.corners["left_down"])
+                    self.result.add(self.corners["left_down"].translate(position))
                     position[1] -=1
 
                 elif angle == 180:
-                    self.result.add(corners["right_up"].translate(position))
+                    self.result.add(self.corners["right_up"].translate(position))
                     position[1] +=1
                     
                 elif angle == 90:
-                    self.result.add(corners["left_up"].translate(position))
+                    self.result.add(self.corners["left_up"].translate(position))
                     position[0] -=1
 
                 elif angle == 270:
-                    self.result.add(corners["right_down"].translate(position))
+                    self.result.add(self.corners["right_down"].translate(position))
                     position[0] +=1
 
                 else:
@@ -105,19 +110,19 @@ class Absorber():
                 
             elif letter == "-":
                 if angle == 0:
-                    self.result.add(corners["left_up"].translate(position))
+                    self.result.add(self.corners["left_up"].translate(position))
                     position[1] +=1
 
                 elif angle == 180:
-                    self.result.add(corners["right_down"].translate(position))
+                    self.result.add(self.corners["right_down"].translate(position))
                     position[1] -=1
                     
                 elif angle == 90:
-                    self.result.add(corners["right_up"].translate(position))
+                    self.result.add(self.corners["right_up"].translate(position))
                     position[0] +=1
 
                 elif angle == 270:
-                    self.result.add(corners["left_down"].translate(position))
+                    self.result.add(self.corners["left_down"].translate(position))
                     position[0] -=1
 
                 else:
@@ -132,17 +137,17 @@ class Absorber():
 
     def test(self):
         """Used to test different builds."""
-        block1 = self.side
-        block2 = self.side.translate((1,0,0))
+        block1 = self.sides
+        block2 = self.sides.translate((1,0,0))
         
         exporters.export(self.result, "hilbert2.stl")
 
 
-    def export(self):
+    def export(self, file_name):
         """Export created self.result to a stl file
         with file name specified with iterations."""
-        
-        exporters.export(self.result, "hilbert_iter" +str(self.iterations) +".stl")
+        print("exported")
+        exporters.export(self.result, str(file_name) +str(self.iterations) +".stl")
 
 
 
@@ -162,47 +167,65 @@ class Wall():
         self.tile_height = tile_height
         self.foundation_thickness = foundation_thickness
 
+        self.sides = None
+        self.corners = None
+
 
     def make_tria_side(self):
         """Make a triangular wall side facing y (upp/down or vertical) direction."""
         pts = [(0,0),
-               (tile_len, 0),
-               (tile_len/2, tile_height)]
+               (self.tile_len, 0),
+               (self.tile_len/2, self.tile_height)]
+
         
-        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-tile_wid) #make wall
+        
+        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid) #make wall
 
         geo_xy = cq.Workplane("XY").add(geo_xz) #change plane
 
-        tria_side = geo_xy.faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #add foundation
-        tria_side_ver = tria_side
-        tria_side_hor = tria_side.rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,1), 90) #((vek_svans),(vek_huvud),(grader))
+        tria_side = geo_xy.faces("<Z").rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness) #add foundation
 
-        return [tria_side_ver, tria_side_hor]
+        return tria_side
 
 
     def make_sub(self):
         """Make the element to remove from union before adding with intersection """
-        pts = [(tile_len, 0),
-               (tile_len, tile_wid),
-               (0, tile_wid)
+        pts = [(self.tile_len, 0),
+               (self.tile_len, self.tile_wid),
+               (0, self.tile_wid)
             ]
         
-        sub = cq.Workplane("XY").polyline(pts).close().extrude(tile_height)#.faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #skapas vid masspunkt
+        sub = cq.Workplane("XY").polyline(pts).close().extrude(self.tile_height)#.faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #skapas vid masspunkt
         
         return sub
 
-    def make_tria_corner(side, sub):
+    def make_tria_corner(self, sides):
         """Make a triangular corner"""
-        ver = side[0]
-        hor = side[1]
-        inter = ver.intersect(hor) #carefull with rotation and see if they are at same position
-        union = ver.add(hor)
+        inter = sides["ver"].intersect(sides["hor"]) #carefull with rotation and see if they are at same position
+        union = sides["ver"].add(sides["hor"])
+        sub = self.make_sub()
         diff = union.cut(sub)
         corner = diff.add(inter)
-        
+
         return corner
 
+    def make_tria_components(self):
 
+        def copy_side():
+            sides = {}
+            sides["ver"] = self.make_tria_side()
+            sides["hor"] = self.make_tria_side().rotate((self.tile_len/2,self.tile_wid/2,0), (self.tile_len/2,self.tile_wid/2,1), 90) #((vek_svans),(vek_huvud),(grader))
+
+            return sides
+        
+        corners = {}
+        
+        corners["left_down"] = self.make_tria_corner(copy_side())
+        corners["left_up"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 90)
+        corners["right_up"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 180)
+        corners["right_down"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 270)
+
+        return copy_side(), corners
 
 
 #class Pattern(): #Probably don't need a class for this, might need it for later
@@ -218,7 +241,7 @@ class Wall():
 
 
 
-def generate_hilbert(self, iterations):
+def generate_hilbert(iterations):
     """Generates and returns a hilbert curve system 
     where the iterations depends on the parameter iterations. 
 
@@ -246,24 +269,43 @@ def generate_hilbert(self, iterations):
     system = system.replace("F+", "+").replace("F-", "-")
 
     #self.system = system
-    print(self.system)
+    print(system)
 
     return system
 
 
 def unittest():
     #the tests are made manually with visually checking exported stl files.
-    pass
+    exporters.export(triangle_sides["ver"], "ver.stl")
+    exporters.export(triangle_sides["hor"], "hor.stl")
+    
+    exporters.export(triangle_corners["left_down"], "left_down.stl")
+    exporters.export(triangle_corners["left_up"], "left_up.stl")
+    exporters.export(triangle_corners["right_up"], "right_up.stl")
+    exporters.export(triangle_corners["right_down"], "right_down.stl")
+    
 
 
 def main():
     """Operates functions and classes to export a finished stl file."""
 
+    iterations = 3
+    
+    hilbert = generate_hilbert(iterations)
+
+    triangle_wall = Wall()
+    triangle_sides, triangle_corners = triangle_wall.make_tria_components()
+    #unittest()
+    hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
+    hilbert_absorber.build()
+    hilbert_absorber.export("test_hilbert")
+    
 
 
 
-if __name__ == "main":
-    main()
+
+#if __name__ == "main":
+main()
 
 
 
@@ -271,22 +313,3 @@ if __name__ == "main":
 
 
 
-
-
-
-
-tria_side_ver, tria_side_hor = make_tria_side()
-
-
-sub = make_sub()
-
-### write better code                           
-tria_corner_left_down = make_tria_corner(make_tria_side(), sub)
-tria_corner_left_up = make_tria_corner(make_tria_side(), sub).rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,-1), 90)
-tria_corner_right_up = make_tria_corner(make_tria_side(), sub).rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,-1), 180)
-tria_corner_right_down = make_tria_corner(make_tria_side(), sub).rotate((tile_len/2,tile_wid/2,0), (tile_len/2,tile_wid/2,-1), 270)
-
-
-hilbert = Pattern(7, tria_side_ver, tria_side_hor, tria_corner_left_down, tria_corner_left_up, tria_corner_right_up, tria_corner_right_down)
-
-hilbert.generate_pattern()
