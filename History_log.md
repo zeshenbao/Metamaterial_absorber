@@ -12,6 +12,9 @@
 * Set up the correct enviroment to run absorber codes with Cadquery2 with Conda
 * Tested the step files with Freecad 0.19
 
+##
+## **Official start**
+##
 ## 13/06-22
 Plan:
 1. Try 3D-printing something
