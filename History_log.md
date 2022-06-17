@@ -113,7 +113,7 @@ Did:
 Plans: 
 1. Print the hilbert curve prototype
 2. Restructure the code
-3. Start workig with the dogleg cross section in two parts.
+3. <del>Start workig with the dogleg cross section in two parts.</del> (Hilbert curve not needed, easier to make other patterns?)
 4. Test and look at corner section to see potential problems.
 
 Did:
