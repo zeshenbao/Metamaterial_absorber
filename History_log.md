@@ -24,6 +24,9 @@ Did:
 * Preparing the printer for printing and removing the print.
 * Washing in isopropanol manually and with machine and also curing it.
 
+<img src="log_images/13_06_2022/IMG_4081.JPG" alt="wall" width="200"/>
+(Violin did not hold, really fragile)
+
 2. Looked at different examples of basic geometries of different cadquery objects.
 * Learned basic methods in cadquery.
 
