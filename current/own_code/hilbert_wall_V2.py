@@ -289,7 +289,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 3
+    iterations = 6
     
     hilbert = generate_hilbert(iterations)
 
@@ -298,7 +298,7 @@ def main():
     #unittest()
     hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
     hilbert_absorber.build()
-    hilbert_absorber.export("test_hilbert")
+    hilbert_absorber.export("hilbertV2")
     
 
 
