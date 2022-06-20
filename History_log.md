@@ -82,8 +82,8 @@ Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
 <p float="left">
   <img src="log_images/15_06_2022/above.jpg"  width="200"/>
-  fig. printed lots of absorbers to fit the printing plate to check deformations.
 </p>
+fig. printed lots of absorbers to fit the printing plate to check deformations.
 
 2. Finished the geometry class file and also written in functions depending on use, class is more difficult to use.
 
@@ -123,6 +123,7 @@ Did:
 1. Printed the print which looks good.
 <img src="log_images/17_06_2022/printed_hilbert.JPG"  width="200"/>
 fig. printed out hilbert curve.
+
 2. I've now restructured the code to add modification and more pattern/cross section. 
 The corner build might need modification for more complicated cross sections
 
