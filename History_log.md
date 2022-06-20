@@ -125,3 +125,8 @@ The corner build might need modification for more complicated cross sections
 Plans for next week:
 1. Look at dogleg corners or rotations and look at potential problem or solution.
 
+## 20/06-2022
+Plans:
+1. Read the dogleg papaer.
+2. Make dogleg side and then corner
+3. Read meta absorber paper from Gagan
