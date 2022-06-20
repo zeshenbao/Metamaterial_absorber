@@ -140,6 +140,14 @@ Did:
 1. Looked through dogleg design and will continue reading details later.
 2. Made dogleg side but still working on corner
 
+<p>
+  <img src="log_images/20_06_2022/dogleg_intersect.png"  width="200"/>
+  <img src="log_images/20_06_2022/dogleg_side.png"  width="200"/>
+  <img src="log_images/20_06_2022/hilbert_dogleg_bug.png"  width="200"/>
+</p>
+
+fig left. dogleg intersection.      fig mid. dogleg side    fig right. dogleg hilbert curve but bugged
+
 Questions:
 1. The corners are quite buggy, try to fix next time
 2. Shift the tiles to correct for deformation. Could be done with tangent, angle and loft but problem when the height collides with other tiles.
