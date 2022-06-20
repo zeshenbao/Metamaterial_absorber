@@ -30,7 +30,7 @@ Did:
 * Washing in isopropanol manually and with machine and also curing it.
 
 <img src="log_images/13_06_2022/IMG_4081.JPG" alt="wall" width="200"/>
-(Violin did not hold, really fragile)
+fig. testprint of violin. (Violin did not hold, really fragile)
 
 2. Looked at different examples of basic geometries of different cadquery objects.
 * Learned basic methods in cadquery.
@@ -82,12 +82,14 @@ Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
 <p float="left">
   <img src="log_images/15_06_2022/above.jpg"  width="200"/>
+  fig. printed lots of absorbers to fit the printing plate to check deformations.
 </p>
 
 2. Finished the geometry class file and also written in functions depending on use, class is more difficult to use.
 
 3. Written the code to generate hilbert curves with L-system and drawed it with turtle. I'll continue with integrate it with walls.
 <img src="log_images/15_06_2022/L_system.png"  width="200"/>
+fig. generated hilbert curve with turtle graphics.
 
 To do:
 1. have code divided by the classes: cross_section, wall_segments, pattern 
@@ -107,6 +109,7 @@ Did:
 1. Wrote code to create wall side and corner for triangular cross section.
 3. Integrated it with hilbert generating code prepared for printing.
 <img src="log_images/16_06_2022/hilbert_stl.png"  width="200"/>
+fig. generated hilbert curve as stl file.
 
 
 ## 17/06-2022
@@ -119,6 +122,7 @@ Plans:
 Did:
 1. Printed the print which looks good.
 <img src="log_images/17_06_2022/printed_hilbert.JPG"  width="200"/>
+fig. printed out hilbert curve.
 2. I've now restructured the code to add modification and more pattern/cross section. 
 The corner build might need modification for more complicated cross sections
 
