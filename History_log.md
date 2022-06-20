@@ -130,3 +130,11 @@ Plans:
 1. Read the dogleg papaer.
 2. Make dogleg side and then corner
 3. Read meta absorber paper from Gagan
+
+Did:
+1. Looked through dogleg design and will continue reading details later.
+2. Made dogleg side but still working on corner
+
+Questions:
+1. The corners are quite buggy, try to fix next time
+2. Shift the tiles to correct for deformation. Could be done with tangent, angle and loft but problem when the height collides with other tiles.
