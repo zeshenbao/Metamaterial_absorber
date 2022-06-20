@@ -1,7 +1,7 @@
 
 import cadquery as cq
 from cadquery import exporters
-from copy import copy
+from math import *
 
 
 class Absorber():
@@ -188,6 +188,31 @@ class Wall():
         return tria_side
 
 
+    def make_dog_side(self):
+        """Make a dogleg wall facig y."""
+
+        h = self.tile_height/2
+        angle = (pi/6)/2
+        w = h*tan(angle)
+
+        pts = [(0,0),
+               (1.5*w,-1.5*h),
+               (0.5*w, -2*h),
+               (-1.5*w, -2*h),
+               (-0.5*w, -1.5*h),
+               (-w, -h)]
+
+
+        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid)
+
+        geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-self.tile_wid/2,0))
+
+        dog_side = geo_xy.faces("<Z").rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness)
+
+        
+        return dog_side
+        
+
     def make_sub(self):
         """Make the element to remove from union before adding with intersection """
         pts = [(self.tile_len, 0),
@@ -289,7 +314,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 6
+    iterations = 3
     
     hilbert = generate_hilbert(iterations)
 
@@ -298,7 +323,7 @@ def main():
     #unittest()
     hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
     hilbert_absorber.build()
-    hilbert_absorber.export("hilbertV2_")
+    hilbert_absorber.export("hilbertV4_")
     
 
 

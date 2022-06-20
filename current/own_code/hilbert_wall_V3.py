@@ -1,7 +1,7 @@
 
 import cadquery as cq
 from cadquery import exporters
-from copy import copy
+
 
 
 class Absorber():
@@ -187,6 +187,29 @@ class Wall():
 
         return tria_side
 
+
+    def make_dog_side(self):
+        """Make a dogleg wall facig y."""
+
+        h = self.tile_height/2
+        angle = (pi/6)/2
+        w = h*tan(angle)
+
+        pts = [(0,0),
+               (1.5*w,-1.5*h),
+               (0.5*w, -2*h),
+               (-1.5*w, -2*h),
+               (-0.5*w, -1.5*h),
+               (-w, -h)]
+
+
+        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-tile_wid)
+
+        geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-tile_wid/2,0)).faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness)
+
+        
+        return dog_side
+        
 
     def make_sub(self):
         """Make the element to remove from union before adding with intersection """

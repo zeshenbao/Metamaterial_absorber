@@ -1,7 +1,7 @@
 
 import cadquery as cq
 from cadquery import exporters
-from copy import copy
+from math import *
 
 
 class Absorber():
@@ -188,11 +188,38 @@ class Wall():
         return tria_side
 
 
+    def make_dog_side(self):
+        """Make a dogleg wall facig y."""
+
+        tile_height = 2
+        foundation_thickness = 4
+        h = tile_height/2
+        angle = (pi/6)/2
+        w = h*tan(angle)
+        #print(w)
+        pts = [(0,0),
+               (1.5*w, -1.5*h),
+
+               (0.5*w, -2*h),
+               (-1.5*w, -2*h),
+               (-0.5*w, -1.5*h),
+               (-w, -h)]
+
+        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid)
+
+        geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-self.tile_wid/2,self.tile_height))
+
+        dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness))
+
+
+        return dog_side
+            
+
     def make_sub(self):
         """Make the element to remove from union before adding with intersection """
-        pts = [(self.tile_len, 0),
-               (self.tile_len, self.tile_wid),
-               (0, self.tile_wid)
+        pts = [(self.tile_len/2, -self.tile_len/2),
+               (self.tile_len/2, self.tile_wid/2),
+               (-self.tile_len/2, self.tile_wid/2)
             ]
         
         sub = cq.Workplane("XY").polyline(pts).close().extrude(self.tile_height)#.faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #skapas vid masspunkt
@@ -213,17 +240,17 @@ class Wall():
 
         def copy_side():
             sides = {}
-            sides["ver"] = self.make_tria_side()
-            sides["hor"] = self.make_tria_side().rotate((self.tile_len/2,self.tile_wid/2,0), (self.tile_len/2,self.tile_wid/2,1), 90) #((vek_svans),(vek_huvud),(grader))
+            sides["ver"] = self.make_dog_side()
+            sides["hor"] = self.make_dog_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
 
             return sides
         
         corners = {}
         
         corners["left_down"] = self.make_tria_corner(copy_side())
-        corners["left_up"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 90)
-        corners["right_up"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 180)
-        corners["right_down"] = self.make_tria_corner(copy_side()).rotate((self.tile_len/2, self.tile_wid/2,0), (self.tile_len/2, self.tile_wid/2,-1), 270)
+        corners["left_up"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 90)
+        corners["right_up"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 180)
+        corners["right_down"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 270)
 
         return copy_side(), corners
 
@@ -289,7 +316,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 6
+    iterations = 3
     
     hilbert = generate_hilbert(iterations)
 
@@ -298,7 +325,7 @@ def main():
     #unittest()
     hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
     hilbert_absorber.build()
-    hilbert_absorber.export("hilbertV2_")
+    hilbert_absorber.export("hilbert_dog_")
     
 
 
