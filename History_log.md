@@ -169,7 +169,7 @@ fig left. dogleg corner front &nbsp;&nbsp;&nbsp; fig right. dogleg corner back
 2. Generated hilbert curve with dogleg but the sides are not matched.
 
 Plans for tomorrow:
-1. Keep making the flip side corner.
+1. Keep making the flip side corner. <br>
 <del>2. Try to generate hilbert curve with dogleg.</del>
 2. Match hilbert sides.
 
