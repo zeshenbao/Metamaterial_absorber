@@ -170,8 +170,8 @@ fig left. dogleg corner front &nbsp;&nbsp;&nbsp; fig right. dogleg corner back
 
 Plans for tomorrow:
 1. Keep making the flip side corner.<br>
-<del>2. Try to generate hilbert curve with dogleg.</del>
-2. Match hilbert sides.
+2. <del>2. Try to generate hilbert curve with dogleg.</del>
+3. Match hilbert sides.
 
 Sidetracks:
 * Summer swimming
