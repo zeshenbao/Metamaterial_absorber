@@ -159,6 +159,17 @@ Sidetracks:
 Plans:
 1. Continue to make dogleg corner shapes.
 
+Did:
+1. Successfully made one variant of the dogleg corners. 
+<p>
+  <img src="log_images/21_06_2022/dog_corner_front.png"  width="200"/>
+  <img src="log_images/21_06_2022/dog_corner_back.png"  width="200"/>
+</p>
+
+Plans for tomorrow:
+1. Keep making the flip side corner.
+2. Try to generate hilbert curve with dogleg.
+
 Sidetracks:
 * Summer swimming
 * Hang out with the group
