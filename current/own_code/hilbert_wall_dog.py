@@ -155,7 +155,7 @@ class Wall():
     """Implements different wall tiles such as sides
     and corner with different cross sections."""
 
-    def __init__(self, tile_len=1, tile_wid=1, tile_height=2, foundation_thickness=4):
+    def __init__(self, tile_len=1.0, tile_wid=1.0, tile_height=2, foundation_thickness=4):
         """Creates a wall object.
         :param tile_len: length of tile
         :param tile_wid: width of tile
@@ -171,29 +171,11 @@ class Wall():
         self.corners = None
 
 
-    def make_tria_side(self):
-        """Make a triangular wall side facing y (upp/down or vertical) direction."""
-        pts = [(0,0),
-               (self.tile_len, 0),
-               (self.tile_len/2, self.tile_height)]
-
-        
-        
-        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid) #make wall
-
-        geo_xy = cq.Workplane("XY").add(geo_xz) #change plane
-
-        tria_side = geo_xy.faces("<Z").rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness) #add foundation
-
-        return tria_side
 
 
     def make_dog_side(self):
-        """Make a dogleg wall facig y."""
-
-        tile_height = 2
         foundation_thickness = 4
-        h = tile_height/2
+        h = self.tile_height/2
         angle = (pi/6)/2
         w = h*tan(angle)
         #print(w)
@@ -209,7 +191,7 @@ class Wall():
 
         geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-self.tile_wid/2,self.tile_height))
 
-        dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness))
+        dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(self.tile_len, self.tile_wid).extrude(-foundation_thickness))
 
 
         return dog_side
@@ -226,17 +208,20 @@ class Wall():
         
         return sub
 
-    def make_tria_corner(self, sides):
+    def make_dog_corner(self, sides):
         """Make a triangular corner"""
         inter = sides["ver"].intersect(sides["hor"]) #carefull with rotation and see if they are at same position
-        union = sides["ver"].add(sides["hor"])
-        sub = self.make_sub()
-        diff = union.cut(sub)
-        corner = diff.add(inter)
+        ver_half = self.make_dog_side().faces(">Y").workplane(-self.tile_wid/2).split(keepBottom=True)
+        hor_half = self.make_dog_side().rotate((0,0,0), (0,0,1), 90).faces(">X").workplane(-self.tile_len/2).split(keepBottom=True)
+        
+        corner = inter.add(ver_half).add(hor_half)
 
+        exporters.export(corner, "testing_corner.stl")
+        exporters.export(ver_half, "testing_ver_half.stl")
+        exporters.export(hor_half, "testing_hor_half.stl")
         return corner
 
-    def make_tria_components(self):
+    def make_dog_components(self):
 
         def copy_side():
             sides = {}
@@ -247,10 +232,17 @@ class Wall():
         
         corners = {}
         
-        corners["left_down"] = self.make_tria_corner(copy_side())
-        corners["left_up"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 90)
-        corners["right_up"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 180)
-        corners["right_down"] = self.make_tria_corner(copy_side()).rotate((0,0,0), (0,0,1), 270)
+        corners["left_down"] = self.make_dog_corner(copy_side())
+        corners["left_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 270)
+        corners["right_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 180)
+        corners["right_down"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 90)
+
+        
+
+        exporters.export(corners["left_down"], "left_down.stl")
+        exporters.export(corners["left_up"], "left_up.stl")
+        exporters.export(corners["right_up"], "right_up.stl")
+        exporters.export(corners["right_down"], "right_down.stl")
 
         return copy_side(), corners
 
@@ -321,7 +313,7 @@ def main():
     hilbert = generate_hilbert(iterations)
 
     triangle_wall = Wall()
-    triangle_sides, triangle_corners = triangle_wall.make_tria_components()
+    triangle_sides, triangle_corners = triangle_wall.make_dog_components()
     #unittest()
     hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
     hilbert_absorber.build()
