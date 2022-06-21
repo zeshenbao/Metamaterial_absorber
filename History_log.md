@@ -151,3 +151,14 @@ fig left. dogleg intersection. &nbsp;&nbsp;&nbsp; fig mid. dogleg side &nbsp;&nb
 Questions:
 1. The corners are quite buggy, try to fix next time
 2. Shift the tiles to correct for deformation. Could be done with tangent, angle and loft but problem when the height collides with other tiles.
+
+Sidetracks:
+* Jessica Meir presentation.
+
+## 21/06-2022
+Plans:
+1. Continue to make dogleg corner shapes.
+
+Sidetracks:
+* Summer swimming
+* Hang out with the group
