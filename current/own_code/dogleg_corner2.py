@@ -48,24 +48,25 @@ def make_sub():
 ver = dog_side()#.center(0,0).circle(0.5).extrude(-6)
 hor = dog_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
 
+ver_half = dog_side().faces(">Y").workplane(-0.5).split(keepBottom=True)
+hor_half = dog_side().rotate((0,0,0), (0,0,1), 90).faces(">X").workplane(-0.5).split(keepBottom=True)
 
 inter = ver.intersect(hor)
-union = ver.add(hor)
-sub = make_sub()
-diff = union.cut(sub)
-corner = diff.add(inter)
+corner = inter.add(ver_half).add(hor_half)
 
-
-exporters.export(ver, "ver.stl")
-exporters.export(hor, "hor.stl")
+#print(ver)
+#print(hor)
+#exporters.export(ver_half, "ver_half.stl")
+#exporters.export(hor_half, "hor_half.stl")
+#exporters.export(hor, "hor.stl")
 #exporters.export(inter, "inter.stl")
 #exporters.export(union, "union.stl")
 #exporters.export(sub, "sub.stl")
 #exporters.export(diff, "diff.stl")
-#exporters.export(corner, "corner.stl")
+exporters.export(corner, "corner.stl")
 
 #make dog leg in the middle extrude out to  
 #cut ver and hor side parts and add them to intersect
-
+#make a function to make thing if you want a deep copy
 
 
