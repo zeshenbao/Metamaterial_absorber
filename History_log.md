@@ -18,12 +18,12 @@
 ## **Official start**
 ##
 ## 13/06-22
-Plan:
+### Plan:
 1. Try 3D-printing something
 2. Start learning about cadquery methods 
 3. Start to make basic geometries
 
-Did: 
+### Did: 
 1. Printed a violin test model and learned to: 
 * Send things to formlabs printer via preform. 
 * Preparing the printer for printing and removing the print.
@@ -37,13 +37,13 @@ fig. testprint of violin. (Violin did not hold, really fragile)
 
 3. Tried to make a basic pyramid.
 
-Questions \& To do:
+### Questions \& To do:
 * Learn to refill the printer with liquid.
 * Learn how to move and rotate in Cadquery workplane to start iterating. (Look into .add, .rotate, .union, .translate methods)
 
 ## 14/06-22
 
-Plan:
+### Plan:
 1. Learn .translation, <del>.rotation</del>, .add methods
 2. Make a 9x9 pyramid absorber
 <del> 3. Make a dogleg absorber </del>
@@ -51,7 +51,7 @@ Plan:
 * start with simple cross section, (rectangular --> triangular --> dogleg)
 * start with small section --> larger hilbert curves
 
-Did: 
+### Did: 
 1. Looked at many example codes and learned to use methods .add and .translation.
 2. Printed out a 30x30 pyramid wall with 1 mm between pyramids. 
 
@@ -66,19 +66,19 @@ Figure2. print of pyramid wall from above.<br><br>
 
 
 
-Questions and to do:
+### Questions and to do:
 * What is/ how to make different types: Workplane, solid
 * Some parts of the prints gets deformed, also pyramid heads are not sharp in different regions. Some supports are missing and noise during print.
 * We could make some test patterns and print those 3-5 times to see if deformation happen on same spot or different.
 
 ## 15/06-22
 
-Plan:
+### Plan:
 1. Study the print.
 2. Finish writing the geometry file, add dog_leg later.
 3. Start making Hilbert curve with blocks, continue to pyramid which requires corner sections, etc.
 
-Did:
+### Did:
 1. We studies the print and looks like the print is very dependent on the film quality and condition. We should change to a new film for optimal prints. The metal plating seemed fine. 
 <p float="left">
   <img src="log_images/15_06_2022/above.jpg"  width="200"/>
@@ -91,21 +91,21 @@ fig. printed lots of absorbers to fit the printing plate to check deformations.
 <img src="log_images/15_06_2022/L_system.png"  width="200"/>
 fig. generated hilbert curve with turtle graphics.
 
-To do:
+### To do:
 1. have code divided by the classes: cross_section, wall_segments, pattern 
 
-Comment:
+### Comment:
 1. Print with tilted objects so that the vertikal lines don't deform as easily. 
 
 ## 16/06-2022
-Plans:
+### Plans:
 1. Create different wall section, start with <del>rectangular</del> (no need because of overlap) and triangular. (doubble symmetry vs single symmetry vs no symmetry (dogleg))
 <del> 2. Integreate block cross sections with hilbert curve generation. </del>
 3. Continue with trangular cross section.
 4. Design corner and side wall section for dogleg .
 5. Integrate dogleg with hilbert curve. (start with one sided and later matched sides)
 
-Did:
+### Did:
 1. Wrote code to create wall side and corner for triangular cross section.
 3. Integrated it with hilbert generating code prepared for printing.
 <img src="log_images/16_06_2022/hilbert_stl.png"  width="200"/>
@@ -113,13 +113,13 @@ fig. generated hilbert curve as stl file.
 
 
 ## 17/06-2022
-Plans: 
+### Plans: 
 1. Print the hilbert curve prototype
 2. Restructure the code
 3. <del>Start workig with the dogleg cross section in two parts.</del> (Hilbert curve not needed, easier to make other patterns?)
 4. Test and look at corner section to see potential problems.
 
-Did:
+### Did:
 1. Printed the print which looks good.
 <img src="log_images/17_06_2022/printed_hilbert.JPG"  width="200"/>
 fig. printed out hilbert curve.
@@ -127,16 +127,16 @@ fig. printed out hilbert curve.
 2. I've now restructured the code to add modification and more pattern/cross section. 
 The corner build might need modification for more complicated cross sections
 
-Plans for next week:
+### Plans for next week:
 1. Look at dogleg corners or rotations and look at potential problem or solution.
 
 ## 20/06-2022
-Plans:
+### Plans:
 1. Read the dogleg papaer.
 2. Make dogleg side and then corner
 3. Read meta absorber paper from Gagan
 
-Did:
+### Did:
 1. Looked through dogleg design and will continue reading details later.
 2. Made dogleg side but still working on corner
 
@@ -148,18 +148,18 @@ Did:
 
 fig left. dogleg intersection. &nbsp;&nbsp;&nbsp; fig mid. dogleg side &nbsp;&nbsp;&nbsp; fig right. dogleg hilbert curve but bugged
 
-Questions:
+### Questions:
 1. The corners are quite buggy, try to fix next time
 2. Shift the tiles to correct for deformation. Could be done with tangent, angle and loft but problem when the height collides with other tiles.
 
-Sidetracks:
+### Sidetracks:
 * Jessica Meir presentation.
 
 ## 21/06-2022
-Plans:
+### Plans:
 1. Continue to make dogleg corner shapes.
 
-Did:
+### Did:
 1. Successfully made one variant of the dogleg corners. 
 <p>
   <img src="log_images/21_06_2022/dog_corner_front.png"  width="200"/>
@@ -168,21 +168,21 @@ Did:
 fig left. dogleg corner front &nbsp;&nbsp;&nbsp; fig right. dogleg corner back
 2. Generated hilbert curve with dogleg but the sides are not matched.
 
-Plans for tomorrow:
+### Plans for tomorrow:
 1. Keep making the flip side corner.<br>
 2. <del>2. Try to generate hilbert curve with dogleg.</del>
 3. Match hilbert sides.
 
-Sidetracks:
+### Sidetracks:
 * Summer swimming
 * Hang out with the group
 
 ## 21/06-2022
-Planes:
+### Planes:
 1. Make corners with different side matches.
 2. Generate hilbert wall with new design or restrictions of faces
 
-Did:
+### Did:
 1. Made other corners.
 2. Generated new wall with restrictions. Be cautious with .add() to workplane, will duplacte.
 <p>
@@ -197,6 +197,6 @@ fig left. dogleg corner front with fixed faces. &nbsp;&nbsp;&nbsp; fig right. do
 </p>
 fig left. hilbert curve walls with fixed dogleg cross section. &nbsp;&nbsp;&nbsp; fig right. crossed pattern with dogleg cross section.
 
-Plans for tomorrow:
+### Plans for tomorrow:
 1. Generate with fractals, shrink size.
 
