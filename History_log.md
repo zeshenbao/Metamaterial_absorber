@@ -178,7 +178,7 @@ fig left. dogleg corner front &nbsp;&nbsp;&nbsp; fig right. dogleg corner back
 * Hang out with the group
 
 ## 21/06-2022
-### Planes:
+### Plans:
 1. Make corners with different side matches.
 2. Generate hilbert wall with new design or restrictions of faces
 
