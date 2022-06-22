@@ -185,3 +185,4 @@ Planes:
 Did:
 1. Made other corners.
 2. Generated new wall with restrictions. Be cautious with .add() to workplane, will duplacte
+3. Generated cross pattern walls made by accidant before. 
