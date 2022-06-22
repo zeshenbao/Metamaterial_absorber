@@ -208,34 +208,49 @@ class Wall():
         
         return sub
 
-    def make_dog_corner(self, sides):
+    def make_dog_corner(self, comp):
         """Make a triangular corner"""
-        inter = sides["ver"].intersect(sides["hor"]) #carefull with rotation and see if they are at same position
-        ver_half = self.make_dog_side().faces(">Y").workplane(-self.tile_wid/2).split(keepBottom=True)
-        hor_half = self.make_dog_side().rotate((0,0,0), (0,0,1), 90).faces(">X").workplane(-self.tile_len/2).split(keepBottom=True)
+         #carefull with rotation and see if they are at same position
+        ver_half = comp["ver"].faces(">Y").workplane(-self.tile_wid/2).split(keepBottom=True)
+        hor_half = comp["hor"].faces(">X").workplane(-self.tile_len/2).split(keepBottom=True)
+
+
+        ver_half_left = comp["ver"].faces(">Y").workplane(-0.5).split(keepBottom=True)
+        ver_half_right = comp["ver"].faces(">Y").workplane(-0.5).split(keepTop=True)
+
+        hor_half_down = comp["hor"].faces(">X").workplane(-0.5).split(keepBottom=True)
+        hor_half_up = comp["hor"].faces(">X").workplane(-0.5).split(keepTop=True)
+
+
+        corner = comp["inter"].add(ver_half).add(hor_half)
         
-        corner = inter.add(ver_half).add(hor_half)
 
         exporters.export(corner, "testing_corner.stl")
         exporters.export(ver_half, "testing_ver_half.stl")
         exporters.export(hor_half, "testing_hor_half.stl")
+
+        
+        
         return corner
+
+
+    
 
     def make_dog_components(self):
 
-        def copy_side():
-            sides = {}
-            sides["ver"] = self.make_dog_side()
-            sides["hor"] = self.make_dog_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
-
-            return sides
+        def copy_components():
+            comp = {}
+            comp["ver"] = self.make_dog_side()
+            comp["hor"] = self.make_dog_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
+            comp["inter"] = comp["ver"].intersect(comp["hor"])
+            return comp
         
         corners = {}
         
-        corners["left_down"] = self.make_dog_corner(copy_side())
-        corners["left_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 270)
-        corners["right_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 180)
-        corners["right_down"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 90)
+        corners["left_down"] = self.make_dog_corner(copy_components())
+        corners["left_up"] = self.make_dog_corner(copy_components()).rotate((0,0,0), (0,0,1), 270)
+        corners["right_up"] = self.make_dog_corner(copy_components()).rotate((0,0,0), (0,0,1), 180)
+        corners["right_down"] = self.make_dog_corner(copy_components()).rotate((0,0,0), (0,0,1), 90)
 
         
 
@@ -325,6 +340,7 @@ def main():
 
 #if __name__ == "main":
 main()
+
 
 
 
