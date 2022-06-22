@@ -9,7 +9,7 @@ class Absorber():
     and saved as a stl file.
     """
 
-    def __init__(self, system, sides, corners, iterations):
+    def __init__(self, system, sides, iterations):
         """Creates an absorber object with input wall corners, wall sides and system.
          _____ _____    ___________
         |     |     |  |           |    
@@ -30,7 +30,7 @@ class Absorber():
 
         self.system = system
         self.sides = sides
-        self.corners = corners
+        #self.corners = corners
         
         self.iterations = iterations
         self.result = None
@@ -86,19 +86,19 @@ class Absorber():
             elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
                 if angle == 0:
                     #print(self.corners["left_down"])
-                    self.result.add(self.corners["left_down"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] -=1
 
                 elif angle == 180:
-                    self.result.add(self.corners["right_up"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] +=1
                     
                 elif angle == 90:
-                    self.result.add(self.corners["left_up"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[0] -=1
 
                 elif angle == 270:
-                    self.result.add(self.corners["right_down"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[0] +=1
 
                 else:
@@ -110,19 +110,19 @@ class Absorber():
                 
             elif letter == "-":
                 if angle == 0:
-                    self.result.add(self.corners["left_up"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] +=1
 
                 elif angle == 180:
-                    self.result.add(self.corners["right_down"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[1] -=1
                     
                 elif angle == 90:
-                    self.result.add(self.corners["right_up"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[0] +=1
 
                 elif angle == 270:
-                    self.result.add(self.corners["left_down"].translate(position))
+                    self.result.add(self.sides["ver"].translate(position))
                     position[0] -=1
 
                 else:
@@ -206,7 +206,7 @@ class Wall():
             comp = {}
             comp["ver"] = copy_cross_section()
             comp["hor"] = copy_cross_section().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
-            comp["inter"] = comp["ver"].intersect(comp["hor"]) ### the start workplane must always be new but add could be reused
+            comp["union"] = copy_cross_section().add(copy_cross_section().rotate((0,0,0), (0,0,1), 90)) ### the start workplane must always be new but add could be reused
             return comp
 
         def copy_sides(comp):
@@ -220,36 +220,16 @@ class Wall():
             
 
             return sides
+
+        comp = copy_components()
+        sides = {}
+
+
+        sides["ver"] = comp["union"]
+        sides["hor"] = comp["union"]
+    
         
-        sides = copy_sides(copy_components())
-
-        exporters.export(copy_components()["ver"], "ver.stl")
-        exporters.export(copy_components()["hor"], "hor.stl")
-        corners = {}
-
-
-        corners["left_down"] = copy_components()["inter"].add(sides["ver_half_left"]).add(sides["hor_half_down"]) 
-        corners["left_up"] = copy_components()["inter"].add(sides["ver_half_left"]).add(sides["hor_half_up"])      #
-        corners["right_down"] = copy_components()["inter"].add(sides["ver_half_right"]).add(sides["hor_half_down"]) #
-        corners["right_up"] = copy_components()["inter"].add(sides["ver_half_right"]).add(sides["hor_half_up"])
-        
-
-        #exporters.export(corner, "testing_corner.stl")
-        
-        
-        exporters.export(sides["ver_half_left"], "ver_half_left.stl")
-        exporters.export(sides["ver_half_right"], "ver_half_right.stl")
-        exporters.export(sides["hor_half_down"], "hor_half_down.stl")
-        exporters.export(sides["hor_half_up"], "hor_half_up.stl")
-
- 
-        exporters.export(corners["left_down"], "corner_left_down.stl")
-        exporters.export(corners["left_up"], "corner_left_up.stl")
-        exporters.export(corners["right_down"], "corner_right_down.stl")
-        exporters.export(corners["right_up"], "corner_right_up.stl")
-
-        
-        return copy_components(), corners
+        return sides
 
 
     
@@ -320,11 +300,11 @@ def main():
     hilbert = generate_hilbert(iterations)
 
     dogleg_wall = Wall(foundation_thickness=1)
-    dogleg_sides, dogleg_corners = dogleg_wall.make_dog_components()
+    dogleg_sides = dogleg_wall.make_dog_components()
     #unittest()
-    hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations)
+    hilbert_absorber = Absorber(hilbert, dogleg_sides, iterations)
     hilbert_absorber.build()
-    hilbert_absorber.export("hilbert_dog_face_fix_")
+    hilbert_absorber.export("cross_pattern_dog_leg")
     
 
 
