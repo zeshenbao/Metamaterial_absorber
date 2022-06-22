@@ -182,3 +182,6 @@ Planes:
 1. Make corners with different side matches.
 2. Generate hilbert wall with new design or restrictions of faces
 
+Did:
+1. Made other corners.
+2. Generated new wall with restrictions. Be cautious with .add() to workplane, will duplacte
