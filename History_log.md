@@ -184,5 +184,19 @@ Planes:
 
 Did:
 1. Made other corners.
-2. Generated new wall with restrictions. Be cautious with .add() to workplane, will duplacte
+2. Generated new wall with restrictions. Be cautious with .add() to workplane, will duplacte.
+<p>
+  <img src="log_images/22_06_2022/dog_fix_front.png"  width="200"/>
+  <img src="log_images/22_06_2022/dog_fix_back.png"  width="200"/>
+</p>
+fig left. dogleg corner front with fixed faces. &nbsp;&nbsp;&nbsp; fig right. dogleg corner back with fixed faces.
 3. Generated cross pattern walls made by accidant before. 
+<p>
+  <img src="log_images/22_06_2022/hilbert_dog.png"  width="200"/>
+  <img src="log_images/22_06_2022/cross_dog.png"  width="200"/>
+</p>
+fig left. hilbert curve walls with fixed dogleg cross section. &nbsp;&nbsp;&nbsp; fig right. crossed pattern with dogleg cross section.
+
+Plans for tomorrow:
+1. Generate with fractals, shrink size.
+
