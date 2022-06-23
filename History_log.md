@@ -215,6 +215,7 @@ fig left. hilbert curve walls with fixed dogleg cross section. &nbsp;&nbsp;&nbsp
   <img src="log_images/23_06_2022/hilbert_dog_side.jpg"  width="200"/>
 </p>
 fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp;&nbsp; fig right. Hilbert curve walls with fixed dogleg cross section side.
+
 3. Read a little bit about ESD resins.
 2. Need to scale up the dogleg cross section to minimize the gap between walls. There are bugs going out of the tile size. There are two options: one is to fit the wall inside the tile but shift it, it will be no geometrical bugs but it will be more difficult to generate the whole absorber and have same distance between tops. The second option is to have top centered cross sections but the geometry will go out of tiles which is buggy, it will be easier to generate and make holes.
 
