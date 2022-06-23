@@ -200,3 +200,14 @@ fig left. hilbert curve walls with fixed dogleg cross section. &nbsp;&nbsp;&nbsp
 ### Plans for tomorrow:
 1. Generate with fractals, shrink size.
 
+## 21/06-2022
+### Plans:
+1. Print the two absorber prototypes.
+2. Cut holes in dogleg section.
+3. Read about resins.
+4. Look into fractal scaling patterns.
+
+
+### Did: 
+1. Printed one absorber
+
