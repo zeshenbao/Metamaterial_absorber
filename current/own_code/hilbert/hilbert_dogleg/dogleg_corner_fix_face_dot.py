@@ -2,10 +2,10 @@ import cadquery as cq
 from cadquery import exporters
 from math import *
 
-
+#cross_wid = 1.5
 tile_wid = 1
 tile_len = 1
-tile_height = 2
+tile_height = 5
 
 def dog_side():
     foundation_thickness = 4
@@ -21,7 +21,7 @@ def dog_side():
            (-0.5*w, -1.5*h),
            (-w, -h)]
 
-    geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-tile_wid)
+    geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-(tile_wid+1.5*w-tile_len/2)).mirror(mirrorPlane="XZ", union=True)
 
     geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-tile_wid/2,tile_height))
 
@@ -69,10 +69,12 @@ corner_right_up = make_intersect(ver, hor).add(ver_half_right).add(hor_half_up)
 
 #print(ver)
 #print(hor)
-#exporters.export(ver_half, "ver_half.stl")
-#exporters.export(hor_half, "hor_half.stl")
+exporters.export(ver, "ver.stl")
 exporters.export(hor, "hor.stl")
-#exporters.export(inter, "inter.stl")
+exporters.export(ver_half_left, "ver_half.stl")
+exporters.export(hor_half_down, "hor_half.stl")
+#exporters.export(hor, "hor.stl")
+exporters.export(make_intersect(ver, hor), "inter.stl")
 #exporters.export(union, "union.stl")
 #exporters.export(sub, "sub.stl")
 #exporters.export(diff, "diff.stl")

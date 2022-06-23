@@ -312,7 +312,7 @@ def main():
     
     hilbert = generate_hilbert(iterations)
 
-    triangle_wall = Wall()
+    triangle_wall = Wall(foundation_thickness=2, tile_height=2.488)
     triangle_sides, triangle_corners = triangle_wall.make_dog_components()
     #unittest()
     hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)

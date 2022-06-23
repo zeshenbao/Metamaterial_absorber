@@ -171,88 +171,81 @@ class Wall():
         self.corners = None
 
 
-    def make_dog_components(self):
+
+
+    def make_dog_side(self):
+        foundation_thickness = 4
+        h = self.tile_height/2
+        angle = (pi/6)/2
+        w = h*tan(angle)
+        #print(w)
+        pts = [(0,0),
+               (1.5*w, -1.5*h),
+
+               (0.5*w, -2*h),
+               (-1.5*w, -2*h),
+               (-0.5*w, -1.5*h),
+               (-w, -h)]
+
+        geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid)
+
+        geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-self.tile_wid/2,self.tile_height))
+
+        dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(self.tile_len, self.tile_wid).extrude(-foundation_thickness))
+
+
+        return dog_side
+            
+
+    def make_sub(self):
+        """Make the element to remove from union before adding with intersection """
+        pts = [(self.tile_len/2, -self.tile_len/2),
+               (self.tile_len/2, self.tile_wid/2),
+               (-self.tile_len/2, self.tile_wid/2)
+            ]
+        
+        sub = cq.Workplane("XY").polyline(pts).close().extrude(self.tile_height)#.faces("<Z").rect(tile_len, tile_wid).extrude(-foundation_thickness) #skapas vid masspunkt
+        
+        return sub
+
+    def make_dog_corner(self, sides):
         """Make a triangular corner"""
-         #carefull with rotation and see if they are at same position
+        inter = sides["ver"].intersect(sides["hor"]) #carefull with rotation and see if they are at same position
+        ver_half = self.make_dog_side().faces(">Y").workplane(-self.tile_wid/2).split(keepBottom=True)
+        hor_half = self.make_dog_side().rotate((0,0,0), (0,0,1), 90).faces(">X").workplane(-self.tile_len/2).split(keepBottom=True)
+        
+        corner = inter.add(ver_half).add(hor_half)
 
+        exporters.export(corner, "testing_corner.stl")
+        exporters.export(ver_half, "testing_ver_half.stl")
+        exporters.export(hor_half, "testing_hor_half.stl")
+        return corner
 
-        def copy_cross_section():
-            foundation_thickness = self.foundation_thickness
-            h = self.tile_height/2
-            angle = (pi/6)/2
-            w = h*tan(angle)
-            #print(w)
-            pts = [(0,0),
-                   (1.5*w, -1.5*h),
+    def make_dog_components(self):
 
-                   (0.5*w, -2*h),
-                   (-1.5*w, -2*h),
-                   (-0.5*w, -1.5*h),
-                   (-w, -h)]
-
-            #geo_xz, geo_xy, dog_side = None, None, None
-            
-            geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-self.tile_wid)
-
-            geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,-self.tile_wid/2,self.tile_height))
-
-            dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(self.tile_len, self.tile_wid).extrude(-foundation_thickness))
-
-
-            return dog_side
-            
-
-        def copy_components():
-            comp = {}
-            comp["ver"] = copy_cross_section()
-            comp["hor"] = copy_cross_section().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
-            comp["inter"] = comp["ver"].intersect(comp["hor"]) ### the start workplane must always be new but add could be reused
-            return comp
-
-        def copy_sides(comp):
+        def copy_side():
             sides = {}
-            
-            sides["ver_half_left"] = comp["hor"].faces(">X").workplane(-0.5).split(keepBottom=True)
-            sides["ver_half_right"] = comp["hor"].faces(">X").workplane(-0.5).split(keepTop=True)
-
-            sides["hor_half_down"] = comp["ver"].faces(">Y").workplane(-0.5).split(keepBottom=True)
-            sides["hor_half_up"] = comp["ver"].faces(">Y").workplane(-0.5).split(keepTop=True)
-            
+            sides["ver"] = self.make_dog_side()
+            sides["hor"] = self.make_dog_side().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
 
             return sides
         
-        sides = copy_sides(copy_components())
-
-        exporters.export(copy_components()["ver"], "ver.stl")
-        exporters.export(copy_components()["hor"], "hor.stl")
         corners = {}
+        
+        corners["left_down"] = self.make_dog_corner(copy_side())
+        corners["left_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 270)
+        corners["right_up"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 180)
+        corners["right_down"] = self.make_dog_corner(copy_side()).rotate((0,0,0), (0,0,1), 90)
 
-
-        corners["left_down"] = copy_components()["inter"].add(sides["ver_half_left"]).add(sides["hor_half_down"]) 
-        corners["left_up"] = copy_components()["inter"].add(sides["ver_half_left"]).add(sides["hor_half_up"])      #
-        corners["right_down"] = copy_components()["inter"].add(sides["ver_half_right"]).add(sides["hor_half_down"]) #
-        corners["right_up"] = copy_components()["inter"].add(sides["ver_half_right"]).add(sides["hor_half_up"])
         
 
-        #exporters.export(corner, "testing_corner.stl")
-        
-        
-        exporters.export(sides["ver_half_left"], "ver_half_left.stl")
-        exporters.export(sides["ver_half_right"], "ver_half_right.stl")
-        exporters.export(sides["hor_half_down"], "hor_half_down.stl")
-        exporters.export(sides["hor_half_up"], "hor_half_up.stl")
+        exporters.export(corners["left_down"], "left_down.stl")
+        exporters.export(corners["left_up"], "left_up.stl")
+        exporters.export(corners["right_up"], "right_up.stl")
+        exporters.export(corners["right_down"], "right_down.stl")
 
- 
-        exporters.export(corners["left_down"], "corner_left_down.stl")
-        exporters.export(corners["left_up"], "corner_left_up.stl")
-        exporters.export(corners["right_down"], "corner_right_down.stl")
-        exporters.export(corners["right_up"], "corner_right_up.stl")
+        return copy_side(), corners
 
-        
-        return copy_components(), corners
-
-
-    
 
 #class Pattern(): #Probably don't need a class for this, might need it for later
 #    """
@@ -315,16 +308,16 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 4
+    iterations = 3
     
     hilbert = generate_hilbert(iterations)
 
-    dogleg_wall = Wall(foundation_thickness=1, tile_height=2.488)
-    dogleg_sides, dogleg_corners = dogleg_wall.make_dog_components()
+    triangle_wall = Wall()
+    triangle_sides, triangle_corners = triangle_wall.make_dog_components()
     #unittest()
-    hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations)
+    hilbert_absorber = Absorber(hilbert, triangle_sides, triangle_corners, iterations)
     hilbert_absorber.build()
-    hilbert_absorber.export("hilbert_dog_face_fix_")
+    hilbert_absorber.export("hilbert_dog_")
     
 
 
@@ -332,7 +325,6 @@ def main():
 
 #if __name__ == "main":
 main()
-
 
 
 
