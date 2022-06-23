@@ -209,5 +209,13 @@ fig left. hilbert curve walls with fixed dogleg cross section. &nbsp;&nbsp;&nbsp
 
 
 ### Did: 
-1. Printed one absorber
+1. Printed one absorber, the other one is on the way.
+3. Read a little bit about ESD resins.
+2. Need to scale up the dogleg cross section to minimize the gap between walls. There are bugs going out of the tile size. There are two options: one is to fit the wall inside the tile but shift it, it will be no geometrical bugs but it will be more difficult to generate the whole absorber and have same distance between tops. The second option is to have top centered cross sections but the geometry will go out of tiles which is buggy, it will be easier to generate and make holes.
+
+### Plans for next week:
+1. Debugg to make smaller gaps and implement holes.
+2. Start develope the resin.
+3. Might be worth to make pyramid dog leg to compare.
+
 
