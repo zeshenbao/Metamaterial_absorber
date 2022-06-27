@@ -231,3 +231,11 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 1. Continue debug to add implement gap/hole.
 2. Read papers on metamaterial absorbers.
 
+### Did: 
+1. Made the gaps closer to not get one reflection of flat vertical ground.
+2. Implemented holes but it got lots of bugs.
+3. Made extended legs down to fix some bugs but the geometry of hole might be wrong.
+
+### Plans for tomorrow:
+1. Cut off hole foundation to edges blocking.
+2. fix overlap with hole. 1. might fix this too but look at the geometry.
