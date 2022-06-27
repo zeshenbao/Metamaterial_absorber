@@ -225,3 +225,9 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 3. Might be worth to make pyramid dog leg to compare.
 
 
+## 27/06-2022
+
+### Plans: 
+1. Continue debug to add implement gap/hole.
+2. Read papers on metamaterial absorbers.
+
