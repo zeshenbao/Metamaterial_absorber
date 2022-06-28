@@ -244,3 +244,4 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 
 ### Plans: 
 1. Put the holes above ground to test. (Center between walls)
+2. Read papaers
