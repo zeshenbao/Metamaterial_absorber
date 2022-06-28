@@ -235,6 +235,11 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 1. Made the gaps closer to not get one reflection of flat vertical ground.
 2. Implemented holes but it got lots of bugs.
 3. Made extended legs down to fix some bugs but the geometry of hole might be wrong.
+ <p>
+  <img src="log_images/27_06_2022/hole_hilbert.png"  width="200"/>
+  <img src="log_images/27_06_2022/hole_bug.png"  width="200"/>
+</p>
+fig left. Hilbert with extended sections but with bug. &nbsp;&nbsp;&nbsp; fig right. Wall with flat side is higher than some holes which gets blocked.
 
 ### Plans for tomorrow:
 1. Cut off hole foundation to edges blocking.
@@ -245,3 +250,11 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 ### Plans: 
 1. Put the holes above ground to test. (Center between walls)
 2. Read papaers
+
+### Did: 
+1. Calculated all geometries to do a remake of dogleg.
+* Points so that the hole will fit excatly between walls and excatly above ground so that it does not block anything.
+* Have the hole divided in half to smoothly tranision to ground so that it does not block.
+2. Drew out the geometries with turtle graphics in Python.
+<img src="log_images/28_06_2022/turtle_test.png"  width="200"/>
+fig. Test drawing with turtle.
