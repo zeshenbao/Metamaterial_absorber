@@ -239,3 +239,8 @@ fig left. Hilbert curve walls with fixed dogleg cross section front. &nbsp;&nbsp
 ### Plans for tomorrow:
 1. Cut off hole foundation to edges blocking.
 2. fix overlap with hole. 1. might fix this too but look at the geometry.
+
+## 28/06-2022
+
+### Plans: 
+1. Put the holes above ground to test. (Center between walls)
