@@ -13,6 +13,7 @@ h = tile_height/2
 w = h*tan(angle)
 
 k = 1/tan(2*angle)
+k_w = 1/(1-tan(angle)**2)
 a = tile_len - 2*w
 s = a*cos(2*angle)
 
@@ -63,7 +64,14 @@ def fill(pts):
         goto(p[0]*scale, p[1]*scale)
     end_fill()
     
-        
+
+def draw(pts):
+    pu()
+    goto(pts[0][0]*scale, pts[0][1]*scale)
+    pd()
+    for p in pts:
+        goto(p[0]*scale, p[1]*scale)
+    
         
         
 
@@ -71,6 +79,27 @@ def fill(pts):
 
 speed(0)
 ht()
+
+
+
+dog_pts1 = [(0-(1.5-k_w)*w,0+tile_height),
+           (1.5*w-(1.5-k_w)*w, -1.5*h+tile_height),
+           ((1.5-k_w)*w-(1.5-k_w)*w, -2*h+tile_height),
+           ((-0.5-k_w)*w-(1.5-k_w)*w, -2*h+tile_height),
+           (-0.5*w-(1.5-k_w)*w, -1.5*h+tile_height),
+           (-w-(1.5-k_w)*w, -h+tile_height)]
+"""
+dog_pts2 = [(0,0),
+           (1.5*w, -1.5*h),
+           ((1.5-k_w)*w, -2*h),
+           ((-0.5-k_w)*w, -2*h),
+           (-0.5*w, -1.5*h),
+           (-w, -h)]
+"""
+draw(dog_pts1)
+
+
+
 #left line
 color("blue")
 line((0,0), (a,y1(a)))
