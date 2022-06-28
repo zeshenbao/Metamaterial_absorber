@@ -1,3 +1,4 @@
+
 import cadquery as cq
 from cadquery import exporters
 from math import *
@@ -17,15 +18,26 @@ def dog_side():
     angle = (pi/6)/2
     w = h*tan(angle)
     print(w)
+    d = tile_len - 0.5*w - 1.5*w#1.5*w-tile_len/2
+    x = (d/2)*tan(2*angle)
+    
     pts = [(0,0),
            (1.5*w, -1.5*h),
-
            (0.5*w, -2*h),
            (-1.5*w, -2*h),
            (-0.5*w, -1.5*h),
            (-w, -h)]
 
-    d = tile_len - 0.5*w - 1.5*w#1.5*w-tile_len/2
+    
+
+    
+
+    extra_pts = [(-1.5*w, -2*h),
+                 (0.5*w, -2*h),
+                 (0.5*w-x, -2*h-d/2),
+                 (-1.5*w-x, -2*h-d/2)]
+    
+    
     
     geo_xz = cq.Workplane("XZ").polyline(pts).close().extrude(-(tile_wid+2*d)).translate((0, -d, 0)) #add twp stick out part and then shift with one shift out to get one shift out part every side.
 
@@ -40,6 +52,10 @@ def dog_side():
     
     dog_side = dog_side.cut(circle)
 
+    extra_geo_xz = cq.Workplane("XZ").polyline(extra_pts).close().extrude(-(tile_wid+2*d)).translate((0, -d, 0))
+    extra_geo_xy = cq.Workplane("XY").add(extra_geo_xz).translate((0,-tile_wid/2,tile_height))
+
+    dog_side = dog_side.add(extra_geo_xy)
 
     return dog_side
 

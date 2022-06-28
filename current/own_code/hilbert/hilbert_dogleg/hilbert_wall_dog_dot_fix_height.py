@@ -186,15 +186,19 @@ class Wall():
             angle = (pi/6)/2
             self.w = h*tan(angle)
             self.d = self.tile_len - 0.5*self.w - 1.5*self.w
-            
+            x = (self.d/2)*tan(2*angle)
             #print(w)
             pts = [(0,0),
                    (1.5*self.w, -1.5*h),
-
                    (0.5*self.w, -2*h),
                    (-1.5*self.w, -2*h),
                    (-0.5*self.w, -1.5*h),
                    (-self.w, -h)]
+
+            extra_pts = [(-1.5*self.w, -2*h),
+                 (0.5*self.w, -2*h),
+                 (0.5*self.w-x, -2*h-self.d/2),
+                 (-1.5*self.w-x, -2*h-self.d/2)]
 
             #geo_xz, geo_xy, dog_side = None, None, None
             
@@ -207,6 +211,12 @@ class Wall():
             circle = cq.Workplane("XZ").center(0.5*self.w+self.d/2, 0).circle(self.d/2).extrude(-(self.tile_wid+self.d)).mirror(mirrorPlane="XZ", union=True)
     
             dog_side = dog_side.cut(circle)
+
+            #extension
+            extra_geo_xz = cq.Workplane("XZ").polyline(extra_pts).close().extrude(-(self.tile_wid+2*self.d)).translate((0, -self.d, 0))
+            extra_geo_xy = cq.Workplane("XY").add(extra_geo_xz).translate((0,-self.tile_wid/2,self.tile_height))
+
+            dog_side = dog_side.add(extra_geo_xy)
 
 
             return dog_side
@@ -330,7 +340,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 3
+    iterations = 2
     
     hilbert = generate_hilbert(iterations)
 
