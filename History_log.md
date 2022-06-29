@@ -278,5 +278,6 @@ fig. dogleg + added area
   <img src="log_images/29_06_2022/dog_new_side.png"  width="200"/>
 </p>
 fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side. 
+
 2. Started the print.
 
