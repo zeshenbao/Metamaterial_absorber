@@ -259,6 +259,9 @@ fig left. Hilbert with extended sections but with bug. &nbsp;&nbsp;&nbsp; fig ri
 <img src="log_images/28_06_2022/turtle_test.png"  width="200"/>
 fig. Test drawing with turtle.
 3. Fixed an unnoticed bug where the lowest points on the dogleg geometry was wrong because I though that tan(2a) = 2tan(a). Which is now fixed.
+<img src="log_images/28_06_2022/wrong_angle.png"  width="200"/>
+fig. The dogleg with added areas for the wrong points. Difference is 1 vs $1/(1-tan(a)^{2})$ for $a = \frac{\pi}{12}$ around 7% difference.
+
 4. Added first step of the new dogleg wall with dogleg + added areas.
 <img src="log_images/28_06_2022/dogleg_v2.png"  width="200"/>
 fig. dogleg + added area
