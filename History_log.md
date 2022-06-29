@@ -281,3 +281,4 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 2. Started the print.
 3. Error with printer which is now fixed, changing resin type from grey to clear.
+4. Preparing and looking through different papers and about 3D-printing
