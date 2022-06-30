@@ -291,7 +291,8 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 ### Did:
 1. Took out prints and started to print a larger copy.
-2. Read Wollack
+2. Read Wollack, Petroff
+3. Wrote code to generate pyramid abosorber but with dogleg geometry.
 
 ### Questions:
 1. How do you measure specular vs diffusive reflectance of a material? Is the specular material sanded?
