@@ -291,7 +291,9 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 ### Did:
 1. Took out prints and started to print a larger copy.
-2. Read Wollack, Petroff
+2. Read 
+*Wollack
+*Petroff
 3. Wrote code to generate pyramid abosorber but with dogleg geometry.
 
 ### Questions:
