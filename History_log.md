@@ -289,6 +289,10 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 1. Take out prints and print a larger copy.
 2. Read Wollack, Petroff and Gupta papers.
 
+### Did:
+1. Took out prints and started to print a larger copy.
+2. Read Wollack
+
 ### Questions:
 1. How do you measure specular vs diffusive reflectance of a material? Is the specular material sanded?
 2. Why have dielectric on high conductive substrate?
