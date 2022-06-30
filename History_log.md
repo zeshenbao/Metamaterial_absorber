@@ -259,9 +259,40 @@ fig left. Hilbert with extended sections but with bug. &nbsp;&nbsp;&nbsp; fig ri
 <img src="log_images/28_06_2022/turtle_test.png"  width="200"/>
 fig. Test drawing with turtle.
 3. Fixed an unnoticed bug where the lowest points on the dogleg geometry was wrong because I though that tan(2a) = 2tan(a). Which is now fixed.
-<img src="log_images/28_06_2022/wrong_angle.png"  width="200"/>
-fig. The dogleg with added areas for the wrong points. Difference is 1 vs $1/(1-tan(a)^{2})$ for $a = \frac{\pi}{12}$ around 7% difference.
-
 4. Added first step of the new dogleg wall with dogleg + added areas.
 <img src="log_images/28_06_2022/dogleg_v2.png"  width="200"/>
 fig. dogleg + added area
+
+
+## 29/06-2022
+
+### Plans: 
+1. Finish the code for new design.
+2. Start to print the new design.
+3. Read different papers.
+
+### Did:
+1. Finished the code.
+ <p>
+  <img src="log_images/29_06_2022/dog_new.png"  width="200"/>
+  <img src="log_images/29_06_2022/dog_new_side.png"  width="200"/>
+</p>
+fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side. 
+
+2. Started the print.
+3. Error with printer which is now fixed, changing resin type from grey to clear.
+4. Preparing and looking through different papers and about 3D-printing
+
+## 30/06-2022
+
+### Plans: 
+1. Take out prints and print a larger copy.
+2. Read Wollack, Petroff and Gupta papers.
+
+### Did:
+1. Took out prints and started to print a larger copy.
+2. Read Wollack
+
+### Questions:
+1. How do you measure specular vs diffusive reflectance of a material? Is the specular material sanded?
+2. Why have dielectric on high conductive substrate?
