@@ -308,3 +308,8 @@ fig. new design absorber, dogleg with holes.
 1. Still waiting for mixer to arrive. Print the pyramid_dogleg absorber.
 2. Read Gupta, other papers and resin.
 3. Look at CST tutorials
+
+### Did:
+1. Printed larger dogleg and printing pyramid pattern.
+2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
+3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said no)
