@@ -291,6 +291,8 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 ### Did:
 1. Took out prints and started to print a larger copy.
+<img src="log_images/30_06_2022/new_design.png"  width="200"/>
+fig. new design absorber, dogleg with holes.
 2. Read:
 * Wollack
 * Petroff
