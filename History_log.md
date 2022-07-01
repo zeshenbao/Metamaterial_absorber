@@ -305,3 +305,4 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 ### Plans: 
 1. Still waiting for mixer to arrive. Print the pyramid_dogleg absorber.
 2. Read Gupta, other papers and resin.
+3. Look at CST tutorials
