@@ -291,8 +291,18 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 ### Did:
 1. Took out prints and started to print a larger copy.
-2. Read Wollack
+2. Read:
+* Wollack
+* Petroff
+3. Wrote code to generate pyramid abosorber but with dogleg geometry.
 
 ### Questions:
 1. How do you measure specular vs diffusive reflectance of a material? Is the specular material sanded?
 2. Why have dielectric on high conductive substrate?
+
+## 01/07-2022
+
+### Plans: 
+1. Still waiting for mixer to arrive. Print the pyramid_dogleg absorber.
+2. Read Gupta, other papers and resin.
+3. Look at CST tutorials
