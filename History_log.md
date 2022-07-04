@@ -312,4 +312,10 @@ fig. new design absorber, dogleg with holes.
 ### Did:
 1. Printed larger dogleg and printing pyramid pattern.
 2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
-3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said no)
+3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said not to do it).
+
+## 04/07-2022
+
+### Plans:
+1. Look at the order and compare with papers.
+2. Look into CST or mixing with iron powder.
