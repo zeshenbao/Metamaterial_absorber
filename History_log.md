@@ -331,4 +331,6 @@ fig. new design absorber, dogleg with holes.
 <del> 2. Look into CST or mixing with iron powder. </del>
 2. Try to read around 15 pages of papers. (28 per day)
 
-
+## Did:
+1. Send a mail to ask about the Graphene.
+2. Read about 10 pages in Staggs and planned to test resin composites.
