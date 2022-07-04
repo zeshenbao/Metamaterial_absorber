@@ -314,6 +314,15 @@ fig. new design absorber, dogleg with holes.
 1. Printed larger dogleg and printing pyramid pattern.
 2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
 3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said not to do it).
+4. 
+## Weekly plan:
+1. Read papers
+2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
+3. CST simulation
+4. Measurement methods:
+* Ohm resistance measurement
+* Use mirrors and horns + larger horns
+* Use reflectometer
 
 ## 04/07-2022
 
@@ -322,11 +331,4 @@ fig. new design absorber, dogleg with holes.
 <del> 2. Look into CST or mixing with iron powder. </del>
 2. Try to read around 15 pages of papers. (28 per day)
 
-### Weekly plan:
-1. Read papers
-2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
-3. CST simulation
-4. Measurement methods:
-* Ohm resistance measurement
-* Use mirrors and horns + larger horns
-* Use reflectometer
+
