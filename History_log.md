@@ -320,4 +320,5 @@ fig. new design absorber, dogleg with holes.
 ### Plans:
 1. Look at the order and compare with papers.
 <del> 2. Look into CST or mixing with iron powder. </del>
+
 2. Try to read around 15 pages of papers. (28 per day)
