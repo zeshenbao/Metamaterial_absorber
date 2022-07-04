@@ -24,7 +24,8 @@
 3. Start to make basic geometries
 
 ### Did: 
-1. Printed a violin test model and learned to: 
+1. Printed a violin test mo
+and learned to: 
 * Send things to formlabs printer via preform. 
 * Preparing the printer for printing and removing the print.
 * Washing in isopropanol manually and with machine and also curing it.
@@ -318,4 +319,5 @@ fig. new design absorber, dogleg with holes.
 
 ### Plans:
 1. Look at the order and compare with papers.
-2. Look into CST or mixing with iron powder.
+<del> 2. Look into CST or mixing with iron powder. </del>
+2. Try to read around 15 pages of papers. (28 per day)
