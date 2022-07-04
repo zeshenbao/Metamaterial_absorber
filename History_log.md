@@ -321,3 +321,12 @@ fig. new design absorber, dogleg with holes.
 1. Look at the order and compare with papers. <br>
 <del> 2. Look into CST or mixing with iron powder. </del>
 2. Try to read around 15 pages of papers. (28 per day)
+
+### Weekly plan:
+1. Read papers
+2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
+3. CST simulation
+4. Measurement methods:
+* Ohm resistance measurement
+* Use mirrors and horns + larger horns
+* Use reflectometer
