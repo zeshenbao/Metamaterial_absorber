@@ -324,6 +324,10 @@ fig. new design absorber, dogleg with holes.
 * Ohm resistance measurement
 * Use mirrors and horns + larger horns
 * Use reflectometer
+6. Set up reflectometry:
+* Table
+* Models and solidworks
+* VNA calibration, setup and python code for extracting data
 
 ## 04/07-2022
 
