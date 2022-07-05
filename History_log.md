@@ -334,3 +334,7 @@ fig. new design absorber, dogleg with holes.
 ## Did:
 1. Send a mail to ask about the Graphene.
 2. Read about 10 pages in Staggs and planned to test resin composites.
+
+### Plans:
+1. Look into graphite (looked at graphene earlier but it is graphite).
+2. Continue read papers, try to skip too difficult parts and focus on the methodology and things related to this project.
