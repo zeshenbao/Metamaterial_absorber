@@ -318,8 +318,9 @@ fig. new design absorber, dogleg with holes.
 ## Weekly plan:
 1. Read papers
 2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
-3. CST simulation
-4. Measurement methods:
+3. Use the customized resin in a universal cartridge to try print.
+4. CST simulation
+5. Measurement methods:
 * Ohm resistance measurement
 * Use mirrors and horns + larger horns
 * Use reflectometer
