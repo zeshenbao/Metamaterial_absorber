@@ -24,7 +24,8 @@
 3. Start to make basic geometries
 
 ### Did: 
-1. Printed a violin test model and learned to: 
+1. Printed a violin test mo
+and learned to: 
 * Send things to formlabs printer via preform. 
 * Preparing the printer for printing and removing the print.
 * Washing in isopropanol manually and with machine and also curing it.
@@ -291,6 +292,8 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 
 ### Did:
 1. Took out prints and started to print a larger copy.
+<img src="log_images/30_06_2022/new_design.jpg"  width="200"/>
+fig. new design absorber, dogleg with holes.
 2. Read:
 * Wollack
 * Petroff
@@ -306,3 +309,39 @@ fig left. New design. &nbsp;&nbsp;&nbsp; fig right. New design from side.
 1. Still waiting for mixer to arrive. Print the pyramid_dogleg absorber.
 2. Read Gupta, other papers and resin.
 3. Look at CST tutorials
+
+### Did:
+1. Printed larger dogleg and printing pyramid pattern.
+2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
+3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said not to do it).
+4. 
+## Weekly plan:
+1. Read papers
+2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
+3. Use the customized resin in a universal cartridge to try print. Look at software which was quite easy to use.
+4. CST simulation
+5. Measurement methods:
+* Ohm resistance measurement
+* Use mirrors and horns + larger horns
+* Use reflectometer
+6. Set up reflectometry:
+* Table
+* Models and solidworks
+* VNA calibration, setup and python code for extracting data
+
+## 04/07-2022
+
+### Plans:
+1. Look at the order and compare with papers. <br>
+<del> 2. Look into CST or mixing with iron powder. </del>
+2. Try to read around 15 pages of papers. (28 per day)
+
+## Did:
+1. Send a mail to ask about the Graphene.
+2. Read about 10 pages in Staggs and planned to test resin composites.
+
+## 04/07-2022
+
+### Plans:
+1. Look into graphite 325 microns (looked at graphene earlier but it is graphite).
+2. Continue read papers, try to skip too difficult parts and focus on the methodology and things related to this project.
