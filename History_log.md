@@ -340,8 +340,17 @@ fig. new design absorber, dogleg with holes.
 1. Send a mail to ask about the Graphene.
 2. Read about 10 pages in Staggs and planned to test resin composites.
 
-## 04/07-2022
+## 05/07-2022
 
 ### Plans:
 1. Look into graphite 325 microns (looked at graphene earlier but it is graphite).
 2. Continue read papers, try to skip too difficult parts and focus on the methodology and things related to this project.
+
+## 06/07-2022
+
+### Plans:
+1. Cad in soliworks for reflectrometry.
+
+### Did:
+1. Cleaned print plate and tank film of failed print.
+2. Started cadding and learning Solidworks
