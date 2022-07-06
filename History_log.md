@@ -312,6 +312,8 @@ fig. new design absorber, dogleg with holes.
 
 ### Did:
 1. Printed larger dogleg and printing pyramid pattern.
+<img src="log_images/06_07_2022/hilbert_dogleg.heic"  width="200"/>
+fig. new larger hilbert print.
 2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
 3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said not to do it).
 4. 
@@ -339,6 +341,8 @@ fig. new design absorber, dogleg with holes.
 ## Did:
 1. Send a mail to ask about the Graphene.
 2. Read about 10 pages in Staggs and planned to test resin composites.
+<img src="log_images/06_07_2022/spike_dogleg.heic"  width="200"/>
+fig. spike absorber with dogleg as seen in one paper.
 
 ## 05/07-2022
 
