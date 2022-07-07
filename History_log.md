@@ -358,3 +358,12 @@ fig. spike absorber with dogleg as seen in one paper.
 ### Did:
 1. Cleaned print plate and tank film of failed print.
 2. Started cadding and learning Solidworks
+3. Finished two parts for one component
+
+## 07/07-2022
+
+### Plans:
+1. Learn PyVISA and read VNA manual to export result or trace.
+
+### Other:
+1. Needed to help my girlfriend to lost quite much time today. Sorry for that.
