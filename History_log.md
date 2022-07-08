@@ -319,7 +319,9 @@ fig. new larger hilbert print.
 4. 
 ## Weekly plan:
 1. Read papers
-2. Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
+2. Mixing 
+* Start to test mixing with graphene and iron powder manually (if mixer don't arrive)
+* Do different mixs, read about rein and binder.
 3. Use the customized resin in a universal cartridge to try print. Look at software which was quite easy to use.
 4. CST simulation
 5. Measurement methods:
@@ -329,7 +331,10 @@ fig. new larger hilbert print.
 6. Set up reflectometry:
 * Table
 * Models and solidworks
-* VNA calibration, setup and python code for extracting data
+* VNA calibration, setup and python code for extracting data (IO)
+7. Mixer
+
+
 
 ## 04/07-2022
 
@@ -380,6 +385,7 @@ fig. spike absorber with dogleg as seen in one paper.
 ### Plans:
 1. Take out prints.
 2. Look into VNA I/O with Python.
+
 
 
 ### Did:
