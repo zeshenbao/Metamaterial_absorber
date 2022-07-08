@@ -365,5 +365,22 @@ fig. spike absorber with dogleg as seen in one paper.
 ### Plans:
 1. Learn PyVISA and read VNA manual to export result or trace.
 
+
+### Did:
+1. Skeched the design for fastening a instrument part.
+2. Looked into and read about PyVISA, VISA and RS ZNA VNA.
+
+
 ### Other:
 1. Needed to help my girlfriend to lost quite much time today. Sorry for that.
+
+
+## 08/07-2022
+
+### Plans:
+1. Take out prints.
+2. Look into VNA I/O with Python.
+
+
+### Did:
+1. Finished printing some parts which had some failures. Analysed the failures which is caused by small tips on support.
