@@ -316,7 +316,9 @@ fig. new design absorber, dogleg with holes.
 fig. new larger hilbert print.
 2. Read Gupta and looked at papers on combining Grahpene with liquid photopolymer. 
 3. Tested to solidify resins with Formlabs curing machine and it worked (even though support said not to do it).
-4. 
+
+
+
 ## Weekly plan:
 1. Read papers
 2. Mixing 
