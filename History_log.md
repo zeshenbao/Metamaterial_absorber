@@ -405,3 +405,16 @@ fig. spike absorber with dogleg as seen in one paper.
 ## 11/07-2022
 ### Plans:
 1. Try to understand VNA code and make improvements on sweep time, and plots.
+
+### Did:
+1. Tested mixing. Fliud too viscious.
+2. Don't make continues sweeps, only single sweeps to avoid overlaping measurements.
+3. Read the whole documentation but not the SCPI commands.
+
+
+### Questions:
+1. Is sweep point interval fixed?
+2. Is sweeps on the whole range or defined range?
+3. What are the other SCPI commands.
+4. How do I wait for a single sweep or sync? \*WAI or with_opc? Still stops after 1/10 of sweep.
+5. Calculate sweep time?
