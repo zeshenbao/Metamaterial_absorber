@@ -410,7 +410,7 @@ fig. spike absorber with dogleg as seen in one paper.
 1. Tested mixing. Fliud too viscious.
 2. Don't make continues sweeps, only single sweeps to avoid overlaping measurements.
 3. Read the whole documentation but not the SCPI commands.
-
+4. Seems like max sweep points is 99999.
 
 ### Questions:
 1. Is sweep step size fixed to 10 kHz or defined?
