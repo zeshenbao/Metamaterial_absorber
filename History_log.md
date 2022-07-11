@@ -419,3 +419,7 @@ fig. spike absorber with dogleg as seen in one paper.
 4. How do I wait for a single sweep or sync? \*WAI or with_opc? Still stops after 1/10 of sweep.
 5. Calculate sweep time?
 6. Calibration.
+
+### Plans for tomorrow:
+1. Look at SCPI commands. Difference between end sequens and not.
+2. Try to export in single large binary array.
