@@ -423,4 +423,4 @@ fig. spike absorber with dogleg as seen in one paper.
 ### Plans for tomorrow:
 1. Look at SCPI commands. Difference between end sequens and not.
 2. Try to export in single large binary array.
-3. Test cont sweep without closeing or stopping at the same interval.
+3. Test cont sweep without closing or stopping at the same interval. Export values after each sweep.
