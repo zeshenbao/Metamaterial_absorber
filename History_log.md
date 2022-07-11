@@ -389,6 +389,19 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Look into VNA I/O with Python.
 
 
-
 ### Did:
 1. Finished printing some parts which had some failures. Analysed the failures which is caused by small tips on support.
+2. Planning and discussed about mixing resin.
+3. Read about VNA connections and connected VNA to Mac and used Pycharm to extract results.
+
+
+## Weekly plan
+1. Start testing diffrent mixtures.
+2. Try to understand VNA code and make improvements on sweep time, and plots.
+3. Read more papers. 
+4. Finish Solidworks parts and make new designs.
+5. Make a presentation.
+
+## 11/07-2022
+### Plans:
+1. Try to understand VNA code and make improvements on sweep time, and plots.
