@@ -425,3 +425,11 @@ fig. spike absorber with dogleg as seen in one paper.
 1. Look at SCPI commands. Difference between end sequens and not.
 2. Try to export in single large binary array.
 3. Test cont sweep without closing or stopping at the same interval. Export values after each sweep.
+
+## 12/07-2022
+### Plans:
+1. Look into SCPI commands.
+2. Check out more examples.
+
+### Did:
+1. Tested and compared different reads from the VNA to see if sweep reads are not overlapped.
