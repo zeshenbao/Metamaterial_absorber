@@ -453,3 +453,9 @@ fig. spike absorber with dogleg as seen in one paper.
 
 3. Cured and measured 5% w/w of graphite. Not enough percentage of graphite to conduct. Will test with 25% w/w.
 
+### Plans for VNA:
+1. Save and load the setup. #See RsInstrument_ZNx_Save_Load_Setups_From_And_To_PC
+2. Use the calibration files. #See RsInstrument_ZNB_CAL_P1_Save_Reload.py
+-- Try to not reset session each time, try to cont sweep and take one sweep each time. Pause until saves.
+3. Do a sweep and save file to PC. #See RsInstrument_ZNB_S21_Magnitude_write_to_csv.py
+4. Loop step 3 without to reset session. #Find how to get data from singles sweeps with cont sweep. Data should not overlap.
