@@ -437,6 +437,8 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Fixed Solidworks and modified parts to start priting.
 3. Started to look at SCPI commands in manual and testing different commands.
 
+### Other:
+1. Family visitation.
 
 ## 13/07-2022
 ### Plans:
