@@ -411,6 +411,7 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Don't make continues sweeps, only single sweeps to avoid overlaping measurements.
 3. Read the whole documentation but not the SCPI commands.
 4. Seems like max sweep points is 99999.
+5. Finished reading the whole documentation for RSinstrument.
 
 ### Questions:
 1. Is sweep step size fixed to 10 kHz or defined?
@@ -432,4 +433,12 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Check out more examples.
 
 ### Did:
-1. Tested and compared different reads from the VNA to see if sweep reads are not overlapped.
+1. Tested and compared different reads from the VNA to see if sweep reads are overlapped. Does not seemed to be overlapping.
+2. Fixed Solidworks and modified parts to start priting.
+3. Started to look at SCPI commands in manual and testing different commands.
+
+
+## 13/07-2022
+### Plans:
+1. Testing different mixtures of resin. Not enough percentage of graphite to conduct. 
+2. Read more about SCPI commands.
