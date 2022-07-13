@@ -445,4 +445,6 @@ fig. spike absorber with dogleg as seen in one paper.
 
 ### Did: 
 1. Tried to help debug RoboDK, it seems like robot defines points differently than simulation while trying to move linearly. Posted a thread to get support. Also tried to connect to robot remotly.
-2. Cured and measured 5% w/w of graphite. Not enough percentage of graphite to conduct. Will test with 25% w/w.
+2. Read papers about mixing 3d resin with graphite and metal powder. It seems like graphite has higher conductivity yield than iron oxide powder. In the papers, they tested up to 3% w/w and it was not enough to conduct. There was another paper on graphite nanoplatelets and with 50% w/w, it could conduct. 
+3. Cured and measured 5% w/w of graphite. Not enough percentage of graphite to conduct. Will test with 25% w/w.
+
