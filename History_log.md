@@ -440,5 +440,9 @@ fig. spike absorber with dogleg as seen in one paper.
 
 ## 13/07-2022
 ### Plans:
-1. Testing different mixtures of resin. Not enough percentage of graphite to conduct. 
+1. Testing different mixtures of resin.
 2. Read more about SCPI commands.
+
+### Did: 
+1. Tried to help debug RoboDK, it seems like robot defines points differently than simulation while trying to move linearly. Posted a thread to get support. Also tried to connect to robot remotly.
+2. Cured and measured 5% w/w of graphite. Not enough percentage of graphite to conduct. Will test with 25% w/w.
