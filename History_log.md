@@ -461,3 +461,22 @@ fig. spike absorber with dogleg as seen in one paper.
 -- Try to not reset session each time, try to cont sweep and take one sweep each time. Pause until saves.
 3. Do a sweep and save file to PC. #See RsInstrument_ZNB_S21_Magnitude_write_to_csv.py
 4. Loop step 3 without to reset session. #Find how to get data from singles sweeps with cont sweep. Data should not overlap.
+
+
+## 14/07-2022
+### Did: 
+1. Make fastner bases for Md4a component in Solidworks.
+2. Kept trying to debug the robot.
+3. Mixed 25% w/w graphite powder and measured no resistance. Also tried to manually mix with iron powder 5% w/w but no reasistance.
+
+
+
+## 15/07-2022
+### Did:
+1. Finished fastner lock for Md4a component in Solidworks.
+2. Discussed robot bug with config file and files.
+
+## Plans after vacation:
+1. Measurements with VNA, contious sweep data in binary or ascii.
+2. Reflectrometry rotation measurements combined with VNA data extraction and saving data.
+3. Finish parts for antenna to start measureing W-band. W-band guider.  
