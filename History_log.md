@@ -485,4 +485,10 @@ fig. spike absorber with dogleg as seen in one paper.
 ## 01/08-2022
 ### Plans:
 1. Make clamps to sender.
-2. Make clamps to reciever.
+2. Make clamps to receiver.
+
+### Did:
+1. Designed mounting base to adjustable module for both mw transmitter and receiver.
+2. Designed mounting piece for transmitter to adjustable module.
+3. Started designing mounting piece for receiver mount.
+4. Began printing parts for transmitter. They will finish tomorrow at 13:00.
