@@ -480,3 +480,9 @@ fig. spike absorber with dogleg as seen in one paper.
 1. Measurements with VNA, contious sweep data in binary or ascii.
 2. Reflectrometry rotation measurements combined with VNA data extraction and saving data.
 3. Finish parts for antenna to start measureing W-band. W-band guider.  
+
+
+## 01/08-2022
+### Plans:
+1. Make clamps to sender.
+2. Make clamps to reciever.
