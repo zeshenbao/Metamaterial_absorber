@@ -495,11 +495,11 @@ fig. spike absorber with dogleg as seen in one paper.
 
 ## Overall plan for this week
 <del> 1. Design components to perform waveguide measurements.</del> <br>
-2. Work on aligning source and receiver.
-3. Test existing tiles in reflectometry system.
-4. Set up system and extract trace info via Python.
-5. Make a presentation on progress made.
-6. Design mount system for Chicago metamataerial absorbers 15x15 cm plate.
+2. Work on aligning source and receiver. <br>
+3. Test existing tiles in reflectometry system. <br>
+4. Set up system and extract trace info via Python. <br>
+5. Make a presentation on progress made. <br>
+6. Design mount system for Chicago metamataerial absorbers 15x15 cm plate. <br>
 
 ## 02/08-2022
 
