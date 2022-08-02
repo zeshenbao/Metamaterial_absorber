@@ -498,6 +498,12 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Work on aligning source and receiver. <br>
 3. Test existing tiles in reflectometry system. <br>
 4. Set up system and extract trace info via Python. <br>
+* S21 extraction
+* Interval choosing
+* Calibration setting
+* Write to ASCII or Binary in single file
+* Find maximum
+* Get magnitude for a specific point. 
 5. Make a presentation on progress made. <br>
 (6. Report on code generating code in Python. <br>
 7. Design mount system for Chicago metamataerial absorbers 15x15 cm plate.) <br>
