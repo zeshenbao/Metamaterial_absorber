@@ -494,7 +494,7 @@ fig. spike absorber with dogleg as seen in one paper.
 4. Began printing parts for transmitter. They will finish tomorrow at 13:00.
 
 ## Overall plan for this week
-<del> 1. Design components to perform waveguide measurements.</del>
+<del> 1. Design components to perform waveguide measurements.</del> <br>
 2. Work on aligning source and receiver.
 3. Test existing tiles in reflectometry system.
 4. Set up system and extract trace info via Python.
