@@ -492,3 +492,23 @@ fig. spike absorber with dogleg as seen in one paper.
 2. Designed mounting piece for transmitter to adjustable module.
 3. Started designing mounting piece for receiver mount.
 4. Began printing parts for transmitter. They will finish tomorrow at 13:00.
+
+## Overall plan for this week
+<del> 1. Design components to perform waveguide measurements.</del>
+2. Work on aligning source and receiver.
+3. Test existing tiles in reflectometry system.
+4. Set up system and extract trace info via Python.
+5. Make a presentation on progress made.
+6. Design mount system for Chicago metamataerial absorbers 15x15 cm plate.
+
+## 02/08-2022
+
+### Did:
+1. Parts failed to print, making a new try.
+2. Designed the rest of the parts for receiver.
+
+### Plans:
+1.
+
+
+
