@@ -525,5 +525,6 @@ fig. spike absorber with dogleg as seen in one paper.
 4. Write to ASCII or Binary in single file
 5. Find maximum
 6. Get magnitude for a specific point
+7. Save and load file to PC
 
 
