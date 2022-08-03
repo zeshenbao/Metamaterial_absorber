@@ -526,5 +526,5 @@ fig. spike absorber with dogleg as seen in one paper.
 5. Find maximum
 6. Get magnitude for a specific point
 7. Save and load file to PC
-
+8. Single sweeps and cont sweeps (later integrated with export of data)
 
