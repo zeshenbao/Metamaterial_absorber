@@ -528,3 +528,9 @@ fig. spike absorber with dogleg as seen in one paper.
 7. Save and load file to PC
 8. Single sweeps and cont sweeps (later integrated with export of data)
 
+### DID:
+1. Reading documentation for VNA. Started to write VNA notes to learn VNA SCPI commands. Looked at the CALC section.
+2. Printed and prepared parts for Static system so that we'll be ready to mount them tomorrow. 
+
+### Other:
+Meeting for overview and papers of the CMBeam project group.
