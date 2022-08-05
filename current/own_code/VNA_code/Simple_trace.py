@@ -65,7 +65,7 @@ instrument_file = r'C:\Users\Instrument\Desktop\Wband_setup.znxml'
 
 
 
-points = 201
+points = 50000
 
 
 comcheck()
@@ -81,7 +81,7 @@ for i in range(10):
     znb.write_str('CALCulate1:PARameter:MEASure "Trc2", "b2"')  # Measurement now is S21
 
 
-    znb.write_str("INIT1:IMMediate; *WAI")
+    znb.write_str("INIT1:IMMediate; *OPC")
 
 
     PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file' +str(i) +'.CSV'  # Name and path of the logfile
@@ -100,7 +100,7 @@ for i in range(10):
     plt.savefig('/Users/zeshen/Desktop/static_test1_plot/plot_file' + str(i) + '.png', bbox_inches='tight')
     plt.clf()
 
-    znb.get_total_time()
+
 
 
     ## Reset might not be needed
@@ -112,6 +112,7 @@ for i in range(10):
     # reset_time_statistics()
     # Load the transferred setup
 
+    print(znb.get_total_time())
 
 znb.close()
 
