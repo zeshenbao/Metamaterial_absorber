@@ -513,9 +513,24 @@ fig. spike absorber with dogleg as seen in one paper.
 ### Did:
 1. Parts failed to print, making a new try.
 2. Designed the rest of the parts for receiver.
+3. Looked at VNA documentation.
+
+## 03/08-2022
 
 ### Plans:
-1.
+* Set up system and extract trace info via Python
+1. S21 extraction
+2. Interval choosing
+3. Calibration setting
+4. Write to ASCII or Binary in single file
+5. Find maximum
+6. Get magnitude for a specific point
+7. Save and load file to PC
+8. Single sweeps and cont sweeps (later integrated with export of data)
 
+### DID:
+1. Reading documentation for VNA. Started to write VNA notes to learn VNA SCPI commands. Looked at the CALC section.
+2. Printed and prepared parts for Static system so that we'll be ready to mount them tomorrow. 
 
-
+### Other:
+Meeting for overview and papers of the CMBeam project group.
