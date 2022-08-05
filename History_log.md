@@ -547,3 +547,6 @@ Meeting for overview and papers of the CMBeam project group.
 ### Plans:
 1. Upload and save measurement setup between pc and instrument.
 2. Extract traces from instruemtn with configured setup.
+
+### Other:
+1. Go to apple store with Gagan
