@@ -576,7 +576,7 @@ Meeting for overview and papers of the CMBeam project group.
 2. At the same time write a code wiki on program/lines of code. (Just link to repo)
 * Add link to the important files
 * Add download instruction on cadquery
-
+3. Update save files from work PC. Solidwork parts, VNA code, etc. 
 ### Did:
 1. Started to add in the readme file, added lincense to share. 
 2. Looking up and thinking through what to add in repo and code
