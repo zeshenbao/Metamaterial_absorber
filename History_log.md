@@ -507,6 +507,7 @@ fig. spike absorber with dogleg as seen in one paper.
 5. Make a presentation on progress made. <br>
 (6. Report on code generating code in Python. <br>
 7. Design mount system for Chicago metamataerial absorbers 15x15 cm plate.) <br>
+8. Further alignment of setup.
 
 ## 02/08-2022
 
@@ -554,5 +555,15 @@ Meeting for overview and papers of the CMBeam project group.
 3. Able to sync with precision.
 4. Able to extract two traces at the same time.
 5. Able to average traces between n sweeps.
+
 ### Other:
 1. Go to apple store with Gagan
+
+## Plans for this week:
+1. Rewrite Python code on geometry generation.
+2. Add code wiki on geometry.
+3. Make a presentation.
+
+## 08/08-2022
+1. Make cleaner Python code on geometry gen.
+2. At the same time write a code wiki on program/lines of code.
