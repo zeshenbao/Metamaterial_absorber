@@ -1,3 +1,15 @@
+"""
+hilbert_wall_dog_V2
+
+Before you run the code, make sure to do the followig to ensure that the code works:
+
+- Update to the newest version of miniconda: Will otherwise cause OCP errors.
+- Uses Cadquery 2.1/master: see if it works with the newest version of cadquery.
+
+Zeshen Bao
+"""
+
+
 
 import cadquery as cq
 from cadquery import exporters
@@ -137,7 +149,7 @@ class Absorber():
                 #position[2] += 1
 
     def test(self):
-        """Used to test different builds."""
+        """Used to test different builds. Now outdated"""
         block1 = self.sides
         block2 = self.sides.translate((1,0,0))
         
@@ -148,7 +160,7 @@ class Absorber():
         """Export created self.result to a stl file
         with file name specified with iterations."""
         
-        exporters.export(self.result, str(file_name) +str(self.iterations) +".stl")
+        exporters.export(self.result, str(file_name) +"_iter" +str(self.iterations) +".stl")
         print("exported")
 
 
@@ -377,7 +389,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 5
+    iterations = 2
     
     hilbert = generate_hilbert(iterations)
 
@@ -387,7 +399,7 @@ def main():
     #unittest()
     hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale)
     hilbert_absorber.build()
-    hilbert_absorber.export("hilbert_dog_dot_")
+    hilbert_absorber.export("hilbert_dog_dot")
     
 
 
