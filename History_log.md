@@ -546,7 +546,13 @@ Meeting for overview and papers of the CMBeam project group.
 
 ### Plans:
 1. Upload and save measurement setup between pc and instrument.
-2. Extract traces from instruemtn with configured setup.
+2. Extract traces from instrument with configured setup.
 
+### Did:
+1. Able to import and export measure setup to PC.
+2. Able to extract instrument with config setup.
+3. Able to sync with precision.
+4. Able to extract two traces at the same time.
+5. Able to average traces between n sweeps.
 ### Other:
 1. Go to apple store with Gagan
