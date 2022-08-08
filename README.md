@@ -4,7 +4,7 @@
 
 This repo contains old code and also  <a href="https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code">my own code</a> which I wrote during my summer project.
 
-Check out the <a href="https://github.com/zeshenbao/Metamaterial_absorber/blob/main/History_log.md">history log</a> for an overview of the project.
+Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/History_log.md) for an overview of the project.
 
 The most important files that I wrote during this summer:
 
