@@ -60,19 +60,16 @@ def file_write():
 
 
 def average():
-    data1 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";",
-                         names=["x", "y", "z"])
+    data1 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";")
 
     data1 = np.delete(data1, (0), axis=0)
-    data2 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file1.CSV', delimiter=";",
-                         names=["x", "y", "z"])
+    data2 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file1.CSV', delimiter=";")
 
     data2 = np.delete(data2, (0), axis=0)
 
     #print(data2["x"])
-    sumx = np.add(data1["x"], data2["x"])/2
-    sumy = np.add(data1["y"], data2["y"])/2
-    sumz = np.add(data1["z"], data2["z"])/2
+    sum = (data1+data2)
+
 
     PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV'
 
@@ -81,9 +78,9 @@ def average():
     logfile.write("\n")
     x = 0
     while x < points:
-        logfile.write(str(sumx[x]) + ";")
-        logfile.write(str(sumy[x]) + ";")
-        logfile.write(str(sumz[x]) + "\n")
+        logfile.write(str(sum[x][0]) + ";")
+        logfile.write(str(sum[x][1]) + ";")
+        logfile.write(str(sum[x][2]) + "\n")
         x = x + 1
     logfile.close()
 
@@ -96,15 +93,17 @@ instrument_file = r'C:\Users\Instrument\Desktop\Wband_setup.znxml'
 
 
 
-points = 2001
+points = 201
 
 
 comcheck()
 comprep()
 
-for i in range(300):
+iter = 10000
 
-    if i % 10 == 0:
+for i in range(iter):
+
+    if i % 100 == 0:
         print("sweep nr" + str(i))
 
     znb.write_str_with_opc("SYSTEM:DISPLAY:UPDATE ON")
@@ -130,12 +129,13 @@ for i in range(300):
 
 
     #print(znb.get_total_time())
+#data_s = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file_start.CSV', delimiter=";")
+data = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";")/iter
 
-data = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";",
-                     names=["x", "y", "z"])
 
-plt.plot(data['x'], data['y'])
-plt.plot(data['x'], data['z'])
+#plt.plot(data_s[:, 0], data_s[:, 1], "r")
+plt.plot(data[:, 0], data[:, 1], "b")
+plt.plot(data[:, 0], data[:, 2], "g")
 
 plt.xlabel("freq [Hz]")
 plt.ylabel("Intensity [dB]")
