@@ -59,21 +59,54 @@ def file_write():
 
 
 
+def average():
+    data1 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";",
+                         names=["x", "y", "z"])
+
+    data1 = np.delete(data1, (0), axis=0)
+    data2 = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file1.CSV', delimiter=";",
+                         names=["x", "y", "z"])
+
+    data2 = np.delete(data2, (0), axis=0)
+
+    #print(data2["x"])
+    sumx = np.add(data1["x"], data2["x"])/2
+    sumy = np.add(data1["y"], data2["y"])/2
+    sumz = np.add(data1["z"], data2["z"])/2
+
+    PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV'
+
+    logfile = open(PcFile, "w")
+    logfile.write("Frequ / Hz; Atten. / db; Atten.2 / db")
+    logfile.write("\n")
+    x = 0
+    while x < points:
+        logfile.write(str(sumx[x]) + ";")
+        logfile.write(str(sumy[x]) + ";")
+        logfile.write(str(sumz[x]) + "\n")
+        x = x + 1
+    logfile.close()
+
+    return sum
+
+
 pc_file = r'/Users/zeshen/Desktop/Wband_setup_pc.znxml'
 instrument_file = r'C:\Users\Instrument\Desktop\Wband_setup.znxml'
 
 
 
 
-points = 50000
+points = 2001
 
 
 comcheck()
 comprep()
 
-for i in range(10):
+for i in range(300):
 
-    print("sweep nr" +str(i))
+    if i % 10 == 0:
+        print("sweep nr" + str(i))
+
     znb.write_str_with_opc("SYSTEM:DISPLAY:UPDATE ON")
 
     znb.write('SENSe1:SWEep:POINts ' + str(points))  # Set number of sweep points to the defined number
@@ -83,22 +116,32 @@ for i in range(10):
 
     znb.write_str("INIT1:IMMediate; *OPC")
 
+    if i == 0:
+        PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV'  # Name and path of the logfile
+        file_write()
 
-    PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file' +str(i) +'.CSV'  # Name and path of the logfile
+        PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file_start.CSV'  # Name and path of the logfile
+        file_write()
 
-    file_write()
+    elif i >= 1:
+        PcFile = r'/Users/zeshen/Desktop/static_test1_csv/csv_file1.CSV'  # Name and path of the logfile
+        file_write()
+        average()
 
-    data = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file' + str(i) + '.CSV', delimiter=";",
-                         names=["x", "y", "z"])
 
-    plt.plot(data['x'], data['y'])
-    plt.plot(data['x'], data['z'])
+    #print(znb.get_total_time())
 
-    plt.xlabel("freq [Hz]")
-    plt.ylabel("Intensity [dB]")
+data = np.genfromtxt('/Users/zeshen/Desktop/static_test1_csv/csv_file0.CSV', delimiter=";",
+                     names=["x", "y", "z"])
 
-    plt.savefig('/Users/zeshen/Desktop/static_test1_plot/plot_file' + str(i) + '.png', bbox_inches='tight')
-    plt.clf()
+plt.plot(data['x'], data['y'])
+plt.plot(data['x'], data['z'])
+
+plt.xlabel("freq [Hz]")
+plt.ylabel("Intensity [dB]")
+
+plt.savefig('/Users/zeshen/Desktop/static_test1_plot/plot_file_avg.png', bbox_inches='tight')
+plt.clf()
 
 
 
@@ -112,7 +155,7 @@ for i in range(10):
     # reset_time_statistics()
     # Load the transferred setup
 
-    print(znb.get_total_time())
+
 
 znb.close()
 
