@@ -554,5 +554,6 @@ Meeting for overview and papers of the CMBeam project group.
 3. Able to sync with precision.
 4. Able to extract two traces at the same time.
 5. Able to average traces between n sweeps.
+
 ### Other:
 1. Go to apple store with Gagan
