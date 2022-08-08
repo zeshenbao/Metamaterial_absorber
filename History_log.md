@@ -573,4 +573,5 @@ Meeting for overview and papers of the CMBeam project group.
 * Add return/output comments
 2. At the same time write a code wiki on program/lines of code. (Just link to repo)
 * Add link to the important files
+* Add download instruction on cadquery
 
