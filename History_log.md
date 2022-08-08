@@ -563,3 +563,7 @@ Meeting for overview and papers of the CMBeam project group.
 1. Rewrite Python code on geometry generation.
 2. Add code wiki on geometry.
 3. Make a presentation.
+
+## 08/08-2022
+1. Make cleaner Python code on geometry gen.
+2. At the same time write a code wiki on program/lines of code.
