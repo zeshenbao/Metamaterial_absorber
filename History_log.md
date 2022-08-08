@@ -565,6 +565,8 @@ Meeting for overview and papers of the CMBeam project group.
 3. Make a presentation.
 
 ## 08/08-2022
+
+### Plan:
 1. Make cleaner Python code on geometry gen.
 * Look through code
 * Mabye divide the program to use all with different cross sections.
@@ -575,3 +577,8 @@ Meeting for overview and papers of the CMBeam project group.
 * Add link to the important files
 * Add download instruction on cadquery
 
+### Did:
+1. Started to add in the readme file, added lincense to share. 
+2. Looking up and thinking through what to add in repo and code
+3. Updated VNA code for average trace
+4. Updated Miniconda to keep using cadquery because cadquery need newest verion of OCP.
