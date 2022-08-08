@@ -566,4 +566,11 @@ Meeting for overview and papers of the CMBeam project group.
 
 ## 08/08-2022
 1. Make cleaner Python code on geometry gen.
-2. At the same time write a code wiki on program/lines of code.
+* Look through code
+* Mabye divide the program to use all with different cross sections.
+* Add documentation
+* Add code comments
+* Add return/output comments
+2. At the same time write a code wiki on program/lines of code. (Just link to repo)
+* Add link to the important files
+
