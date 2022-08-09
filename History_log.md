@@ -592,3 +592,18 @@ Meeting for overview and papers of the CMBeam project group.
 
 ### Did:
 1. Drained the isoprobanol and cleaned the sink.
+2. Removed code repetitions in code.
+3. Wrote code structure for rewriting and adding classes for reusability.
+
+### Plan for tomorrow:
+1. Add instance variables to class Wall.
+2. Change code based on 1.
+3. Add classes Tile and Pattern.
+4. Add different wall and pattern generation methods.
+5. Rewrite Absorber class based on 1-4.
+6. Write unittest.
+7. Add documentation.
+
+### Plans for the week:
+1. Make poster + presentation.
+2. Make assembly.
