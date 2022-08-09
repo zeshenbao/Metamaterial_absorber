@@ -15,7 +15,11 @@ The most important files that I wrote during this summer:
 5. VNA notes
 6. Solid work parts for the static reflectometry system
 
-testtest
-
+## Installation
+1. Install Python
+2. Install latest Miniconda
+3. Install Cadquery2 on Miniconda
+4. Create a virtual enviroment with conda
+5. Run the code file in the venv.
 
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
