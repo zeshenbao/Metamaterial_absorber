@@ -389,11 +389,7 @@ def unittest():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-<<<<<<< HEAD
     iterations = 2
-=======
-    iterations = 3
->>>>>>> 29958385b8aa997530cf5ba3d0986a111783a534
     
     hilbert = generate_hilbert(iterations)
 
