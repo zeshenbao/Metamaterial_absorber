@@ -583,3 +583,12 @@ Meeting for overview and papers of the CMBeam project group.
 2. Looking up and thinking through what to add in repo and code
 3. Updated VNA code for average trace
 4. Updated Miniconda to keep using cadquery because cadquery need newest verion of OCP.
+5. Drew a map on how to rewrite parts of the code and also sketech for presentation or poster.
+
+## 08/08-2022
+
+### Plan:
+1. Code as from yesterday.
+
+### Did:
+1. Drained the isoprobanol and cleaned the sink.
