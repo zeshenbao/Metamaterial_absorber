@@ -175,10 +175,12 @@ class Wall():
         self.tile_height = tile_height * self.scale
         self.foundation_thickness = foundation_thickness *self.scale
 
-
+        self.comps = None
         self.sides = None
         self.corners = None
         self.other = None
+
+        self.make_dog_components()
         
     def get_scale(self):
         return self.scale
@@ -305,9 +307,13 @@ class Wall():
         def make_sides(comp):
             """Helper function to make and return the corner wall tiles. """
             
-            sides = {"hor_half_left":None, "hor_half_right":None, "ver_half_down":None, "ver_half_up":None}
+            sides = {"ver":comp["ver"], "hor":comp["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None}
 
             for key in sides:
+
+                if key == "ver" or key == "hor":
+                    continue
+                
                 if key[:3] == "hor":
                     comp_key, face_key = "hor", ">X"
 
@@ -343,26 +349,20 @@ class Wall():
 
             return corners
 
-        comps = (make_components())
+        self.comps = (make_components()) #components are ver, hor and inter.
         
-        sides = (make_sides(comps))
+        self.sides = (make_sides(self.comps))
 
-        corners = (make_corners(comps, sides))
+        self.corners = (make_corners(self.comps, self.sides))
 
-        for key in comps: #components are ver, hor and inter.
-            exporters.export(comps[key], key +".stl")   
+        bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
-        for key in sides:
-            exporters.export(sides[key], key +".stl")
-            
-        for key in corners:
-            exporters.export(corners[key], "corner_" +key +".stl")
-
-
-        self.corners = corners
-        self.sides = make_components()
+        for item in bundle:
+            for key in bundle[item]:
+                exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
+    
         
-        return make_components(), corners
+        return self.comps, self.sides, self.corners #self.other #in case you want to return the components
 
 
 
@@ -409,7 +409,8 @@ def main():
     hilbert = generate_hilbert(iterations)
 
     dogleg_wall = Wall(foundation_thickness=1, tile_height=3)
-    dogleg_sides, dogleg_corners = dogleg_wall.make_dog_components()
+
+    dogleg_comps, dogleg_sides, dogleg_corners = dogleg_wall.make_dog_components()
     scale = dogleg_wall.get_scale()
     hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale)
     hilbert_absorber.build()
