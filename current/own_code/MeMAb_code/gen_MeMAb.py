@@ -14,6 +14,7 @@ Zeshen Bao
 import cadquery as cq
 from cadquery import exporters
 from math import *
+from copy import copy
 
 
 class Absorber():
@@ -294,7 +295,7 @@ class Wall():
             
             comp = {}
             comp["ver"] = (copy_cross_section())
-            comp["hor"] = (copy_cross_section().rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
+            comp["hor"] = (comp["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
             comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
 
             return comp
@@ -327,15 +328,16 @@ class Wall():
 
             return sides
 
+        comps = (copy_components())
         
-        sides = (copy_sides(copy_components()))
+        sides = (copy_sides(comps))
 
-        union = (copy_components()["ver"].add(copy_components()["hor"]))
+        union = (copy_components()["ver"].add(comps["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
         exporters.export(union, "union.stl")
 
-        for key in copy_components(): #components are ver, hor and inter.
-            exporters.export(copy_components()[key], key +".stl")
+        for key in comps: #components are ver, hor and inter.
+            exporters.export(comps[key], key +".stl")
 
 
                       
