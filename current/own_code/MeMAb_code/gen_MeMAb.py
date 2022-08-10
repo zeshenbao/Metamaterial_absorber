@@ -219,7 +219,7 @@ class Wall():
 
 
     def make_triangle_basic(self):
-        
+        pass
 
     def make_dogleg_basic(self):
             """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
@@ -285,10 +285,10 @@ class Wall():
 
 
             geo_xy = (cq.Workplane("XY")
-                      .add(geo_xz).translate((0,0,tile_height)))
+                      .union(geo_xz).translate((0,0,tile_height)))
 
             
-            dog_side = (geo_xy.add(cq.Workplane("XY")
+            dog_side = (geo_xy.union(cq.Workplane("XY")
                                    .center(0,0).rect(max_wid, max_wid).extrude(-foundation_thickness)))
 
 
@@ -311,8 +311,8 @@ class Wall():
                                 .mirror(mirrorPlane="XZ", union=True))
 
 
-            dog_side = (dog_side.add(area_left_side)
-                        .add(area_right_side))
+            dog_side = (dog_side.union(area_left_side)
+                        .union(area_right_side))
             
             dog_side = (dog_side.cut(circle_right_side)
                         .cut(circle_left_side))
@@ -335,7 +335,7 @@ class Wall():
             comp["ver"] = (self.make_cross_section())
             comp["hor"] = (comp["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
             comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
-            comp["union"] = (self.make_cross_section().add(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
+            comp["union"] = (self.make_cross_section().union(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
             return comp
 
@@ -377,8 +377,8 @@ class Wall():
             corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
             
             for key in corners:
-                corners[key] = (make_components()["inter"].add(sides["hor_half_" +key.split("_")[0]])
-                                .add(sides["ver_half_" +key.split("_")[1]]))
+                corners[key] = (make_components()["inter"].union(sides["hor_half_" +key.split("_")[0]])
+                                .union(sides["ver_half_" +key.split("_")[1]]))
 
 
 
