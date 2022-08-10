@@ -291,7 +291,8 @@ class Wall():
             
 
         def copy_components():
-            """Helper function to make and return the side wall tiles and intersection wall tile."""
+            """Helper function to make and return the side wall tiles and intersection wall tile.
+            Could write ver, hor and inter as seperate helper function to speed up in case of frequent copy usage."""
             
             comp = {}
             comp["ver"] = (copy_cross_section())
@@ -400,7 +401,7 @@ def generate_hilbert(iterations):
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 2
+    iterations = 4
     
     hilbert = generate_hilbert(iterations)
 
@@ -409,6 +410,7 @@ def main():
     scale = dogleg_wall.get_scale()
     hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale)
     hilbert_absorber.build()
+    print("Build complete, exporting to stl file")
     hilbert_absorber.export("hilbert_dog_dot")
     
 
