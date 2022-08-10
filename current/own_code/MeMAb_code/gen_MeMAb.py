@@ -162,8 +162,9 @@ class Wall():
     """Implements different wall tiles such as sides
     and corner with different cross sections."""
 
-    def __init__(self, tile_len=1.0, tile_wid=1.0, tile_height=2, foundation_thickness=4, scale=2):
+    def __init__(self, cross_section="dogleg", tile_len=1.0, tile_wid=1.0, tile_height=2, foundation_thickness=4, scale=2):
         """Creates a wall object.
+        :param cross_section: str on type of cross section
         :param tile_len: length of tile
         :param tile_wid: width of tile
         :param tile_height: height of tile
@@ -175,23 +176,52 @@ class Wall():
         self.tile_height = tile_height * self.scale
         self.foundation_thickness = foundation_thickness *self.scale
 
+        
+        self.make_cross_section = None
         self.comps = None
         self.sides = None
         self.corners = None
         self.other = None
 
-        self.make_dog_components()
+        self.cs_choice = cross_section
         
+
+        #self.make_dog_components()
+
+
+    def set_cross_section(self):
+        if cs_choice == "dogleg":
+            self.set_dogleg()
+            
+        elif cs_choice == "triangle":
+            self.set_triangle()
+
+        elif cs_choice == "block":
+            self.set_block()
+
+    
     def get_scale(self):
         return self.scale
 
-    def make_dog_components(self):
-        """Make different wall tiles and return them as a pair of dictionaries.
-        The first dict contains wall side tiles + wall intersection tile and the second dict contains wall corner tiles."""
-         #carefull with rotation and see if they are at same position
+    
+    def set_dogleg(self):
+        self.make_cross_section = self.make_dogleg_basic
+
+    def set_triangle(self):
+        pass
+
+    def set_block(self):
+        pass
 
 
-        def make_basic():
+
+
+
+
+    def make_triangle_basic(self):
+        
+
+    def make_dogleg_basic(self):
             """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
             The vertical wall tile then gets returned."""
             
@@ -286,10 +316,15 @@ class Wall():
             
             dog_side = (dog_side.cut(circle_right_side)
                         .cut(circle_left_side))
+
+            
+            return dog_side
             
 
-
-            return dog_side
+    def make_wall_components(self):
+        """Make different wall tiles and return them as a pair of dictionaries.
+        The first dict contains wall side tiles + wall intersection tile and the second dict contains wall corner tiles."""
+         #carefull with rotation and see if they are at same position
             
 
         def make_components():
@@ -297,10 +332,10 @@ class Wall():
             Could write ver, hor and inter as seperate helper function to speed up in case of frequent copy usage."""
             
             comp = {}
-            comp["ver"] = (make_basic())
+            comp["ver"] = (self.make_cross_section())
             comp["hor"] = (comp["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
             comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
-            comp["union"] = (make_basic().add(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
+            comp["union"] = (self.make_cross_section().add(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
             return comp
 
@@ -409,10 +444,10 @@ def main():
     hilbert = generate_hilbert(iterations)
 
     dogleg_wall = Wall(foundation_thickness=1, tile_height=3)
-
-    dogleg_comps, dogleg_sides, dogleg_corners = dogleg_wall.make_dog_components()
+    dogleg_wall.set_dogleg()
+    dogleg_comps, dogleg_sides, dogleg_corners = dogleg_wall.make_wall_components()
     scale = dogleg_wall.get_scale()
-    hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale)
+    hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale) # hilbert + iterations in Pattern class. sides + corners in Wall class.
     hilbert_absorber.build()
     print("Build complete, exporting to stl file")
     hilbert_absorber.export("hilbert_dog_dot")
