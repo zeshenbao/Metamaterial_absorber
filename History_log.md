@@ -607,3 +607,8 @@ Meeting for overview and papers of the CMBeam project group.
 ### Plans for the week:
 1. Make poster + presentation.
 2. Make assembly.
+
+## 09/08-2022
+
+### Plan:
+1. Follow the code structure from yesterday.
