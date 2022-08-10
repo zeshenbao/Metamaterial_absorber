@@ -174,9 +174,11 @@ class Wall():
         self.tile_height = tile_height * self.scale
         self.foundation_thickness = foundation_thickness *self.scale
 
+
         self.sides = None
         self.corners = None
-
+        self.other = None
+        
     def get_scale(self):
         return self.scale
 
@@ -244,24 +246,43 @@ class Wall():
 
             self.max_wid = max_wid
             
-            geo_xz = cq.Workplane("XZ").center(0,0).polyline(pts).close().extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True)
+            geo_xz = (cq.Workplane("XZ")
+                      .center(0,0).polyline(pts).close().extrude(max_wid/2)
+                      .mirror(mirrorPlane="XZ", union=True))
+
+
+            geo_xy = (cq.Workplane("XY")
+                      .add(geo_xz).translate((0,0,tile_height)))
 
             
-            geo_xy = cq.Workplane("XY").add(geo_xz).translate((0,0,tile_height))
+            dog_side = (geo_xy.add(cq.Workplane("XY")
+                                   .center(0,0).rect(max_wid, max_wid).extrude(-foundation_thickness)))
 
+
+            area_right_side = (cq.Workplane("XZ")
+                               .center((1.5-k_w)*w,0).polyline(area_left_pts).close().extrude(max_wid/2)
+                               .mirror(mirrorPlane="XZ", union=True))
+
+
+            area_left_side = (cq.Workplane("XZ")
+                              .center((-0.5-k_w)*w-a,0).polyline(area_right_pts).close()
+                              .extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True))
+
+
+            circle_right_side = (cq.Workplane("XZ")
+                                 .center((1.5-k_w)*w+c1,s/2).circle(s/2).extrude(max_wid/2)
+                                 .mirror(mirrorPlane="XZ", union=True))
+
+            circle_left_side = (cq.Workplane("XZ")
+                                .center((-0.5-k_w)*w-c2,s/2).circle(s/2).extrude(max_wid/2)
+                                .mirror(mirrorPlane="XZ", union=True))
+
+
+            dog_side = (dog_side.add(area_left_side)
+                        .add(area_right_side))
             
-            dog_side = geo_xy.add(cq.Workplane("XY").center(0,0).rect(max_wid, max_wid).extrude(-foundation_thickness))
-
-            area_right_side = cq.Workplane("XZ").center((1.5-k_w)*w,0).polyline(area_left_pts).close().extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True)
-            area_left_side = cq.Workplane("XZ").center((-0.5-k_w)*w-a,0).polyline(area_right_pts).close().extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True)
-
-
-            circle_right_side = cq.Workplane("XZ").center((1.5-k_w)*w+c1,s/2).circle(s/2).extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True)
-
-            circle_left_side = cq.Workplane("XZ").center((-0.5-k_w)*w-c2,s/2).circle(s/2).extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True)
-
-            dog_side = dog_side.add(area_left_side).add(area_right_side)
-            dog_side = dog_side.cut(circle_right_side).cut(circle_left_side)
+            dog_side = (dog_side.cut(circle_right_side)
+                        .cut(circle_left_side))
             
 
 
@@ -272,9 +293,9 @@ class Wall():
             """Helper function to make and return the side wall tiles and intersection wall tile."""
             
             comp = {}
-            comp["ver"] = copy_cross_section()
-            comp["hor"] = copy_cross_section().rotate((0,0,0), (0,0,1), 90) #((vek_svans),(vek_huvud),(grader))
-            comp["inter"] = comp["ver"].intersect(comp["hor"]) ### the start workplane must always be new but add could be reused
+            comp["ver"] = (copy_cross_section())
+            comp["hor"] = (copy_cross_section().rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
+            comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
 
             return comp
 
@@ -294,10 +315,12 @@ class Wall():
                     print("Key error1")
 
                 if key[9:] == "left" or key[9:] == "down":
-                    sides[key] = comp[comp_key].faces(face_key).workplane(-self.max_wid/2).split(keepBottom=True)
+                    sides[key] = (comp[comp_key].faces(face_key)
+                                  .workplane(-self.max_wid/2).split(keepBottom=True))
 
                 elif key[9:] == "right" or key[9:] == "up":
-                    sides[key] = comp[comp_key].faces(face_key).workplane(-self.max_wid/2).split(keepTop=True)
+                    sides[key] = (comp[comp_key].faces(face_key)
+                                  .workplane(-self.max_wid/2).split(keepTop=True))
                     
                 else:
                     print("Key error2")
@@ -305,9 +328,9 @@ class Wall():
             return sides
 
         
-        sides = copy_sides(copy_components())
+        sides = (copy_sides(copy_components()))
 
-        union = copy_components()["ver"].add(copy_components()["hor"])
+        union = (copy_components()["ver"].add(copy_components()["hor"]))
 
         exporters.export(union, "union.stl")
 
@@ -319,7 +342,8 @@ class Wall():
         corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
                              
         for key in corners:
-            corners[key] = copy_components()["inter"].add(sides["hor_half_" +key.split("_")[0]]).add(sides["ver_half_" +key.split("_")[1]])
+            corners[key] = (copy_components()["inter"].add(sides["hor_half_" +key.split("_")[0]])
+                            .add(sides["ver_half_" +key.split("_")[1]]))
 
 
         for key in sides:
@@ -327,6 +351,10 @@ class Wall():
             
         for key in corners:
             exporters.export(corners[key], "corner_" +key +".stl")
+
+
+        self.corners = corners
+        self.sides = copy_components()
         
         return copy_components(), corners
 
