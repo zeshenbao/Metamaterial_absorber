@@ -175,53 +175,43 @@ class Wall():
         self.tile_wid = tile_wid * self.scale
         self.tile_height = tile_height * self.scale
         self.foundation_thickness = foundation_thickness *self.scale
-
+        self.cs_choice = cross_section
         
-        self.make_cross_section = None
+        self.cross_section = None
         self.comps = None
         self.sides = None
         self.corners = None
         self.other = None
 
-        self.cs_choice = cross_section
-        
 
-        #self.make_dog_components()
+        #init runned functions
+        self.set_cross_section()
 
 
-    def set_cross_section(self):
-        if cs_choice == "dogleg":
-            self.set_dogleg()
-            
-        elif cs_choice == "triangle":
-            self.set_triangle()
+    def set_cross_section(self, choice=None):
 
-        elif cs_choice == "block":
-            self.set_block()
+        if choice == None:
+            choice = self.cs_choice
+
+        cross_sections = {"dogleg":self._make_dogleg_basic, "triangle":self._make_triangle_basic, "block":self._make_block_basic}
+        self.cross_section = cross_sections[str(choice)]()
+
+        if self.cross_section == None:
+            print("Choice error, check typos in cross_section choice.")
 
     
     def get_scale(self):
         return self.scale
 
     
-    def set_dogleg(self):
-        self.make_cross_section = self.make_dogleg_basic
 
-    def set_triangle(self):
+    def _make_block_basic(self):
         pass
 
-    def set_block(self):
+    def _make_triangle_basic(self):
         pass
 
-
-
-
-
-
-    def make_triangle_basic(self):
-        pass
-
-    def make_dogleg_basic(self):
+    def _make_dogleg_basic(self):
             """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
             The vertical wall tile then gets returned."""
             
@@ -331,18 +321,18 @@ class Wall():
             """Helper function to make and return the side wall tiles and intersection wall tile.
             Could write ver, hor and inter as seperate helper function to speed up in case of frequent copy usage."""
             
-            comp = {}
-            comp["ver"] = (self.make_cross_section())
-            comp["hor"] = (comp["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
-            comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
-            comp["union"] = (self.make_cross_section().union(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
+            comps = {}
+            comps["ver"] = (self.cross_section)
+            comps["hor"] = (comps["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
+            comps["inter"] = (comps["ver"].intersect(comps["hor"])) ### the start workplane must always be new but add could be reused
+            comps["union"] = (comps["ver"].union(comps["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
-            return comp
+            self.comps = comps
 
-        def make_sides(comp):
+        def make_sides():
             """Helper function to make and return the corner wall tiles. """
             
-            sides = {"ver":comp["ver"], "hor":comp["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None}
+            sides = {"ver":self.comps["ver"], "hor":self.comps["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None}
 
             for key in sides:
 
@@ -359,45 +349,46 @@ class Wall():
                     print("Key error1")
 
                 if key[9:] == "left" or key[9:] == "down":
-                    sides[key] = (comp[comp_key].faces(face_key)
+                    sides[key] = (self.comps[comp_key].faces(face_key)
                                   .workplane(-self.max_wid/2).split(keepBottom=True))
 
                 elif key[9:] == "right" or key[9:] == "up":
-                    sides[key] = (comp[comp_key].faces(face_key)
+                    sides[key] = (self.comps[comp_key].faces(face_key)
                                   .workplane(-self.max_wid/2).split(keepTop=True))
                     
                 else:
                     print("Key error2")
 
-            return sides
+            self.sides = sides
 
 
 
-        def make_corners(comp, sides):
+        def make_corners():
             corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
             
             for key in corners:
-                corners[key] = (make_components()["inter"].union(sides["hor_half_" +key.split("_")[0]])
-                                .union(sides["ver_half_" +key.split("_")[1]]))
+                corners[key] = (self.comps["inter"].union(self.sides["hor_half_" +key.split("_")[0]])
+                                .union(self.sides["ver_half_" +key.split("_")[1]]))
+
+            self.corners = corners
 
 
-
-            return corners
-
-        self.comps = (make_components()) #components are ver, hor and inter.
+        make_components()
+        make_sides()
+        make_corners()
         
-        self.sides = (make_sides(self.comps))
-
-        self.corners = (make_corners(self.comps, self.sides))
-
         bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
         for item in bundle:
+            print(bundle)
+            print(bundle["comps"])
+            print(bundle["sides"])
+            print(bundle["corners"])
             for key in bundle[item]:
                 exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
     
         
-        return self.comps, self.sides, self.corners #self.other #in case you want to return the components
+        #return self.comps, self.sides, self.corners #self.other #in case you want to return the components
 
 
 
@@ -444,10 +435,9 @@ def main():
     hilbert = generate_hilbert(iterations)
 
     dogleg_wall = Wall(foundation_thickness=1, tile_height=3)
-    dogleg_wall.set_dogleg()
-    dogleg_comps, dogleg_sides, dogleg_corners = dogleg_wall.make_wall_components()
+    dogleg_wall.make_wall_components()
     scale = dogleg_wall.get_scale()
-    hilbert_absorber = Absorber(hilbert, dogleg_sides, dogleg_corners, iterations, scale) # hilbert + iterations in Pattern class. sides + corners in Wall class.
+    hilbert_absorber = Absorber(hilbert, dogleg_wall.sides, dogleg_wall.corners, iterations, scale) # hilbert + iterations in Pattern class. sides + corners in Wall class.
     hilbert_absorber.build()
     print("Build complete, exporting to stl file")
     hilbert_absorber.export("hilbert_dog_dot")
