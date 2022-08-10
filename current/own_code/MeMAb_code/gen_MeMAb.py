@@ -189,7 +189,7 @@ class Wall():
          #carefull with rotation and see if they are at same position
 
 
-        def copy_cross_section():
+        def make_basic():
             """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
             The vertical wall tile then gets returned."""
             
@@ -290,18 +290,19 @@ class Wall():
             return dog_side
             
 
-        def copy_components():
+        def make_components():
             """Helper function to make and return the side wall tiles and intersection wall tile.
             Could write ver, hor and inter as seperate helper function to speed up in case of frequent copy usage."""
             
             comp = {}
-            comp["ver"] = (copy_cross_section())
+            comp["ver"] = (make_basic())
             comp["hor"] = (comp["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
             comp["inter"] = (comp["ver"].intersect(comp["hor"])) ### the start workplane must always be new but add could be reused
+            comp["union"] = (make_basic().add(comp["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
             return comp
 
-        def copy_sides(comp):
+        def make_sides(comp):
             """Helper function to make and return the corner wall tiles. """
             
             sides = {"hor_half_left":None, "hor_half_right":None, "ver_half_down":None, "ver_half_up":None}
@@ -329,25 +330,27 @@ class Wall():
 
             return sides
 
-        comps = (copy_components())
+
+
+        def make_corners(comp, sides):
+            corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
+            
+            for key in corners:
+                corners[key] = (make_components()["inter"].add(sides["hor_half_" +key.split("_")[0]])
+                                .add(sides["ver_half_" +key.split("_")[1]]))
+
+
+
+            return corners
+
+        comps = (make_components())
         
-        sides = (copy_sides(comps))
+        sides = (make_sides(comps))
 
-        union = (copy_components()["ver"].add(comps["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
-
-        exporters.export(union, "union.stl")
+        corners = (make_corners(comps, sides))
 
         for key in comps: #components are ver, hor and inter.
-            exporters.export(comps[key], key +".stl")
-
-
-                      
-        corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
-                             
-        for key in corners:
-            corners[key] = (copy_components()["inter"].add(sides["hor_half_" +key.split("_")[0]])
-                            .add(sides["ver_half_" +key.split("_")[1]]))
-
+            exporters.export(comps[key], key +".stl")   
 
         for key in sides:
             exporters.export(sides[key], key +".stl")
@@ -357,9 +360,9 @@ class Wall():
 
 
         self.corners = corners
-        self.sides = copy_components()
+        self.sides = make_components()
         
-        return copy_components(), corners
+        return make_components(), corners
 
 
 
@@ -401,7 +404,7 @@ def generate_hilbert(iterations):
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 4
+    iterations = 2
     
     hilbert = generate_hilbert(iterations)
 
