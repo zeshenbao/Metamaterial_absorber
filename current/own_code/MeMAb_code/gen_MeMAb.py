@@ -509,15 +509,23 @@ def generate_hilbert(iterations):
 
 
 
-
-
 def test_Tile():
     wall1 = Wall(cross_section="block")
     tile1 = Tile(wall1.sides["ver"], "ver", [0,0,1])
-    
+
+    #test self.coord
     assert (tile1.coord == np.array([0,0,1])).all()
+    
+    #test repr
     assert repr(tile1) == "ver"
 
+    #test goto()
+    tile1.goto([1,2,3])
+    assert (tile1.coord == np.array([1,2,3])).all()
+
+    #test translate()
+    tile1.translate([2,1,1])
+    assert (tile1.coord == np.array([3,3,4])).all()
 
 def test_Wall_export():
     """Make sure to not have any stl files already when testing this."""
