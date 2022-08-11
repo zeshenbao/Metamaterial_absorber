@@ -206,7 +206,22 @@ class Wall():
     
 
     def _make_block_basic(self):
-        pass
+        
+        self.max_wid = self.tile_wid
+
+        geo_xz = (cq.Workplane("XZ")
+                  .rect(self.tile_wid/2,  self.tile_height).extrude(self.max_wid/2)
+                      .mirror(mirrorPlane="XZ", union=True)) #make wall
+
+
+        geo_xy = (cq.Workplane("XY").union(geo_xz)) #change plane
+
+
+        block_side = (geo_xy.faces("<Z")
+                     .rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness)) #add foundation
+
+        
+        return block_side
 
 
     def _make_triangle_basic(self):
@@ -218,7 +233,7 @@ class Wall():
         self.max_wid = self.tile_wid
         
         geo_xz = (cq.Workplane("XZ")
-                  .polyline(pts).close().extrude(self.max_wid/2)
+                  .polyline(pts).close().extrude(self.tile_wid/2)
                       .mirror(mirrorPlane="XZ", union=True)) #make wall
 
 
@@ -458,7 +473,7 @@ def main():
     
     hilbert = generate_hilbert(iterations)
 
-    dogleg_wall = Wall(cross_section="triangle" ,foundation_thickness=1, tile_height=3)
+    dogleg_wall = Wall(cross_section="block" ,foundation_thickness=1, tile_height=3)
     dogleg_wall.make_wall_components()
     scale = dogleg_wall.get_scale()
     hilbert_absorber = Absorber(hilbert, dogleg_wall.sides, dogleg_wall.corners, iterations, scale) # hilbert + iterations in Pattern class. sides + corners in Wall class.
