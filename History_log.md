@@ -612,3 +612,9 @@ Meeting for overview and papers of the CMBeam project group.
 
 ### Plan:
 1. Follow the code structure from yesterday.
+
+### Did:
+1. Added new instance variables to use Wall objects more efficiently.
+2. Changed .add method to .union method to make the code more effective.
+3. Rewrote large parts of Wall class so that it would be easier to add extensions with new methods.
+4. Added several test code file where I test different methods and functions.
