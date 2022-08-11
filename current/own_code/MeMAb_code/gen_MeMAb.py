@@ -15,6 +15,8 @@ import cadquery as cq
 from cadquery import exporters
 from math import *
 from copy import copy
+import numpy as np
+from os.path import exists
 
 
 class Absorber():
@@ -162,7 +164,7 @@ class Wall():
     """Implements different wall tiles such as sides
     and corner with different cross sections."""
 
-    def __init__(self, cross_section="dogleg", tile_len=1.0, tile_wid=1.0, tile_height=2, foundation_thickness=4, scale=2):
+    def __init__(self, cross_section="dogleg", tile_len=1.0, tile_wid=1.0, tile_height=2, foundation_thickness=4, scale=2, export = True):
         """Creates a wall object.
         :param cross_section: str on type of cross section
         :param tile_len: length of tile
@@ -176,6 +178,7 @@ class Wall():
         self.tile_height = tile_height * self.scale
         self.foundation_thickness = foundation_thickness *self.scale
         self.cs_choice = cross_section
+        self.export = export
         
         self.cross_section = None
         self.comps = None
@@ -186,7 +189,7 @@ class Wall():
 
         #init runned functions
         self.set_cross_section()
-
+        self.make_wall_components()
 
     def set_cross_section(self, choice=None):
 
@@ -194,9 +197,11 @@ class Wall():
             choice = self.cs_choice
 
         cross_sections = {"dogleg":self._make_dogleg_basic, "triangle":self._make_triangle_basic, "block":self._make_block_basic}
-        self.cross_section = cross_sections[str(choice)]()
 
-        if self.cross_section == None:
+        if cross_sections[str(choice)]() != None:
+            self.cross_section = cross_sections[str(choice)]()
+    
+        else:
             print("Choice error, check typos in cross_section choice.")
 
     
@@ -204,6 +209,16 @@ class Wall():
         return self.scale
 
     
+
+    def export_parts(self):
+            
+            bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
+
+            for item in bundle:
+                #print(bundle[item])
+                for key in bundle[item]:
+                    exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
+
 
     def _make_block_basic(self):
         
@@ -352,6 +367,10 @@ class Wall():
                         .cut(circle_left_side))
             
             return dog_side
+
+
+    def _make_new_basic(self):
+        pass
             
 
     def make_wall_components(self):
@@ -419,14 +438,37 @@ class Wall():
         make_components()
         make_sides()
         make_corners()
-        
-        bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
-        for item in bundle:
-            print(bundle[item])
-            for key in bundle[item]:
-                exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
+        if self.export == True:
+            self.export_parts()
+
+        
+        
+
+
+class Tile():
+
+    def __init__(self, tile, name, coord = None):
+        """:param tile: a wall object
+           :param coord: a np array, if it is [x, y] vector or list object, then it will be comverted to np array.
+        """
+        
+        self.coord = np.array(coord)
+        self.tile = tile
+        self.repr = name
+
+    def __repr__(self):
+        return self.repr
+
+        
+    def goto(self, coord):
+        self.coord = np.array(coord)
+
+
+    def translate(self, d_coord):
+        self.coord += np.array(d_coord)
     
+        
 
 
 
@@ -466,6 +508,44 @@ def generate_hilbert(iterations):
     return system
 
 
+
+
+
+def test_Tile():
+    wall1 = Wall(cross_section="block")
+    tile1 = Tile(wall1.sides["ver"], "ver", [0,0,1])
+    
+    assert (tile1.coord == np.array([0,0,1])).all()
+    assert repr(tile1) == "ver"
+
+
+def test_Wall_export():
+    """Make sure to not have any stl files already when testing this."""
+
+    #don't export parts automatically after build
+    wall1 = Wall(cross_section="block", export = False)
+    assert exists("comp_ver.stl") == False
+    
+    #export with default
+    wall1 = Wall(cross_section="block")
+    assert exists("comp_ver.stl") == True
+    
+    #export
+    wall1 = Wall(cross_section="block", export = True)
+    assert exists("comp_ver.stl") == True
+    
+    
+
+     
+    
+def unittest():
+    """The tests are made manually and visually to check that the program exports the right wall tiles, absorber, etc..
+    almost all of the functions and methods are tested."""
+
+    test_Tile()
+    #test_Wall_export()
+
+
 def main():
     """Operates functions and classes to export a finished stl file."""
 
@@ -482,15 +562,13 @@ def main():
     hilbert_absorber.export("hilbert_" +str(dogleg_wall.cs_choice))
     
 
-def unittest():
-    """The tests are made manually and visually to check that the program exports the right wall tiles, absorber, etc..
-    almost all of the functions and methods are tested."""
-    pass
+
 
 
 #if __name__ == "main":
-main()
+#main()
 
+unittest()
 
 
 
