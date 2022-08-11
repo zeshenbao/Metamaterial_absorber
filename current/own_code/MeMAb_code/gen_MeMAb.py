@@ -208,8 +208,37 @@ class Wall():
     def _make_block_basic(self):
         pass
 
+
     def _make_triangle_basic(self):
-        pass
+        """Make a triangular wall side facing y (upp/down or vertical) direction."""
+        pts = [(-self.tile_len/2,0),
+               (self.tile_len/2, 0),
+               (0, self.tile_height)] #Note that pts are centered at 0!
+ 
+        self.max_wid = self.tile_wid
+        
+        geo_xz = (cq.Workplane("XZ")
+                  .polyline(pts).close().extrude(self.max_wid/2)
+                      .mirror(mirrorPlane="XZ", union=True)) #make wall
+
+
+        geo_xy = (cq.Workplane("XY").union(geo_xz)) #change plane
+
+
+        tria_side = (geo_xy.faces("<Z")
+                     .rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness)) #add foundation
+
+        """
+        #center at (0,0) if you want to make sure the foundation is on center to see if your prism or extruded triangle is in (x,y)=(0,0)
+
+        tria_side = (geo_xy.union(cq.Workplane("XY")
+                                  .center(0,0).rect(self.max_wid, self.max_wid).extrude(-self.foundation_thickness))) #add foundation
+        """ 
+        
+        
+
+        return tria_side
+    
 
     def _make_dogleg_basic(self):
             """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
@@ -379,10 +408,12 @@ class Wall():
         bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
         for item in bundle:
+            print(bundle[item])
             for key in bundle[item]:
                 exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
     
-    
+
+
 
 
 
@@ -427,13 +458,13 @@ def main():
     
     hilbert = generate_hilbert(iterations)
 
-    dogleg_wall = Wall(foundation_thickness=1, tile_height=3)
+    dogleg_wall = Wall(cross_section="triangle" ,foundation_thickness=1, tile_height=3)
     dogleg_wall.make_wall_components()
     scale = dogleg_wall.get_scale()
     hilbert_absorber = Absorber(hilbert, dogleg_wall.sides, dogleg_wall.corners, iterations, scale) # hilbert + iterations in Pattern class. sides + corners in Wall class.
     hilbert_absorber.build()
     print("Build complete, exporting to stl file")
-    hilbert_absorber.export("hilbert_dog_dot")
+    hilbert_absorber.export("hilbert_" +str(dogleg_wall.cs_choice))
     
 
 def unittest():
