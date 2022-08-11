@@ -24,7 +24,7 @@ class Absorber():
     and saved as a stl file.
     """
 
-    def __init__(self, system, sides, corners, iterations, scale):
+    def __init__(self, pattern):
         """Creates an absorber object with input wall corners, wall sides and system.
          _____ _____    ___________
         |     |     |  |           |    
@@ -43,119 +43,25 @@ class Absorber():
 
         """
     
-        self.system = system
-        self.sides = sides
-        self.corners = corners
+        self.pattern = pattern
+        self.result = cq.Workplane("XY")
         
-        self.iterations = iterations
-        self.result = None
-        self.scale = scale
 
     def build(self): 
-        """Builds the absorber with instance variables."""
+        """Builds the absorber with pattern blueprint."""
+
+        for part in self.pattern.blue_print:
+            #self.result = self.result.add(self.sides["hor"].translate((-1*self.scale,0,0)))
+            print(type(tuple(part.coord)))
+            print(part.tile)
+            self.result = self.result.add(part.tile.translate(tuple(part.coord)))
         
-        """Code variable reminders:
-           :var pos: position of current tile
-           :var angle: current direction of movement of the tile.
-           :var count: current tile number.
-        """
-        position = [0,0,0]
-        angle = 0    #0 degrees == right
-        count = 0
 
-        
-        if self.iterations % 2 == 0:
-            self.result = cq.Workplane("XY").add(self.sides["hor"].translate((-1*self.scale,0,0)))
-        else:
-            self.result = cq.Workplane("XY")
-            
-        
-        for letter in self.system:
-            print(count/len(self.system))
-            #print(position[0], position[1], angle)
-            
-            if letter == "F":
-                #exporters.export(self.sides["ver"], "sides_hor.stl")
-                #exporters.export(self.sides["ver"], "sides_hor.stl")
-                #return
-                
-                if angle == 0:
-                    self.result.add(self.sides["hor"].translate(position))
-                    position[0] +=1*self.scale
-
-                elif angle == 180:
-                    self.result.add(self.sides["hor"].translate(position))
-                    position[0] -=1*self.scale
-                    
-                elif angle == 90:
-                    self.result.add(self.sides["ver"].translate(position))
-                    position[1] -=1*self.scale
-
-                elif angle == 270:
-                    self.result.add(self.sides["ver"].translate(position))
-                    position[1] +=1*self.scale
-
-                else:
-                    print("error")
-
-                
-            elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
-                if angle == 0:
-                    #print(self.corners["left_down"])
-                    self.result.add(self.corners["left_down"].translate(position))
-                    position[1] -=1*self.scale
-
-                elif angle == 180:
-                    self.result.add(self.corners["right_up"].translate(position))
-                    position[1] +=1*self.scale
-                    
-                elif angle == 90:
-                    self.result.add(self.corners["left_up"].translate(position))
-                    position[0] -=1*self.scale
-
-                elif angle == 270:
-                    self.result.add(self.corners["right_down"].translate(position))
-                    position[0] +=1*self.scale
-
-                else:
-                    print("error")
-
-                angle += 90
-                angle %= 360
-                
-                
-            elif letter == "-":
-                if angle == 0:
-                    self.result.add(self.corners["left_up"].translate(position))
-                    position[1] +=1*self.scale
-
-                elif angle == 180:
-                    self.result.add(self.corners["right_down"].translate(position))
-                    position[1] -=1*self.scale
-                    
-                elif angle == 90:
-                    self.result.add(self.corners["right_up"].translate(position))
-                    position[0] +=1*self.scale
-
-                elif angle == 270:
-                    self.result.add(self.corners["left_down"].translate(position))
-                    position[0] -=1*self.scale
-
-                else:
-                    print("error")
-
-                angle -= 90
-                angle %= 360
-                
-            count += 1
-            #if count == 1: #check first block
-                #position[2] += 1
-
-    def export(self, file_name):
+    def export(self):
         """Export created self.result to a stl file
         with file name specified with iterations."""
-        
-        exporters.export(self.result, str(file_name) +"_iter" +str(self.iterations) +".stl")
+        if self.pattern.name == "hilbert":
+            exporters.export(self.result, self.pattern.wall.cs_choice +"_" +self.pattern.name +"_iter" +str(self.pattern.iterations) +".stl")
         print("exported")
 
 
@@ -471,41 +377,172 @@ class Tile():
         
 
 
-
-
-
-
-def generate_hilbert(iterations):
-    """Generates and returns a hilbert curve system 
-    where the iterations depends on the parameter iterations. 
-
-    :param iterations: iterations of hilbert system.
+class Pattern(): 
     """
-    axiom = "A"
-    A = "+BF-AFA-FB+"
-    B = "-AF+BFB+FA-"
+    #Used to generate different patterns. By exporting a list of Tile objects.
 
-    system = axiom
-
-    for i in range(iterations):
-        system = system.replace("A", "a").replace("B", "b") #a, b are temporary variables because we wnt to replace A and B at the same time
-
-        system = system.replace("a", A).replace("b", B)
-
-    system = system.replace("A", "").replace("B", "")
+    :param system: str
+    System instructions to generate the walls.
     
-    while "+-" in system:
-        system = system.replace("+-", "")
+    #:param pattern_choice: str
+    #Choose between different patterns.
+    
+    :param iterations: int
+    Optional, used for fractals
+
+    :param pattern_len: int
+    Optional, used for non-fractals
+
+    :param pattern_wid: int
+    Optional, used for non-fractals
+    """
+    #pattern_len=10, pattern_wid=10
+    
+    def __init__(self, wall):
+        """Creates a pattern object with an empty system."""
+        self.blue_print = []
+        self.wall = wall
+        self.name = None
+
+    def _gen_hilbert_sys(self):
+        """Generates and returns a hilbert curve system 
+        where the iterations depends on the parameter iterations. 
+
+        :param iterations: iterations of hilbert system.
+        """
         
-    while "-+" in system:
-        system = system.replace("-+", "")
+        axiom = "A"
+        A = "+BF-AFA-FB+"
+        B = "-AF+BFB+FA-"
 
-    system = system.replace("F+", "+").replace("F-", "-")
+        system = axiom
 
-    #self.system = system
-    #print(system)
+        for i in range(self.iterations):
+            system = system.replace("A", "a").replace("B", "b") #a, b are temporary variables because we wnt to replace A and B at the same time
 
-    return system
+            system = system.replace("a", A).replace("b", B)
+
+        system = system.replace("A", "").replace("B", "")
+        
+        while "+-" in system:
+            system = system.replace("+-", "")
+            
+        while "-+" in system:
+            system = system.replace("-+", "")
+
+        system = system.replace("F+", "+").replace("F-", "-")
+
+        #self.system = system
+        #print(system)
+
+        return system
+
+
+    def create_hilbert_blueprint(self, iterations=2, scale = 2): 
+        """Make instructions on how to build hilbert absorber by making a list of tiles with tile types with their respective coordinates."""
+        
+        """Code variable reminders:
+           :var pos: position of current tile
+           :var angle: current direction of movement of the tile.
+           :var count: current tile number.
+        """
+        self.name = "hilbert"
+        self.iterations = iterations
+        self.scale = scale
+        
+        system = self._gen_hilbert_sys()
+        
+        
+        
+        position = [0,0,0]
+        angle = 0    #0 degrees == right
+        count = 0
+
+        
+
+        
+        if self.iterations % 2 == 0:
+            self.blue_print.append(Tile(self.wall.sides["hor"], "hor", [-1*self.scale,0,0]))
+            
+        
+        for letter in system:
+            print(count/len(system))
+            #print(position[0], position[1], angle)
+            
+            if letter == "F":
+                #exporters.export(self.sides["ver"], "sides_hor.stl")
+                #exporters.export(self.sides["ver"], "sides_hor.stl")
+                #return
+                
+                if angle == 0:
+                    self.blue_print.append(Tile(self.wall.sides["hor"], "hor", position))
+                    position[0] +=1*self.scale
+
+                elif angle == 180:
+                    self.blue_print.append(Tile(self.wall.sides["hor"], "hor", position))
+                    position[0] -=1*self.scale
+                    
+                elif angle == 90:
+                    self.blue_print.append(Tile(self.wall.sides["ver"], "ver", position))
+                    position[1] -=1*self.scale
+
+                elif angle == 270:
+                    self.blue_print.append(Tile(self.wall.sides["ver"], "ver", position))
+                    position[1] +=1*self.scale
+
+                else:
+                    print("error")
+
+                
+            elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
+                if angle == 0:
+                    #print(self.corners["left_down"])
+                    self.blue_print.append(Tile(self.wall.corners["left_down"], "left_down", position))
+                    position[1] -=1*self.scale
+
+                elif angle == 180:
+                    self.blue_print.append(Tile(self.wall.corners["right_up"], "right_up", position))
+                    position[1] +=1*self.scale
+                    
+                elif angle == 90:
+                    self.blue_print.append(Tile(self.wall.corners["left_up"], "left_up", position))
+                    position[0] -=1*self.scale
+
+                elif angle == 270:
+                    self.blue_print.append(Tile(self.wall.corners["right_down"], "right_down", position))
+                    position[0] +=1*self.scale
+
+                else:
+                    print("error")
+
+                angle += 90
+                angle %= 360
+                
+                
+            elif letter == "-":
+                if angle == 0:
+                    self.blue_print.append(Tile(self.wall.corners["left_up"], "left_up", position))
+                    position[1] +=1*self.scale
+
+                elif angle == 180:
+                    self.blue_print.append(Tile(self.wall.corners["right_down"], "right_down", position))
+                    position[1] -=1*self.scale
+                    
+                elif angle == 90:
+                    self.blue_print.append(Tile(self.wall.corners["right_up"], "right_up", position))
+                    position[0] +=1*self.scale
+
+                elif angle == 270:
+                    self.blue_print.append(Tile(self.wall.corners["left_down"], "left_down", position))
+                    position[0] -=1*self.scale
+
+                else:
+                    print("error")
+
+                angle -= 90
+                angle %= 360
+                
+            count += 1
 
 
 
@@ -543,17 +580,25 @@ def test_Wall_export():
     assert exists("comp_ver.stl") == True
 
     
-    
 
+def test_Pattern():
+
+    wall1 = Wall(cross_section="block")
+    hilbert = Pattern(wall1)
+    hilbert.create_hilbert_blueprint(iterations = 3)
+    #print(pattern1.pattern)
+    block_hilbert = Absorber(hilbert)
+    block_hilbert.build()
+    block_hilbert.export()
      
     
 def unittest():
     """The tests are made manually and visually to check that the program exports the right wall tiles, absorber, etc..
     almost all of the functions and methods are tested."""
 
-    test_Tile()
+    #test_Tile()
     #test_Wall_export()
-
+    test_Pattern()
 
 def main():
     """Operates functions and classes to export a finished stl file."""
