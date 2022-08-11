@@ -306,7 +306,6 @@ class Wall():
             
             dog_side = (dog_side.cut(circle_right_side)
                         .cut(circle_left_side))
-
             
             return dog_side
             
@@ -380,16 +379,10 @@ class Wall():
         bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
         for item in bundle:
-            print(bundle)
-            print(bundle["comps"])
-            print(bundle["sides"])
-            print(bundle["corners"])
             for key in bundle[item]:
                 exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
     
-        
-        #return self.comps, self.sides, self.corners #self.other #in case you want to return the components
-
+    
 
 
 

@@ -36,5 +36,26 @@ def test_deep_copy():
 
 
     #Test translate - don't affect
+    #translated_comp = (comp["ver"].translate((1,1,1))) #comp["ver"] will be in the same coordinates.
+    #test by making comp["ver"] and then translate it, if two then correct, if one object then error.
 
     
+    #Test cut 
+    comp["union"] = (comp["ver"].cut(comp["hor"])) #unlike add, comp["ver"] stays the same but comp["union"] will be ver cut by hor.
+
+    
+    #use union instead of add normally. union does not change the object but add will. use add only in build or assembly. union is for parts, add is for assembly kind of
+
+
+
+
+
+
+
+
+
+
+
+
+
+
