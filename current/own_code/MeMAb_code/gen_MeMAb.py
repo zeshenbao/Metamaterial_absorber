@@ -533,6 +533,7 @@ def test_Wall_export():
     #export
     wall1 = Wall(cross_section="block", export = True)
     assert exists("comp_ver.stl") == True
+
     
     
 
