@@ -631,10 +631,10 @@ def main():
     
     #hilbert block iter 4
     """
-    block = Wall(cross_section = "block") #changing cross section to triangle
+    block = Wall(cross_section = "block") #changing cross section to block
     
     dots = Pattern() #same
-    dots.create_hilbert_blueprint(iterations =4) #same as before but with other parameters for length and width of pattern
+    dots.create_hilbert_blueprint(iterations =4) #setting iterations to 4 for hilbert curve
     
     block_hilbert = Absorber(block, dots) #same
     block_hilbert.build() #same
