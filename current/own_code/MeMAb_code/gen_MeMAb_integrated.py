@@ -78,7 +78,7 @@ class Absorber():
         
         itera = self.pattern.iterations
         exporters.export(self.result, self.wall.cs_choice +"_" +self.pattern.name +("_iter" + str(itera)  if itera != None else "") +".stl")
-    print("exported")
+        print("exported")
 
 
 
@@ -584,23 +584,70 @@ class Pattern():
 def main():
     """Operates functions and classes to export a finished stl file."""
 
-    iterations = 2
-    scale = 1
+    ###Example builds
+
+
+    #default wall(hilbert) setup with rows pattern
+    """
+    hilbert = Wall() #define wall
+    
+    rows = Pattern() #define pattern
+    rows.create_ver_rows_blueprint() #choose pattern to vertical rows and generate blueprint
+    
+    dogleg_rows = Absorber(hilbert, rows) #define absorber with wall1 and rows parameters
+    dogleg_rows.build() #builds the cadquery object of absorber
+    print("Build complete, exporting to stl file") #Confirming building
+    dogleg_rows.export() #exports the absorber cadquery object
+    """
+
+
+    #hilbert rows with other len and wid
+    """
+    hilbert = Wall(cross_section = "dogleg") #will be same as default
+    
+    rows = Pattern() #same
+    rows.create_ver_rows_blueprint(pattern_len=8, pattern_wid=4) #same as before but with other parameters for length and width of pattern
+    
+    dogleg_rows = Absorber(hilbert, rows) #same
+    dogleg_rows.build() #same
+    print("Build complete, exporting to stl file") #same
+    dogleg_rows.export() #same
+    """
 
     
-    wall1 = Wall(cross_section="dogleg")
-    hilbert = Pattern().create_hilbert_blueprint(iterations)
-    block_hilbert = Absorber(wall1, hilbert).build()
-    print("Build complete, exporting to stl file")
-    block_hilbert.export()
+    #triangle cross section with dots pattern
+    """
+    triangle = Wall(cross_section = "triangle") #changing cross section to triangle
+    
+    dots = Pattern() #same
+    dots.create_dots_blueprint(pattern_len=5, pattern_wid=5) #same as before but with other parameters for length and width of pattern
+    
+    triangle_dots = Absorber(triangle, dots) #same
+    triangle_dots.build() #same
+    print("Build complete, exporting to stl file") #same
+    triangle_dots.export() #same
+    """
+
+    
+    #hilbert block iter 4
+    """
+    block = Wall(cross_section = "block") #changing cross section to triangle
+    
+    dots = Pattern() #same
+    dots.create_hilbert_blueprint(iterations =4) #same as before but with other parameters for length and width of pattern
+    
+    block_hilbert = Absorber(block, dots) #same
+    block_hilbert.build() #same
+    print("Build complete, exporting to stl file") #same
+    block_hilbert.export() #same
+    """
 
 
 
 
 #if __name__ == "main":
-#    main()
+main()
 
-unittest()
 
 
 
