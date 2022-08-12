@@ -632,10 +632,11 @@ def test_Pattern():
     """
     wall1 = Wall(cross_section="dogleg", scale = 0.1)
     rows = Pattern()
-    rows.create_dots_blueprint(pattern_len=10, pattern_wid=10, scale = 0.1)
+    rows.create_dots_blueprint(pattern_len=50, pattern_wid=50, scale = 0.1)
     #print(rows.blue_print)
     dogleg_rows = Absorber(wall1, rows)
     dogleg_rows.build()
+    print("Build complete, exporting to stl file")
     dogleg_rows.export()
     
 def unittest():

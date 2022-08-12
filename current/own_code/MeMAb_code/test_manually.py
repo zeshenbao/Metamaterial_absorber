@@ -50,9 +50,9 @@ print(dict1)
 
 
 #print(np.array([1,2,3]) +np.array([1,1,2])) #quick test np array
-print(np.array(np.array([1,2,3])))
+#print(np.array(np.array([1,2,3])))
 
-
+print(type((np.array([1,2]))))
 
 
 
