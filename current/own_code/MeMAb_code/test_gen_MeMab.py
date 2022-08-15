@@ -1,8 +1,17 @@
+from gen_MeMAb_integrated import *
+import cadquery as cq
+from cadquery import exporters
+from math import *
+from copy import copy
+import numpy as np
+from os.path import exists
+
+
 
 
 
 def test_deep_copy():
-    """Careful of add method for deep copy."""
+    """Careful of add method for deep copy. This is manually tested"""
     
     #Testing add method for Workplanes
     comps = copy_components()
@@ -101,9 +110,11 @@ def test_Pattern():
     block_hilbert.build()
     block_hilbert.export()
     """
-    wall1 = Wall(cross_section="dogleg", scale = 0.1)
+
+    #test to export Absorber built with pattern setup
+    wall1 = Wall(cross_section="dogleg", scale = 1) #smaller scale will have worse resulution
     rows = Pattern()
-    rows.create_dots_blueprint(pattern_len=50, pattern_wid=50, scale = 0.1)
+    rows.create_dots_blueprint(pattern_len=1, pattern_wid=1, scale = 1)
     #print(rows.blue_print)
     dogleg_rows = Absorber(wall1, rows)
     dogleg_rows.build()
@@ -118,6 +129,9 @@ def unittest():
     #test_Wall_export()
     test_Pattern()
 
+
+if __name__ == "main()":
+    unittest()
 
 
 
