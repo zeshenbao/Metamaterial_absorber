@@ -20,12 +20,11 @@ from os.path import exists
 
 
 class Absorber():
-    """Implements a absorber with patterns and different wall segments 
-    and saved as a stl file.
+    """Implements a absorber with different patterns and wall segments.
     """
 
     def __init__(self, wall, pattern):
-        """Creates an absorber object with input wall corners, wall sides and system.
+        """Creates an absorber object with input wall tiles and pattern.
          _____ _____    ___________
         |     |     |  |           |    
         |  2  |  3  |  |           |   
