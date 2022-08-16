@@ -49,6 +49,12 @@ The most important files that I wrote during this summer:
 4. Test run example code in main().
 5. Look at [example stl files](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code/example_stl_files).
 
+
+## Documentation
+Read [Documentation.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/Documentation.md) for documentation. It is too long to add here.
+
+
+
 ## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py)
 
 ### New cross sections
