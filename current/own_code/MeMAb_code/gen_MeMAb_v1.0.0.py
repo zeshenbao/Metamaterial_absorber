@@ -698,7 +698,7 @@ def main():
 
 
     #hilbert rows with other len and wid
-
+    """
     hilbert = Wall(cross_section = "dogleg") #will be same as default
     
     rows = Pattern() #same
@@ -708,7 +708,7 @@ def main():
     dogleg_rows.build() #same
     print("Build complete, exporting to stl file") #same
     dogleg_rows.export() #same
-    
+    """
 
     
     #triangle cross section with dots pattern
