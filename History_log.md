@@ -647,6 +647,9 @@ Meeting for overview and papers of the CMBeam project group.
 ### Did:
 1. Finished code api. Will start to add documentation.
 2. Made a documentation. Writing installation och getting started guide.
+3. Added installation guide with links.
+4. Added getting started guide with link.
+5. Added showcase geometries.
 
 ## Weekly optional addons:
 1. Add showcase of geometries in repo.
