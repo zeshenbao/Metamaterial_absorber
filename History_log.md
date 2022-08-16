@@ -618,3 +618,35 @@ Meeting for overview and papers of the CMBeam project group.
 2. Changed .add method to .union method to make the code more effective.
 3. Rewrote large parts of Wall class so that it would be easier to add extensions with new methods.
 4. Added several test code file where I test different methods and functions.
+
+
+## 10/08-2022
+### Did:
+1. Learned cadquery difference in deep copy and shallow copy with union or add methods.
+2. Rewrote the code with unions instead of add.
+
+
+## 11/08-2022
+### Did:
+1. Added different tests.
+2. Added more classes and finished the program.
+
+
+## 12/08-2022
+### Did:
+1. Explained code to Gagan.
+2. Added different patterns.
+3. Added example code.
+
+
+## 15/08-2022
+### Did:
+1. Continued a bit with code api.
+
+## 16/08-2022
+### Did:
+1. Finished code api. Will start to add documentation.
+
+## Weekly optional addons:
+1. Add showcase of geometries in repo.
+2. Move VNA code
