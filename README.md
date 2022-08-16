@@ -23,7 +23,7 @@ The most important files that I wrote during this summer:
 5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) file in the venv.
 
 ## Getting started
-0. Main code to use is [gen_MeMAb_v1.0.0] (https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
+0. Main code to use is [gen_MeMAb_v1.0.0] (https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) and main code directory is [MeMAb_code] (https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
 1. Looking at cadquery [examples](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful.
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
 3. Test to make simple geometries and exporting to stl file.
