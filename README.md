@@ -29,5 +29,13 @@ The most important files that I wrote during this summer:
 
 ## Make extensions to the code
 
+### new cross sections
+1. Add new method for cross section in method _make_new_basic() around line 345 with the groups sides, corners, other.
+2. Add method to dictionary in the method set_cross_section() around line 184. 
+3. Select and use like other cross patterns.
+
+### new patterns
+1. Add new method for pattern generation in method create_new_blueprint() around line 676.
+2. Call create_new_blueprint() to generate pattern like other patterns.
 
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
