@@ -42,11 +42,11 @@ The most important files that I wrote during this summer:
 ## Roadmap
 
 * The API of this library is frozen.
-* Version numbers adhere to [semantic versioning][sv].
+* Version numbers adhere to [semantic versioning](http://semver.org/).
 
 The only accepted reason to modify the API of this package
 is to handle issues that can't be resolved in any other
 reasonable way.
 
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
-[sv]: http://semver.org/
+
