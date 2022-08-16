@@ -2,6 +2,12 @@
 
 ## Overview
 
+A metamaterial absorber generator and exporter.
+
+A metamaterial absorber generator with different pattern and cross sections to choose from and exports the built absorber or cadquery Workplane object as a stl file to 3D print.
+
+The code generates different wall tiles with cadquery Workplane objects by defined points to later be combined into more complex tiles and in the end added to a complete pattern which can be exported into a stl file.
+
 This repo contains old code by other people and also [my own code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code) which I wrote during my summer project.
 
 Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/History_log.md) for an overview of the project.
@@ -23,9 +29,12 @@ The most important files that I wrote during this summer:
 5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) file in the venv.
 
 ## Getting started
+0. Main code to use is [gen_MeMAb_v1.0.0](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
 1. Looking at cadquery [examples](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful.
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
 3. Test to make simple geometries and exporting to stl file.
+4. Test run example code in main().
+5. Look at [example stl files](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code/example_stl_files).
 
 ## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py)
 
