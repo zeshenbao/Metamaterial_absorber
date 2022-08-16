@@ -1,6 +1,5 @@
-  """
-
- gen_MeMAb v1.0.0
+"""
+gen_MeMAb v1.0.0
 
 Before you run the code, make sure to do the followig to ensure that the code works:
 
@@ -713,7 +712,7 @@ def main():
 
     
     #triangle cross section with dots pattern
-    """
+    
     triangle = Wall(cross_section = "triangle") #changing cross section to triangle
     
     dots = Pattern() #same
@@ -723,7 +722,7 @@ def main():
     triangle_dots.build() #same
     print("Build complete, exporting to stl file") #same
     triangle_dots.export() #same
-    """
+    
 
     
     #hilbert block iter 4
