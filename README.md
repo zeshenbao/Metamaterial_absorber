@@ -9,10 +9,11 @@ A metamaterial absorber generator with different pattern and cross sections to c
 The code generates different wall tiles with cadquery Workplane objects by defined points to later be combined into more complex tiles and in the end added to a complete pattern which can be exported into a stl file.
 
 
-Solarized dark             |  Solarized Ocean          |
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)  |  ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)   |  ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)
 
+
+| [![triangle dot absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)  | [![Dogleg rows absorber]]([http://audioblocks.com](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)) | [![block hilbert example](http://www.graphicstock.com/images/logo.jpg)]([http://graphicstock.com](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)) |
+|:---:|:---:|:---:|
+| http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
 
 
 
