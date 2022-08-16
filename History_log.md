@@ -646,6 +646,7 @@ Meeting for overview and papers of the CMBeam project group.
 ## 16/08-2022
 ### Did:
 1. Finished code api. Will start to add documentation.
+2. Made a documentation. Writing installation och getting started guide.
 
 ## Weekly optional addons:
 1. Add showcase of geometries in repo.
