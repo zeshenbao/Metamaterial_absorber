@@ -47,7 +47,7 @@ class Absorber():
     def build(self): 
         """Builds the absorber with the blueprint instance variable stored in pattern object."""
 
-        for part in self.pattern.blue_print:
+        for part in self.pattern.blueprint:
 
             if part.group == "sides":
                 self.result = self.result.add(self.wall.sides[part.tile].translate(tuple(part.coord)))
@@ -85,7 +85,8 @@ class Wall():
         |  1  |  0  |  |     |  0  |  |  1  |     |  |           |  |           |
         |_____|_____|, |_____|_____|, |_____|_____|, |___________|, |___________|
 
-
+        Figure 1. Corner types
+        
         The two side types are generated as below:
          ___________    __________
         |     |     |  |          |
@@ -93,7 +94,8 @@ class Wall():
         |     |     |  |----------|
         |     |     |  |          |
         |_____|_____|, |__________|
-        
+
+        Figure 2. Side types
         """
 
  
@@ -126,6 +128,21 @@ class Wall():
 
         export: bool
             If set to True, make_wall_components() method will automatically call export_parts() method to export the wall parts to stl.
+
+        Instance variables
+        ------------------
+        self.cs_choice: method
+            Connected method to the chosen cross section.
+
+        self.comps: dict
+            Stores basic cq.Workplane wall components.
+
+        self.corners: dict
+            Stores wall corner in 4 different directions as seen in figure 1 above.
+            You can see how the zeroth list element looks like.
+
+        self.sides: dict
+            Stores two wall sides, the zeroth vertically and first horisontal as seen in figure 2 above.
         """
 
         #wall tile dimensions
@@ -137,7 +154,7 @@ class Wall():
 
         #export and cross section choices
         self.cs_choice = cross_section
-        self.cross_section = None #connected method to the chosen cross section
+        self.cross_section = None 
         self.export = export
         
         #wall types
@@ -152,6 +169,11 @@ class Wall():
 
 
     def set_cross_section(self, choice=None):
+        """Set or reselect cross section
+
+        param choice: bool
+            selection of cross section if chosen or use start choice if None.
+        """
 
         if choice == None:
             choice = self.cs_choice
@@ -166,7 +188,8 @@ class Wall():
 
 
     def export_parts(self):
-            
+        """Exports generated parts as stl file. Does this automatically after generating parts if self.export is set to True.
+        """
             bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
             for item in bundle:
@@ -176,6 +199,8 @@ class Wall():
 
 
     def _make_block_basic(self):
+        """Private function to generate dogleg cross section and with that make a vertical wall tile.
+            The vertical wall tile then gets returned."""
         
         self.max_wid = self.tile_wid
 
@@ -195,7 +220,9 @@ class Wall():
 
 
     def _make_triangle_basic(self):
-        """Make a triangular wall side facing y (upp/down or vertical) direction."""
+        """Private function to generate dogleg cross section and with that make a vertical wall tile.
+            The vertical wall tile then gets returned."""
+        
         pts = [(-self.tile_len/2,0),
                (self.tile_len/2, 0),
                (0, self.tile_height)] #Note that pts are centered at 0!
@@ -214,7 +241,8 @@ class Wall():
                      .rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness)) #add foundation
 
         """
-        #center at (0,0) if you want to make sure the foundation is on center to see if your prism or extruded triangle is in (x,y)=(0,0)
+        #Alternative to variable above 
+        #Center at (0,0) if you want to make sure the foundation is on center to see if your prism or extruded triangle is in (x,y)=(0,0)
 
         tria_side = (geo_xy.union(cq.Workplane("XY")
                                   .center(0,0).rect(self.max_wid, self.max_wid).extrude(-self.foundation_thickness))) #add foundation
@@ -226,7 +254,7 @@ class Wall():
     
 
     def _make_dogleg_basic(self):
-            """Helper fuction to generate dogleg cross section and with that make a vertical wall tile.
+            """Private function to generate dogleg cross section and with that make a vertical wall tile.
             The vertical wall tile then gets returned."""
             
             foundation_thickness = self.foundation_thickness
@@ -325,17 +353,17 @@ class Wall():
 
 
     def _make_new_basic(self):
+        """Private function for new designs of cross sections."""
         pass
             
 
     def make_wall_components(self):
-        """Make different wall tiles and return them as a pair of dictionaries.
-        The first dict contains wall side tiles + wall intersection tile and the second dict contains wall corner tiles."""
-         #carefull with rotation and see if they are at same position
+        """Make different wall tiles and save them as different dictionaries.
+        Dictonaries are saved in their respective instance variables such as sides, corners and other."""
             
 
         def make_components():
-            """Helper function to make and return the side wall tiles and intersection wall tile.
+            """Helper function to make and set the side wall tiles, union wall tiles and intersection wall tile.
             Could write ver, hor and inter as seperate helper function to speed up in case of frequent copy usage."""
             
             comps = {}
@@ -350,7 +378,7 @@ class Wall():
             self.other["union"] = comps["union"]
 
         def make_sides():
-            """Helper function to make and return the corner wall tiles. """
+            """Helper function to make and set the side wall tiles."""
             
             sides = {"ver":self.comps["ver"], "hor":self.comps["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None}
 
@@ -384,12 +412,8 @@ class Wall():
 
 
         def make_corners():
-            """
-        :param corners: A dictionary that stores wall corner in 4 different directions as seen in the figure above.
-        You can see how the zeroth list element looks like.
-
-        :param sides: A dictionary of two wall sides, the zeroth vertically and first horisontal.
-            """
+            """Helper function to make and set the corner wall tiles."""
+            
             corners = {"left_down":None, "left_up":None, "right_down":None, "right_up":None}
             
             for key in corners:
@@ -411,10 +435,28 @@ class Wall():
 
 
 class Tile():
+    """Implements tiles for storing wall tiles and coordinates."""
 
     def __init__(self, group, tile, coord = None):
-        """:param tile: a wall object
-           :param coord: a np array, if it is [x, y] vector or list object, then it will be comverted to np array.
+        """Create a tile object with different input parameters.
+
+        Parameters
+        ----------
+
+        group: dict
+            Type of walls, sides, corners or other.
+
+        tile: str
+            Type of wall within a chosen group.
+
+        coord: np array or [x,y,z] list/vector
+            Coordinates of tile position. If input as vector then it will be converted to np array.
+
+        Instance variable
+        -----------------
+
+        self.repr: str
+            Representation of tile object as string based on group and tile within group.
         """
         
         self.coord = np.array(coord)
@@ -423,14 +465,17 @@ class Tile():
         self.repr = str(group) +"_" +str(tile)
 
     def __repr__(self):
+        """Returns representation of tile object."""
         return self.repr
 
         
     def goto(self, coord):
+        """Set tile coordinate to input parameter."""
         self.coord = np.array(coord)
-
+        
 
     def translate(self, d_coord):
+        """Translate tile coordinate with input movement coordinate."""
         self.coord += np.array(d_coord)
     
         
@@ -438,37 +483,34 @@ class Tile():
 
 class Pattern(): 
     """
-    #Used to generate different patterns. By exporting a list of Tile objects.
-
-    :param system: str
-    System instructions to generate the walls.
-    
-    #:param pattern_choice: str
-    #Choose between different patterns.
-    
-    :param iterations: int
-    Optional, used for fractals
-
-    :param pattern_len: int
-    Optional, used for non-fractals
-
-    :param pattern_wid: int
-    Optional, used for non-fractals
+    Implements pattern to generate different patterns.
     """
-    #pattern_len=10, pattern_wid=10
+
     
     def __init__(self):
-        """Creates a pattern object with an empty system."""
-        self.blue_print = []
+        """Creates a pattern object with an empty system, name and blueprint.
+
+        Instance variables
+        ------------------
+
+        self.blueprint: list
+        Stores list of tiles.
+
+        self.iterations: int
+        Used for fractals, set to None at init.
+
+        self.name: str
+        Used for pattern name, set to None at init.
+
+        """
+        self.blueprint = []
         self.iterations = None
         self.name = None
+        
 
     def _gen_hilbert_sys(self):
-        """Generates and returns a hilbert curve system 
-        where the iterations depends on the parameter iterations. 
-
-        :param iterations: iterations of hilbert system.
-        """
+        """Private function called by crate_hilbert_blueprint(self) method to generate and return a hilbert curve system 
+        where the iterations depends on the parameter iterations in caller function."""
         
         axiom = "A"
         A = "+BF-AFA-FB+"
@@ -491,82 +533,77 @@ class Pattern():
 
         system = system.replace("F+", "+").replace("F-", "-")
 
-        #self.system = system
-        #print(system)
-
         return system
 
 
-    def create_hilbert_blueprint(self, iterations=2, scale = 1): 
-        """Make instructions on how to build hilbert absorber by making a list of tiles with tile types with their respective coordinates."""
+    def create_hilbert_blueprint(self, iterations=2, scale = 1.0): 
+        """Make instructions on how to build hilbert absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+        iterations: int
+            Number of iterations of hilbert system to generate.
+
+        scale: float
+            Scale of generated system, should be same as wall object.
+
         
-        """Code variable reminders:
-           :var pos: position of current tile
-           :var angle: current direction of movement of the tile.
-           :var count: current tile number.
+        Code variable reminders
+        -----------------------
+            var pos: position of current tile
+            var angle: current direction of movement of the tile.
+            var count: current tile number.
         """
+        
         self.name = "hilbert"
         self.iterations = iterations
         self.scale = scale
         
         system = self._gen_hilbert_sys()
-        
-        
-        
+
         position = [0,0,0]
         angle = 0    #0 degrees == right
         count = 0
 
-        
         if self.iterations % 2 == 0:
-            self.blue_print.append(Tile("sides", "hor", [-1*self.scale,0,0]))
-            
+            self.blueprint.append(Tile("sides", "hor", [-1*self.scale,0,0]))
         
         for letter in system:
-            print(count/len(system))
-            #print(position[0], position[1], angle)
-            
             if letter == "F":
-                #exporters.export(self.sides["ver"], "sides_hor.stl")
-                #exporters.export(self.sides["ver"], "sides_hor.stl")
-                #return
-                
                 if angle == 0:
-                    self.blue_print.append(Tile("sides", "hor", position))
+                    self.blueprint.append(Tile("sides", "hor", position))
                     position[0] +=1*self.scale
 
                 elif angle == 180:
-                    self.blue_print.append(Tile("sides", "hor", position))
+                    self.blueprint.append(Tile("sides", "hor", position))
                     position[0] -=1*self.scale
                     
                 elif angle == 90:
-                    self.blue_print.append(Tile("sides", "ver", position))
+                    self.blueprint.append(Tile("sides", "ver", position))
                     position[1] -=1*self.scale
 
                 elif angle == 270:
-                    self.blue_print.append(Tile("sides", "ver", position))
+                    self.blueprint.append(Tile("sides", "ver", position))
                     position[1] +=1*self.scale
 
                 else:
                     print("error")
 
-                
             elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
                 if angle == 0:
-                    #print(self.corners["left_down"])
-                    self.blue_print.append(Tile("corners", "left_down", position))
+                    self.blueprint.append(Tile("corners", "left_down", position))
                     position[1] -=1*self.scale
 
                 elif angle == 180:
-                    self.blue_print.append(Tile("corners", "right_up", position))
+                    self.blueprint.append(Tile("corners", "right_up", position))
                     position[1] +=1*self.scale
                     
                 elif angle == 90:
-                    self.blue_print.append(Tile("corners", "left_up", position))
+                    self.blueprint.append(Tile("corners", "left_up", position))
                     position[0] -=1*self.scale
 
                 elif angle == 270:
-                    self.blue_print.append(Tile("corners", "right_down", position))
+                    self.blueprint.append(Tile("corners", "right_down", position))
                     position[0] +=1*self.scale
 
                 else:
@@ -578,19 +615,19 @@ class Pattern():
                 
             elif letter == "-":
                 if angle == 0:
-                    self.blue_print.append(Tile("corners", "left_up", position))
+                    self.blueprint.append(Tile("corners", "left_up", position))
                     position[1] +=1*self.scale
 
                 elif angle == 180:
-                    self.blue_print.append(Tile("corners", "right_down", position))
+                    self.blueprint.append(Tile("corners", "right_down", position))
                     position[1] -=1*self.scale
                     
                 elif angle == 90:
-                    self.blue_print.append(Tile("corners", "right_up", position))
+                    self.blueprint.append(Tile("corners", "right_up", position))
                     position[0] +=1*self.scale
 
                 elif angle == 270:
-                    self.blue_print.append(Tile("corners", "left_down", position))
+                    self.blueprint.append(Tile("corners", "left_down", position))
                     position[0] -=1*self.scale
 
                 else:
@@ -602,20 +639,52 @@ class Pattern():
             count += 1
 
 
-    def create_ver_rows_blueprint(self, pattern_len=5, pattern_wid=5, scale = 1):
+    def create_ver_rows_blueprint(self, pattern_len=5.0, pattern_wid=5.0, scale = 1.0):
+        """Make instructions on how to build vertical rows absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+
+        pattern_len: float
+            Set absorber length (in mm).
+        
+        pattern_wid: float
+            Set absorber width (in mm).
+            
+        scale: float
+            Set scale of absorber, should be same as wall.
+
+        """
+        
         self.name = "ver_rows"
         
         for i in range(int(pattern_len)):
             for j in range(int(pattern_wid)):
-                self.blue_print.append(Tile("sides", "ver", [i*scale, j*scale, 0]))
+                self.blueprint.append(Tile("sides", "ver", [i*scale, j*scale, 0]))
 
     
-    def create_dots_blueprint(self, pattern_len=10, pattern_wid=10, scale = 1):
+    def create_dots_blueprint(self, pattern_len=10.0, pattern_wid=10.0, scale = 1.0):
+        """Make instructions on how to build dots absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+
+        pattern_len: float
+            Set absorber length (in mm).
+        
+        pattern_wid: float
+            Set absorber width (in mm).
+            
+        scale: float
+            Set scale of absorber, should be same as wall.
+            
+        """
+        
         self.name = "dots"
         
         for i in range(int(pattern_len)):
             for j in range(int(pattern_len)):
-                self.blue_print.append(Tile("other", "inter", [i*scale, j*scale, 0]))
+                self.blueprint.append(Tile("other", "inter", [i*scale, j*scale, 0]))
                     
              
 
