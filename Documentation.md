@@ -179,7 +179,7 @@ def make_wall_components(self):
         Dictonaries are saved in their respective instance variables such as sides, corners and other."""
 ``` 
 
-##### function make_components
+##### helper func make_components
 ```python
 def make_components():
             """Helper function to make and set the side wall tiles, union wall tiles and intersection wall tile.
@@ -198,98 +198,160 @@ def make_corners():
             """Helper function to make and set the corner wall tiles."""
 ``` 
 
-####
+### Class Tile
 ```python
+class Tile():
+    """Implements tiles for storing wall tiles and coordinates."""
+``` 
+
+#### method init
+```python
+def __init__(self, group, tile, coord = None):
+        """Create a tile object with different input parameters.
+
+        Parameters
+        ----------
+
+        group: dict
+            Type of walls, sides, corners or other.
+
+        tile: str
+            Type of wall within a chosen group.
+
+        coord: np array or [x,y,z] list/vector
+            Coordinates of tile position. If input as vector then it will be converted to np array.
+
+        Instance variable
+        -----------------
+
+        self.repr: str
+            Representation of tile object as string based on group and tile within group.
+        """
+``` 
+
+#### method repr
+```python
+def __repr__(self):
+        """Returns representation of tile object."""
+``` 
+
+#### method goto
+```python
+def goto(self, coord):
+        """Set tile coordinate to input parameter."""
+``` 
+
+#### method translate
+```python
+def translate(self, d_coord):
+        """Translate tile coordinate with input movement coordinate."""
+``` 
+
+### class Pattern
+```python
+class Pattern(): 
+    """Implements pattern to generate different patterns."""
+``` 
+
+#### method init
+```python
+def __init__(self):
+        """Creates a pattern object with an empty system, name and blueprint.
+
+        Instance variables
+        ------------------
+
+        self.blueprint: list
+        Stores list of tiles.
+
+        self.iterations: int
+        Used for fractals, set to None at init.
+
+        self.name: str
+        Used for pattern name, set to None at init.
+
+        """
+``` 
+
+#### method _gen_hilbert_sys
+```python
+def _gen_hilbert_sys(self):
+        """Private function called by crate_hilbert_blueprint(self) method to generate and return a hilbert curve system 
+        where the iterations depends on the parameter iterations in caller function."""
+``` 
+
+#### method create_hilbert_blueprint
+```python
+def create_hilbert_blueprint(self, iterations=2, scale = 1.0): 
+        """Make instructions on how to build hilbert absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+        iterations: int
+            Number of iterations of hilbert system to generate.
+
+        scale: float
+            Scale of generated system, should be same as wall object.
+
+        
+        Code variable reminders
+        -----------------------
+            var pos: position of current tile
+            var angle: current direction of movement of the tile.
+            var count: current tile number.
+        """
+``` 
+
+#### method create_ver_rows_blueprint
+```python
+def create_ver_rows_blueprint(self, pattern_len=5.0, pattern_wid=5.0, scale = 1.0):
+        """Make instructions on how to build vertical rows absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+
+        pattern_len: float
+            Set absorber length (in mm).
+        
+        pattern_wid: float
+            Set absorber width (in mm).
+            
+        scale: float
+            Set scale of absorber, should be same as wall.
+
+        """
+``` 
+
+#### method create_dots_blueprint
+```python
+def create_dots_blueprint(self, pattern_len=10.0, pattern_wid=10.0, scale = 1.0):
+        """Make instructions on how to build dots absorber by making a list of tiles with tile types with their respective coordinates.
+
+        Parameters
+        ----------
+
+        pattern_len: float
+            Set absorber length (in mm).
+        
+        pattern_wid: float
+            Set absorber width (in mm).
+            
+        scale: float
+            Set scale of absorber, should be same as wall.
+            
+        """
+``` 
+
+## Functions
+
+### function main
+```python
+def main():
+    """Operates functions and classes to export a finished stl file."""
 ``` 
 
 ####
 ```python
 ``` 
 
-####
-```python
-``` 
 
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
-
-####
-```python
-``` 
