@@ -36,7 +36,7 @@ def build(self):
 ```  
 
 
-
+### method export
 ```python
 def export(self):
         """Export the genereted cq.Workplane object stored as self.result to a stl file
