@@ -20,14 +20,14 @@ The most important files that I wrote during this summer:
 2. Install latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 3. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) on Miniconda.
 4. Create a [virtual enviroment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
-5. Run the code file in the venv.
+5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) file in the venv.
 
 ## Getting started
 1. Looking at cadquery [examples](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful.
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
 3. Test to make simple geometries and exporting to stl file.
 
-## Make extensions to the code
+## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py)
 
 ### New cross sections
 1. Add new method for cross section in method _make_new_basic() around line 345 with the groups sides, corners, other.
