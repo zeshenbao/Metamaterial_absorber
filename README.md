@@ -10,7 +10,7 @@ The code generates different wall tiles with cadquery Workplane objects by defin
 
 
 
-|<img src="https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_dots_im.jpg"  width="1000"/>|
+|<img src="https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_dots_im.jpg"  width="800"/>|
 |:--:| 
 | *Figure 1. Example 3D print of generated stl file.* |
 
