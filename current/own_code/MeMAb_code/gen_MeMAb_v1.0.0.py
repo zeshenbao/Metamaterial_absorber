@@ -1,5 +1,6 @@
-"""
-gen_MeMAb v1.0.0
+  """
+
+ gen_MeMAb v1.0.0
 
 Before you run the code, make sure to do the followig to ensure that the code works:
 
@@ -179,6 +180,7 @@ class Wall():
         if choice == None:
             choice = self.cs_choice
 
+        #### Add your new cross section method here
         cross_sections = {"dogleg":self._make_dogleg_basic, "triangle":self._make_triangle_basic, "block":self._make_block_basic} #set cross section options
 
         if cross_sections[str(choice)]() != None:
@@ -669,6 +671,11 @@ class Pattern():
         for i in range(int(pattern_len)):
             for j in range(int(pattern_len)):
                 self.blueprint.append(Tile("other", "inter", [i*scale, j*scale, 0]))
+
+
+    def create_new_blueprint(self):
+        """Make new instructions on new patterns. """
+        pass
                     
             
 def main():
