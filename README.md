@@ -16,10 +16,13 @@ The most important files that I wrote during this summer:
 6. Solid work parts for the static reflectometry system
 
 ## Installation
-1. Install Python
-2. Install latest Miniconda
-3. Install Cadquery2 on Miniconda
+1. Install Python 3
+2. Install latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+3. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) on Miniconda
 4. Create a virtual enviroment with conda
 5. Run the code file in the venv.
+
+## Getting started
+1. Looking at cadquery [documentation](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful
 
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
