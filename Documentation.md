@@ -34,3 +34,12 @@ class Absorber():
 def build(self): 
         """Builds the absorber with the blueprint instance variable stored in pattern object."""
 ```  
+
+
+
+```python
+def export(self):
+        """Export the genereted cq.Workplane object stored as self.result to a stl file
+        with file name automatically specified with pattern, wall cross section and iterations (if there are iterations).
+        """
+```  
