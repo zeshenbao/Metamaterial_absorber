@@ -38,4 +38,15 @@ The most important files that I wrote during this summer:
 1. Add new method for pattern generation in method create_new_blueprint() around line 676.
 2. Call create_new_blueprint() to generate pattern like other patterns.
 
+
+### Roadmap
+
+* The API of this library is frozen.
+* Version numbers adhere to [semantic versioning][sv].
+
+The only accepted reason to modify the API of this package
+is to handle issues that can't be resolved in any other
+reasonable way.
+
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
+[sv]: http://semver.org/
