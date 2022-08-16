@@ -178,7 +178,7 @@ class Wall():
         if choice == None:
             choice = self.cs_choice
 
-        cross_sections = {"dogleg":self._make_dogleg_basic, "triangle":self._make_triangle_basic, "block":self._make_block_basic}
+        cross_sections = {"dogleg":self._make_dogleg_basic, "triangle":self._make_triangle_basic, "block":self._make_block_basic} #set cross section options
 
         if cross_sections[str(choice)]() != None:
             self.cross_section = cross_sections[str(choice)]()
@@ -190,12 +190,11 @@ class Wall():
     def export_parts(self):
         """Exports generated parts as stl file. Does this automatically after generating parts if self.export is set to True.
         """
-            bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
+        bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
-            for item in bundle:
-                #print(bundle[item])
-                for key in bundle[item]:
-                    exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
+        for item in bundle:
+            for key in bundle[item]:
+                exporters.export(bundle[item][key], str(item[:-1]) + "_" +key +".stl")
 
 
     def _make_block_basic(self):
@@ -233,9 +232,7 @@ class Wall():
                   .polyline(pts).close().extrude(self.tile_wid/2)
                       .mirror(mirrorPlane="XZ", union=True)) #make wall
 
-
         geo_xy = (cq.Workplane("XY").union(geo_xz)) #change plane
-
 
         tria_side = (geo_xy.faces("<Z")
                      .rect(self.tile_len, self.tile_wid).extrude(-self.foundation_thickness)) #add foundation
@@ -247,16 +244,15 @@ class Wall():
         tria_side = (geo_xy.union(cq.Workplane("XY")
                                   .center(0,0).rect(self.max_wid, self.max_wid).extrude(-self.foundation_thickness))) #add foundation
         """ 
-        
-        
-
+    
         return tria_side
     
 
     def _make_dogleg_basic(self):
             """Private function to generate dogleg cross section and with that make a vertical wall tile.
             The vertical wall tile then gets returned."""
-            
+
+            #see drawing for how points are defined
             foundation_thickness = self.foundation_thickness
             tile_len = self.tile_len
             tile_height = self.tile_height
@@ -266,13 +262,12 @@ class Wall():
             w = h*tan(angle)
             
             k = 1/tan(2*angle)
-            k_w = 1/(1-tan(angle)**2) # koefficient front of w at lowest point
+            k_w = 1/(1-tan(angle)**2) # coefficient front of w at lowest point
             a = tile_len - 2*w#((1.5-k_w)*w-(-0.5*w-k_w)*w)
             s = a*cos(2*angle)
 
             dx = s*cos(2*angle)
             dy = s*sin(2*angle)
-
 
             xs_1 = (s+dy)/(2*k)
             xs_2 = (s+dy)/(2*k)+dx
@@ -291,20 +286,17 @@ class Wall():
                     (xs,ys),
                     (xs_1, ys_1)]
 
-
             area_right_pts = [(xa,0),
                     (a,0),
                     (xs_2,ys_2),
                     (xs,ys)]
             
-
             pts = [(0,0),
                    (1.5*w, -1.5*h),
                    ((1.5-k_w)*w, -2*h),
                    ((-0.5-k_w)*w, -2*h),
                    (-0.5*w, -1.5*h),
                    (-w, -h)]
-
 
             max_wid = 2*(abs((-0.5-k_w)*w-c2))#2*(abs(max(1.5*w,(-0.5-k_w)*w-c2))) #((1.5-k_w)*w, -2*h)+c1 might be max
             ##max always take the lowest because of neg large
@@ -315,33 +307,27 @@ class Wall():
                       .center(0,0).polyline(pts).close().extrude(max_wid/2)
                       .mirror(mirrorPlane="XZ", union=True))
 
-
             geo_xy = (cq.Workplane("XY")
                       .union(geo_xz).translate((0,0,tile_height)))
-
             
             dog_side = (geo_xy.union(cq.Workplane("XY")
                                    .center(0,0).rect(max_wid, max_wid).extrude(-foundation_thickness)))
-
 
             area_right_side = (cq.Workplane("XZ")
                                .center((1.5-k_w)*w,0).polyline(area_left_pts).close().extrude(max_wid/2)
                                .mirror(mirrorPlane="XZ", union=True))
 
-
             area_left_side = (cq.Workplane("XZ")
                               .center((-0.5-k_w)*w-a,0).polyline(area_right_pts).close()
                               .extrude(max_wid/2).mirror(mirrorPlane="XZ", union=True))
 
-
             circle_right_side = (cq.Workplane("XZ")
                                  .center((1.5-k_w)*w+c1,s/2).circle(s/2).extrude(max_wid/2)
                                  .mirror(mirrorPlane="XZ", union=True))
-
+            
             circle_left_side = (cq.Workplane("XZ")
                                 .center((-0.5-k_w)*w-c2,s/2).circle(s/2).extrude(max_wid/2)
                                 .mirror(mirrorPlane="XZ", union=True))
-
 
             dog_side = (dog_side.union(area_left_side)
                         .union(area_right_side))
@@ -368,7 +354,7 @@ class Wall():
             
             comps = {}
             comps["ver"] = (self.cross_section)
-            comps["hor"] = (comps["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_svans),(vek_huvud),(grader))
+            comps["hor"] = (comps["ver"].rotate((0,0,0), (0,0,1), 90)) #((vek_head),(vek_tail),(degrees))
             comps["inter"] = (comps["ver"].intersect(comps["hor"])) ### the start workplane must always be new but add could be reused
             comps["union"] = (comps["ver"].union(comps["hor"])) #When adding object2 to object1 then object1 will include object2 so don't use usable parts as object1 to add on. But object2 which adds to other stuff can be reused.
 
@@ -410,7 +396,6 @@ class Wall():
             self.sides = sides
 
 
-
         def make_corners():
             """Helper function to make and set the corner wall tiles."""
             
@@ -421,7 +406,6 @@ class Wall():
                                 .union(self.sides["ver_half_" +key.split("_")[1]]))
 
             self.corners = corners
-
 
         make_components()
         make_sides()
@@ -519,7 +503,7 @@ class Pattern():
         system = axiom
 
         for i in range(self.iterations):
-            system = system.replace("A", "a").replace("B", "b") #a, b are temporary variables because we wnt to replace A and B at the same time
+            system = system.replace("A", "a").replace("B", "b") #a, b are temporary variables because we want to replace A and B at the same time
 
             system = system.replace("a", A).replace("b", B)
 
@@ -569,7 +553,7 @@ class Pattern():
             self.blueprint.append(Tile("sides", "hor", [-1*self.scale,0,0]))
         
         for letter in system:
-            if letter == "F":
+            if letter == "F": #F is forwards
                 if angle == 0:
                     self.blueprint.append(Tile("sides", "hor", position))
                     position[0] +=1*self.scale
@@ -613,7 +597,7 @@ class Pattern():
                 angle %= 360
                 
                 
-            elif letter == "-":
+            elif letter == "-": #- is turn to left
                 if angle == 0:
                     self.blueprint.append(Tile("corners", "left_up", position))
                     position[1] +=1*self.scale
@@ -686,8 +670,7 @@ class Pattern():
             for j in range(int(pattern_len)):
                 self.blueprint.append(Tile("other", "inter", [i*scale, j*scale, 0]))
                     
-             
-
+            
 def main():
     """Operates functions and classes to export a finished stl file."""
 
@@ -749,11 +732,8 @@ def main():
     block_hilbert.export() #same
     """
 
-
-
-
-#if __name__ == "main":
-main()
+if __name__ == "__main__":
+    main()
 
 
 
