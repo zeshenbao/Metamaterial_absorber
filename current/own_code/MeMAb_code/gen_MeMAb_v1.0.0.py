@@ -107,6 +107,7 @@ class Wall():
 
         Parameters
         ----------
+        
         cross_section: str
             A textstring to select the type of cross section.
             The choices is listed in the method set_cross_section() and are dogleg, traingle, block.
@@ -190,6 +191,7 @@ class Wall():
     def export_parts(self):
         """Exports generated parts as stl file. Does this automatically after generating parts if self.export is set to True.
         """
+        
         bundle = {"comps":self.comps, "sides":self.sides, "corners":self.corners}
 
         for item in bundle:
@@ -466,9 +468,7 @@ class Tile():
 
 
 class Pattern(): 
-    """
-    Implements pattern to generate different patterns.
-    """
+    """Implements pattern to generate different patterns."""
 
     
     def __init__(self):
