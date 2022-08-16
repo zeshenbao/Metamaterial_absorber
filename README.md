@@ -27,5 +27,7 @@ The most important files that I wrote during this summer:
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
 3. Test to make simple geometries and exporting to stl file.
 
+## Make extensions to the code
+
 
 Zeshen Bao – [zeshenbao](https://github.com/zeshenbao)
