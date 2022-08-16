@@ -9,6 +9,11 @@ A metamaterial absorber generator with different pattern and cross sections to c
 The code generates different wall tiles with cadquery Workplane objects by defined points to later be combined into more complex tiles and in the end added to a complete pattern which can be exported into a stl file.
 
 
+|![Dogleg absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_dots_im.png)|
+|:--:| 
+| *Figure 1. Example 3D print of generated stl file.* |
+
+
 
 | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)  | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png) | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/block_hilbert_im.png)|
 |:---:|:---:|:---:|
