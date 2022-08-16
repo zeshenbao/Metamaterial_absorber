@@ -10,10 +10,9 @@ The code generates different wall tiles with cadquery Workplane objects by defin
 
 
 
-
-| [![triangle dot absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)  | [![Dogleg rows absorber]]([http://audioblocks.com](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)) | [![block hilbert example](http://www.graphicstock.com/images/logo.jpg)]([http://graphicstock.com](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png)) |
+| ![dogleg rows absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)  | ![triangle dots absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png) | ![block hilbert example](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/block_hilbert_im.png)|
 |:---:|:---:|:---:|
-| http://videoblocks.com | http://audioblocks.com | http://graphicstock.com |
+|fig1| fig2 |fig3|
 
 
 
