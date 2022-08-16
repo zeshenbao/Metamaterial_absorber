@@ -56,13 +56,6 @@ def test_deep_copy():
     #use union instead of add normally. union does not change the object but add will. use add only in build or assembly. union is for parts, add is for assembly kind of
 
 
-
-
-
-
-
-
-
 def test_Tile():
     wall1 = Wall(cross_section="block")
     tile1 = Tile(wall1.sides["ver"], "ver", [0,0,1])
