@@ -654,3 +654,11 @@ Meeting for overview and papers of the CMBeam project group.
 ## Weekly optional addons:
 1. Add showcase of geometries in repo.
 2. Move VNA code
+
+## The most important files that I wrote during this summer:
+1. Generate doglegged hilbert geometry
+2. Generate doglegged grid geometry
+3. Notes for cadquery
+4. Work in progress code to extract VNA traces
+5. VNA notes
+6. Solid work parts for the static reflectometry system
