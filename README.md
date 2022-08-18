@@ -9,7 +9,7 @@ A metamaterial absorber generator with different pattern and cross sections to c
 The code generates different wall tiles with cadquery Workplane objects by defined points to later be combined into more complex tiles and in the end added to a complete pattern which can be exported into a stl file.
 
 
-|![Dogleg absorber](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_dots_im.png)|
+|<img src="https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_dots_im.jpg"  width="800"/>|
 |:--:| 
 | *Figure 1. Example 3D print of generated stl file.* |
 
@@ -17,22 +17,13 @@ The code generates different wall tiles with cadquery Workplane objects by defin
 
 | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/dog_rows_im.png)  | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/triangle_dot_im.png) | ![](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/im/block_hilbert_im.png)|
 |:---:|:---:|:---:|
-|Figure 1. Dogleg rows absorber| Figure 2. Triangle dots absorber|Figure 3. Block hilbert example|
+|Figure 2. Dogleg rows absorber| Figure 3. Triangle dots absorber|Figure 4. Block hilbert example|
 
 
 
 This repo contains old code by other people and also [my own code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code) which I wrote during my summer project.
 
 Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/History_log.md) for an overview of the project.
-
-The most important files that I wrote during this summer:
-
-1. Generate doglegged hilbert geometry
-2. Generate doglegged grid geometry
-3. Notes for cadquery
-4. Work in progress code to extract VNA traces
-5. VNA notes
-6. Solid work parts for the static reflectometry system
 
 ## Installation
 1. Install Python3.
@@ -48,6 +39,12 @@ The most important files that I wrote during this summer:
 3. Test to make simple geometries and exporting to stl file.
 4. Test run example code in main().
 5. Look at [example stl files](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code/example_stl_files).
+
+
+## Documentation
+Read [Documentation.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/Documentation.md) for documentation. It is too long to add here.
+
+
 
 ## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py)
 
