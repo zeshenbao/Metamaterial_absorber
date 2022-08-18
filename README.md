@@ -57,6 +57,9 @@ Read [Documentation.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/
 1. Add new method for pattern generation in method create_new_blueprint() around line 676.
 2. Call create_new_blueprint() to generate pattern like other patterns.
 
+### Change dogleg parameters
+1. Look at [dogleg_geometry_ derivation.pdf](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/dogleg_geometry_%20derivation.pdf)
+2. Change lists for points (area_left_pts, area_right_pts, pts) in method _make_dogleg_basic().
 
 ## Roadmap
 
