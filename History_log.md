@@ -662,3 +662,8 @@ Meeting for overview and papers of the CMBeam project group.
 4. Work in progress code to extract VNA traces
 5. VNA notes
 6. Solid work parts for the static reflectometry system
+
+## 18/08-2022
+
+### Did:
+1. Added dogleg geometry derivation image.
