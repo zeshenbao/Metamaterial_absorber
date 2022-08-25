@@ -683,7 +683,7 @@ def main():
     ###Example builds
 
 
-    #default wall(hilbert) setup with rows pattern
+    #default wall(dogleg) setup with rows pattern
     """
     hilbert = Wall() #define wall
     
@@ -697,7 +697,7 @@ def main():
     """
 
 
-    #hilbert rows with other len and wid
+    #dogleg rows with other len and wid
     """
     hilbert = Wall(cross_section = "dogleg") #will be same as default
     
