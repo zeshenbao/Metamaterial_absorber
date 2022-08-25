@@ -266,7 +266,7 @@ class Wall():
             
             k = 1/tan(2*angle)
             k_w = 1/(1-tan(angle)**2) # coefficient front of w at lowest point
-            a = tile_len - 2*w#((1.5-k_w)*w-(-0.5*w-k_w)*w)
+            a = tile_len - 2*w #((1.5-k_w)*w-(-0.5*w-k_w)*w)
             s = a*cos(2*angle)
 
             dx = s*cos(2*angle)
@@ -699,7 +699,7 @@ def main():
 
     #dogleg rows with other len and wid
     """
-    hilbert = Wall(cross_section = "dogleg") #will be same as default
+    hilbert = Wall(cross_section="dogleg", foundation_thickness=4, tile_height=3) #will be same as default but with height 3
     
     rows = Pattern() #same
     rows.create_ver_rows_blueprint(pattern_len=8, pattern_wid=4) #same as before but with other parameters for length and width of pattern
@@ -709,11 +709,11 @@ def main():
     print("Build complete, exporting to stl file") #same
     dogleg_rows.export() #same
     """
-
+    
     
     #triangle cross section with dots pattern
     """
-    triangle = Wall(cross_section = "triangle") #changing cross section to triangle
+    triangle = Wall(cross_section="triangle", foundation_thickness=1) #changing cross section to triangle and foundation thickness to 1
     
     dots = Pattern() #same
     dots.create_dots_blueprint(pattern_len=5, pattern_wid=5) #same as before but with other parameters for length and width of pattern
@@ -727,10 +727,10 @@ def main():
     
     #hilbert block iter 4
     """
-    block = Wall(cross_section = "block") #changing cross section to block
+    block = Wall(cross_section="block") #changing cross section to block
     
     dots = Pattern() #same
-    dots.create_hilbert_blueprint(iterations =4) #setting iterations to 4 for hilbert curve
+    dots.create_hilbert_blueprint(iterations=4) #setting iterations to 4 for hilbert curve
     
     block_hilbert = Absorber(block, dots) #same
     block_hilbert.build() #same
@@ -738,8 +738,7 @@ def main():
     block_hilbert.export() #same
     """
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
 
 
 
