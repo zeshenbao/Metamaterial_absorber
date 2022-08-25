@@ -667,3 +667,7 @@ Meeting for overview and papers of the CMBeam project group.
 
 ### Did:
 1. Added dogleg geometry derivation image.
+
+
+## 22/08-2022 to 28/08-2022
+1. Making the presentation 
