@@ -685,12 +685,12 @@ def main():
 
     #default wall(dogleg) setup with rows pattern
     """
-    hilbert = Wall() #define wall
+    dogleg = Wall() #define wall
     
     rows = Pattern() #define pattern
     rows.create_ver_rows_blueprint() #choose pattern to vertical rows and generate blueprint
     
-    dogleg_rows = Absorber(hilbert, rows) #define absorber with wall1 and rows parameters
+    dogleg_rows = Absorber(dogleg, rows) #define absorber with wall1 and rows parameters
     dogleg_rows.build() #builds the cadquery object of absorber
     print("Build complete, exporting to stl file") #Confirming building
     dogleg_rows.export() #exports the absorber cadquery object
@@ -699,12 +699,12 @@ def main():
 
     #dogleg rows with other len and wid
     """
-    hilbert = Wall(cross_section="dogleg", foundation_thickness=4, tile_height=3) #will be same as default but with height 3
+    dogleg = Wall(cross_section="dogleg", foundation_thickness=4, tile_height=3) #will be same as default but with height 3
     
     rows = Pattern() #same
     rows.create_ver_rows_blueprint(pattern_len=8, pattern_wid=4) #same as before but with other parameters for length and width of pattern
     
-    dogleg_rows = Absorber(hilbert, rows) #same
+    dogleg_rows = Absorber(dogleg, rows) #same
     dogleg_rows.build() #same
     print("Build complete, exporting to stl file") #same
     dogleg_rows.export() #same
