@@ -30,10 +30,10 @@ Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorbe
 2. Install latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 3. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) on Miniconda.
 4. Create a [virtual enviroment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
-5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) file in the venv.
+5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.1.py) file in the venv.
 
 ## Getting started
-0. Main code to use is [gen_MeMAb_v1.0.1](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
+0. Main code to use is [gen_MeMAb_v1.0.1](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.1.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
 1. Looking at cadquery [examples](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful.
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
 3. Test to make simple geometries and exporting to stl file.
