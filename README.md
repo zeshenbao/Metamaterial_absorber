@@ -28,8 +28,8 @@ Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorbe
 ## Installation
 1. Install Python3.
 2. Install latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
-3. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) on Miniconda.
-4. Create a [virtual enviroment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
+3. Create a [virtual enviroment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
+4. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) inside conda venv.
 5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.1.py) file in the venv.
 
 ## Getting started
