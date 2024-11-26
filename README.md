@@ -46,7 +46,7 @@ Read [Documentation.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/
 
 
 
-## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.0.py)
+## Make extensions to the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/MeMAb_code/gen_MeMAb_v1.0.1.py)
 
 ### New cross sections
 1. Add new method for cross section in method _make_new_basic() around line 345 with the groups sides, corners, other.
