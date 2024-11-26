@@ -21,24 +21,24 @@ The code generates different wall tiles with cadquery Workplane objects by defin
 
 
 
-This repo contains old code by other people and also [my own code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code) which I wrote during my summer project.
+This repo contains might contain old code by other people and also [my own code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current) which I wrote during my summer project.
 
 Check out the [History_log.md](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/History_log.md) and [my presentation](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/Metamaterial_absorber_presentation_Zeshen_Bao.pdf) for an overview of the project.
 
 ## Installation
 1. Install Python3.
-2. Install latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
-3. Create a [virtual enviroment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
+2. Install the latest [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
+3. Create a [virtual environment](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) with conda.
 4. Install [Cadquery2](https://cadquery.readthedocs.io/en/latest/installation.html) inside conda venv.
 5. Run the [code](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.1.py) file in the venv.
 
 ## Getting started
-0. Main code to use is [gen_MeMAb_v1.0.1](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/own_code/MeMAb_code/gen_MeMAb_v1.0.1.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code).
+0. Main code to use is [gen_MeMAb_v1.0.1](https://github.com/zeshenbao/Metamaterial_absorber/blob/main/current/MeMAb_code/gen_MeMAb_v1.0.1.py) and main code directory is [MeMAb_code](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/MeMAb_code).
 1. Looking at cadquery [examples](https://cadquery.readthedocs.io/en/latest/examples.html) could be useful.
 2. Look in cadquery [class summary](https://cadquery.readthedocs.io/en/latest/classreference.html#cadquery.Workplane) for details.
-3. Test to make simple geometries and exporting to stl file.
+3. Test to make simple geometries and export to stl file.
 4. Test run example code in main().
-5. Look at [example stl files](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/own_code/MeMAb_code/example_stl_files).
+5. Look at [example stl files](https://github.com/zeshenbao/Metamaterial_absorber/tree/main/current/MeMAb_code/example_stl_files).
 
 
 ## Documentation
