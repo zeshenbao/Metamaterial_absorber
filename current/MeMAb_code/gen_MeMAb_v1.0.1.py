@@ -594,54 +594,15 @@ class Pattern():
                 else:
                     print("error")
 
-            elif letter == "R": #clockwise angle, + equals turn to the right or add 90 degrees
-                if angle == 0:
-                    self.blueprint.append(Tile("corners", "left_down", position))
-                    position[1] -=1*self.scale
-
-                elif angle == 180:
-                    self.blueprint.append(Tile("corners", "right_up", position))
-                    position[1] +=1*self.scale
-                    
-                elif angle == 90:
-                    self.blueprint.append(Tile("corners", "left_up", position))
-                    position[0] -=1*self.scale
-
-                elif angle == 270:
-                    self.blueprint.append(Tile("corners", "right_down", position))
-                    position[0] +=1*self.scale
-
-                else:
-                    print("error")
-
+            elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
                 angle += 90
                 angle %= 360
-                
-                
-            elif letter == "L": #- is turn to left
-                if angle == 0:
-                    self.blueprint.append(Tile("corners", "left_up", position))
-                    position[1] +=1*self.scale
 
-                elif angle == 180:
-                    self.blueprint.append(Tile("corners", "right_down", position))
-                    position[1] -=1*self.scale
-                    
-                elif angle == 90:
-                    self.blueprint.append(Tile("corners", "right_up", position))
-                    position[0] +=1*self.scale
-
-                elif angle == 270:
-                    self.blueprint.append(Tile("corners", "left_down", position))
-                    position[0] -=1*self.scale
-
-                else:
-                    print("error")
-
+            elif letter == "-": #- is turn to left
                 angle -= 90
                 angle %= 360
             
-            elif letter == "H": #H is forwards (half)
+            elif letter == "H": #H is forwards (but only adds "half tile")
 
                 if angle == 0:
                     if i == 0:
@@ -694,12 +655,52 @@ class Pattern():
                 else:
                     print("angle error")
 
-            elif letter == "-":
-                angle -= 90
-                angle %= 360
 
-            elif letter == "+":
+            elif letter == "R": #R is a combination of H and +
+                if angle == 0:
+                    self.blueprint.append(Tile("corners", "left_down", position))
+                    position[1] -=1*self.scale
+
+                elif angle == 180:
+                    self.blueprint.append(Tile("corners", "right_up", position))
+                    position[1] +=1*self.scale
+                    
+                elif angle == 90:
+                    self.blueprint.append(Tile("corners", "left_up", position))
+                    position[0] -=1*self.scale
+
+                elif angle == 270:
+                    self.blueprint.append(Tile("corners", "right_down", position))
+                    position[0] +=1*self.scale
+
+                else:
+                    print("error")
+
                 angle += 90
+                angle %= 360
+                
+                
+            elif letter == "L": #L is a combination of H and -
+                if angle == 0:
+                    self.blueprint.append(Tile("corners", "left_up", position))
+                    position[1] +=1*self.scale
+
+                elif angle == 180:
+                    self.blueprint.append(Tile("corners", "right_down", position))
+                    position[1] -=1*self.scale
+                    
+                elif angle == 90:
+                    self.blueprint.append(Tile("corners", "right_up", position))
+                    position[0] +=1*self.scale
+
+                elif angle == 270:
+                    self.blueprint.append(Tile("corners", "left_down", position))
+                    position[0] -=1*self.scale
+
+                else:
+                    print("error")
+
+                angle -= 90
                 angle %= 360
 
             else:
@@ -810,8 +811,8 @@ def main():
 
     
     #hilbert block iter 4
-    
-    block = Wall(cross_section="dogleg") #changing cross section to block
+    """
+    block = Wall(cross_section="block") #changing cross section to block
     
     dots = Pattern() #same
     dots.create_hilbert_blueprint(iterations=4) #setting iterations to 4 for hilbert curve
@@ -820,7 +821,7 @@ def main():
     block_hilbert.build() #same
     print("Build complete, exporting to stl file") #same
     block_hilbert.export() #same
-    
+    """
 
 if __name__ == "__main__": main()
 
