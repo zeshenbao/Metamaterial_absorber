@@ -369,7 +369,8 @@ class Wall():
         def make_sides():
             """Helper function to make and set the side wall tiles."""
             
-            sides = {"ver":self.comps["ver"], "hor":self.comps["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None}
+            sides = {"ver":self.comps["ver"], "hor":self.comps["hor"], "ver_half_down":None, "ver_half_up":None, "hor_half_left":None, "hor_half_right":None
+                     ,"down":None, "up":None, "left":None, "right":None}
 
             for key in sides:
 
@@ -391,10 +392,16 @@ class Wall():
 
                 elif key[9:] == "right" or key[9:] == "up":
                     sides[key] = (self.comps[comp_key].faces(face_key)
-                                  .workplane(-self.max_wid/2).split(keepTop=True))
-                    
+                                  .workplane(-self.max_wid/2).split(keepTop=True))        
                 else:
                     print("Key error2")
+
+            for item in ["left", "down", "right", "up"]:
+                if item == "left" or item == "right":
+                    start = "hor"
+                else:
+                    start = "ver"
+                sides[item] = (self.comps["inter"].union(sides[start+"_half_"+item]))
 
             self.sides = sides
 
@@ -512,11 +519,23 @@ class Pattern():
         
         while "+-" in system:
             system = system.replace("+-", "")
+            print("iter1")
             
         while "-+" in system:
             system = system.replace("-+", "")
+            print("iter2")
 
-        system = system.replace("F+", "+").replace("F-", "-")
+        while "F" in system:
+            system = system.replace("F", "HH")
+            print("iter3")
+
+        system = system.replace("F", "HH")
+        
+        system = system.replace("H+H", "R").replace("H-H", "L")
+
+        system = system.replace("HH", "F")
+        
+        print(system)
 
         return system
 
@@ -550,10 +569,11 @@ class Pattern():
         angle = 0    #0 degrees == right
         count = 0
 
-        if self.iterations % 2 == 0:
-            self.blueprint.append(Tile("sides", "hor", [-1*self.scale,0,0]))
         
-        for letter in system:
+        for i in range(len(system)):
+
+            letter = system[i]
+            
             if letter == "F": #F is forwards
                 if angle == 0:
                     self.blueprint.append(Tile("sides", "hor", position))
@@ -574,7 +594,7 @@ class Pattern():
                 else:
                     print("error")
 
-            elif letter == "+": #clockwise angle, + equals turn to the right or add 90 degrees
+            elif letter == "R": #clockwise angle, + equals turn to the right or add 90 degrees
                 if angle == 0:
                     self.blueprint.append(Tile("corners", "left_down", position))
                     position[1] -=1*self.scale
@@ -598,7 +618,7 @@ class Pattern():
                 angle %= 360
                 
                 
-            elif letter == "-": #- is turn to left
+            elif letter == "L": #- is turn to left
                 if angle == 0:
                     self.blueprint.append(Tile("corners", "left_up", position))
                     position[1] +=1*self.scale
@@ -620,7 +640,71 @@ class Pattern():
 
                 angle -= 90
                 angle %= 360
-                
+            
+            elif letter == "H": #H is forwards (half)
+
+                if angle == 0:
+                    if i == 0:
+                        self.blueprint.append(Tile("sides", "right", position))
+                    elif i != 0:
+                        if system[i-1] == "L" or system[i-1] == "R" or system[i-1] == "F":
+                            self.blueprint.append(Tile("sides", "left", position))
+                        else:
+                            self.blueprint.append(Tile("sides", "right", position))
+                    else:
+                        print("index error")
+                    position[0] +=1*self.scale
+
+                elif angle == 180:
+                    if i == 0:
+                        self.blueprint.append(Tile("sides", "left", position))
+                    elif i != 0:
+                        if system[i-1] == "L" or system[i-1] == "R" or system[i-1] == "F":
+                            self.blueprint.append(Tile("sides", "right", position))
+                        else:
+                            self.blueprint.append(Tile("sides", "left", position))
+                    else:
+                        print("index error")
+                    position[0] -=1*self.scale
+                    
+                elif angle == 90:
+                    if i == 0:
+                        self.blueprint.append(Tile("sides", "down", position))
+                    elif i != 0:
+                        if system[i-1] == "L" or system[i-1] == "R" or system[i-1] == "F":
+                            self.blueprint.append(Tile("sides", "up", position))
+                        else:
+                            self.blueprint.append(Tile("sides", "down", position))
+                    else:
+                        print("index error")
+                    position[1] -=1*self.scale
+
+                elif angle == 270:
+                    if i == 0:
+                        self.blueprint.append(Tile("sides", "up", position))
+                    elif i != 0:
+                        if system[i-1] == "L" or system[i-1] == "R" or system[i-1] == "F":
+                            self.blueprint.append(Tile("sides", "down", position))
+                        else:
+                            self.blueprint.append(Tile("sides", "up", position))
+                    else:
+                        print("index error")
+                    position[1] +=1*self.scale
+
+                else:
+                    print("angle error")
+
+            elif letter == "-":
+                angle -= 90
+                angle %= 360
+
+            elif letter == "+":
+                angle += 90
+                angle %= 360
+
+            else:
+                print("letter error")
+            print(count, angle)
             count += 1
 
 
@@ -726,8 +810,8 @@ def main():
 
     
     #hilbert block iter 4
-    """
-    block = Wall(cross_section="block") #changing cross section to block
+    
+    block = Wall(cross_section="dogleg") #changing cross section to block
     
     dots = Pattern() #same
     dots.create_hilbert_blueprint(iterations=4) #setting iterations to 4 for hilbert curve
@@ -736,7 +820,7 @@ def main():
     block_hilbert.build() #same
     print("Build complete, exporting to stl file") #same
     block_hilbert.export() #same
-    """
+    
 
 if __name__ == "__main__": main()
 
