@@ -1,5 +1,8 @@
 # Metamaterial_absorber
 
+> Note: This is a historical research log from 2022. It reflects exploratory work and may not match the current codebase. For current usage, see README.md and Documentation.md.
+
+
 ##
 ## **Preparations**
 ##
