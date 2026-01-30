@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "metamaterial-absorber"
+version = "0.1.0"
+description = "Metamaterial absorber generator and STL exporter"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Zeshen Bao" }
+]
+keywords = ["metamaterial", "cadquery", "stl", "geometry"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Development Status :: 3 - Alpha"
+]
+
+[project.urls]
+Source = "https://github.com/zeshenbao/Metamaterial_absorber"
+
+dependencies = []
+
+[project.optional-dependencies]
+cadquery = ["cadquery"]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.6",
+  "build>=1.2"
+]
+
+[project.scripts]
+metamaterial-absorber = "metamaterial_absorber.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+markers = [
+  "cadquery: tests that require CadQuery geometry support",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"

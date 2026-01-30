@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+.env/
+
+# Build artifacts
+build/
+dist/
+
+# Test and lint caches
+.pytest_cache/
+.ruff_cache/
+
+# Outputs
+*.stl
+
+# OS files
+.DS_Store
