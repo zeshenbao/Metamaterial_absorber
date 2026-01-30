@@ -1,6 +1,6 @@
 # Documentation
 
-This document describes the refactored `metamaterial_absorber` package (v0.1.x). For historical lab notes and early prototyping logs, see `History_log.md`.
+This document describes the refactored `metamaterial_absorber` package (v0.1.x). For historical lab notes and early prototyping logs, see `archive/History_log.md`.
 
 ## Installation
 

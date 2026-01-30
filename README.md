@@ -96,7 +96,7 @@ Workflow: `.github/workflows/ci.yml`
 ## Documentation
 
 - `Documentation.md` for deeper background and design notes.
-- `History_log.md` for project history.
+- `archive/History_log.md` for project history.
 - `Metamaterial_absorber_presentation_Zeshen_Bao.pdf` for a project overview.
 
 ## Roadmap
