@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from math import cos, pi, sin, tan
-from typing import Dict, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:  # pragma: no cover
     from .patterns import Pattern
@@ -34,7 +34,7 @@ def _require_cadquery() -> None:
 class Absorber:
     """Combine a wall definition and a pattern blueprint."""
 
-    def __init__(self, wall: "Wall", pattern: "Pattern") -> None:
+    def __init__(self, wall: Wall, pattern: Pattern) -> None:
         _require_cadquery()
         self.pattern = pattern
         self.wall = wall
@@ -90,10 +90,10 @@ class Wall:
         self.cross_section = None
         self.export = export
 
-        self.comps: Dict[str, "cq.Workplane"] | None = None
-        self.sides: Dict[str, "cq.Workplane"] | None = None
-        self.corners: Dict[str, "cq.Workplane"] | None = None
-        self.other: Dict[str, "cq.Workplane"] | None = None
+        self.comps: dict[str, cq.Workplane] | None = None
+        self.sides: dict[str, cq.Workplane] | None = None
+        self.corners: dict[str, cq.Workplane] | None = None
+        self.other: dict[str, cq.Workplane] | None = None
 
         self.max_wid = 0.0
 

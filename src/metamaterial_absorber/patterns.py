@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List
-
 from .tiles import Tile
 
 
@@ -11,7 +9,7 @@ class Pattern:
     """Create blueprints describing how to place tiles."""
 
     def __init__(self) -> None:
-        self.blueprint: List[Tile] = []
+        self.blueprint: list[Tile] = []
         self.iterations: int | None = None
         self.name: str | None = None
         self.scale: float = 1.0

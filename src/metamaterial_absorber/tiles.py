@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable, List
 
-
-Coord = List[float]
+Coord = list[float]
 
 
 def _to_coord(values: Iterable[float]) -> Coord:
