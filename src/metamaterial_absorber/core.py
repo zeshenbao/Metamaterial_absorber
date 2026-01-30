@@ -47,7 +47,9 @@ class Absorber:
             if part.group == "sides":
                 self.result = self.result.add(self.wall.sides[part.tile].translate(part.as_tuple()))
             elif part.group == "corners":
-                self.result = self.result.add(self.wall.corners[part.tile].translate(part.as_tuple()))
+                self.result = self.result.add(
+                    self.wall.corners[part.tile].translate(part.as_tuple())
+                )
             elif part.group == "other":
                 self.result = self.result.add(self.wall.other[part.tile].translate(part.as_tuple()))
             else:
@@ -58,7 +60,9 @@ class Absorber:
 
         _require_cadquery()
         if filename is None:
-            suffix = f"_iter{self.pattern.iterations}" if self.pattern.iterations is not None else ""
+            suffix = (
+                f"_iter{self.pattern.iterations}" if self.pattern.iterations is not None else ""
+            )
             filename = f"{self.wall.cs_choice}_{self.pattern.name}{suffix}.stl"
         exporters.export(self.result, filename)
         logger.info("Exported absorber to %s", filename)
@@ -245,10 +249,7 @@ class Wall:
         geo_xy = cq.Workplane("XY").union(geo_xz).translate((0, 0, tile_height))
 
         dog_side = geo_xy.union(
-            cq.Workplane("XY")
-            .center(0, 0)
-            .rect(max_wid, max_wid)
-            .extrude(-foundation_thickness)
+            cq.Workplane("XY").center(0, 0).rect(max_wid, max_wid).extrude(-foundation_thickness)
         )
 
         area_right_side = (
@@ -333,15 +334,17 @@ class Wall:
 
             if key.endswith("left") or key.endswith("down"):
                 sides[key] = (
-                    self.comps[comp_key].faces(face_key).workplane(-self.max_wid / 2).split(
-                        keepBottom=True
-                    )
+                    self.comps[comp_key]
+                    .faces(face_key)
+                    .workplane(-self.max_wid / 2)
+                    .split(keepBottom=True)
                 )
             elif key.endswith("right") or key.endswith("up"):
                 sides[key] = (
-                    self.comps[comp_key].faces(face_key).workplane(-self.max_wid / 2).split(
-                        keepTop=True
-                    )
+                    self.comps[comp_key]
+                    .faces(face_key)
+                    .workplane(-self.max_wid / 2)
+                    .split(keepTop=True)
                 )
             else:
                 raise ValueError(f"Invalid side key: {key}")
