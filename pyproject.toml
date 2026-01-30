@@ -22,11 +22,10 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Development Status :: 3 - Alpha"
 ]
+dependencies = []
 
 [project.urls]
 Source = "https://github.com/zeshenbao/Metamaterial_absorber"
-
-dependencies = []
 
 [project.optional-dependencies]
 cadquery = ["cadquery"]
